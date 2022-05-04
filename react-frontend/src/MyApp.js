@@ -3,26 +3,24 @@ import Form from "./Form";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-
 const characters = [
-    {
-      name: 'Charlie',
-      job: 'Janitor',
-    },
-    {
-      name: 'Mac',
-      job: 'Bouncer',
-    },
-    {
-      name: 'Dee',
-      job: 'Aspring actress',
-    },
-    {
-      name: 'Dennis',
-      job: 'Bartender',
-    },
+  {
+    name: "Charlie",
+    job: "Janitor",
+  },
+  {
+    name: "Mac",
+    job: "Bouncer",
+  },
+  {
+    name: "Dee",
+    job: "Aspring actress",
+  },
+  {
+    name: "Dennis",
+    job: "Bartender",
+  },
 ];
-
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -31,7 +29,7 @@ function MyApp() {
     try {
       const response = await axios.get("http://localhost:5001/users");
       //prompt 3
-      console.log(response.data.users_list)
+      console.log(response.data.users_list);
       return response.data.users_list;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -65,24 +63,24 @@ function MyApp() {
     });
   }
 
-  async function makeDeleteCall(user_id){ 
-    try{
-      console.log(user_id) 
+  async function makeDeleteCall(user_id) {
+    try {
+      console.log(user_id);
       //const response = await axios.delete("http://localhost:5001/users", {id: user_id});
-      //prompt 4 
-      const response = await axios.delete(`http://localhost:5001/users/${user_id}`);
-      return response; 
-    }catch (error){
-      console.log(error); 
-      return false; 
+      //prompt 4
+      const response = await axios.delete(
+        `http://localhost:5001/users/${user_id}`
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
   }
-  
+
   function removeOneCharacter(index) {
     //console.log(characters[index].id)
-    makeDeleteCall(characters[index]._id).then((result) => {
-      
-    }); 
+    makeDeleteCall(characters[index]._id).then((result) => {});
     const updated = characters.filter((character, i) => {
       return i !== index;
     });
