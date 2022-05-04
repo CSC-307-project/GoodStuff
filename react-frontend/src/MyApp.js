@@ -7,6 +7,7 @@ import "./MyApp.css";
 import "./responsive.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import HomePage from "./pages/HomePage";
 
 const characters = [
     {
@@ -97,6 +98,7 @@ function MyApp() {
     <div className="container">
        <BrowserRouter>
          <Routes>
+           <Route path="/" element={<HomePage />} />
            <Route path="/login" element={<Login />} />
            <Route path="/register" element={<Register />} />
          </Routes>
