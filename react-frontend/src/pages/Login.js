@@ -16,8 +16,7 @@ const Login = () => {
     <>
       <div>
       <h1 style ={styles}> GoodStuff </h1> 
-      <span className="container d-flex flex-column justify-content-center align-items-center login-center">
-        
+      <span className="container d-flex flex-column justify-content-center align-items-center login-center">     
         <form className="Login col-md-8 col-lg-4 col-11">
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
