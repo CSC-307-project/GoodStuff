@@ -85,11 +85,15 @@ const findUserByJob = (job) => {
 //   }
 // });
 
+
 app.get('/users', async (req, res) => {
-  const name = req.query['name'];
-  const job = req.query['job'];
+  const email = req.query.email;
+  const password = req.query.password;
+  console.log("email --> " + email);
+  console.log("Password --> " + password);
   try {
-      const result = await userServices.getUsers(name, job);
+      const result = await userServices.getUser(email, password);
+      console.log("result --> " + result);
       res.send({users_list: result});         
   } catch (error) {
       console.log(error);
