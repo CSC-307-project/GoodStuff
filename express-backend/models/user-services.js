@@ -24,7 +24,7 @@ mongoose
   )
   .catch((error) => console.log(error));
 
-async function getUsers(email, password) {
+async function getUser(email, password) {
   if (email === undefined || password === undefined) {
     return undefined;
   } else {
@@ -32,8 +32,18 @@ async function getUsers(email, password) {
   }
 }
 
-async function findUserByNameAndJob(email, password) { 
-  return await userModel.find({email: email, password: password}); 
+async function findUserByEmailAndPassword(email, password) { 
+  var query = await userModel.findOne({email: email, password: password}).exec();
+  // console.log(query);
+  if(query !== null){
+    // console.log("found");
+    return query;
+  }
+  else{
+    // console.log("Not FOund");
+    return query;
+  }
+  //return await userModel.find({email: email, password: password}); 
 }
 
 async function addUser(user) {
@@ -65,6 +75,6 @@ async function addUser(user) {
 //   }
 // }
 
-exports.getUsers = getUsers;
+exports.getUser = getUser;
 exports.addUser = addUser;
-exports.findUserByNameAndJob = findUserByNameAndJob; 
+exports.findUserByEmailAndPassword = findUserByEmailAndPassword; 
