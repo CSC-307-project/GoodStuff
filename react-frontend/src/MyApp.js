@@ -31,9 +31,14 @@ const characters = [
 function MyApp() {
   const [characters, setCharacters] = useState([]);
 
-  async function fetchAll() {
+  async function verifyAccount(person) {
     try {
-      const response = await axios.get("http://localhost:5001/users");
+      const response = await axios.get("http://localhost:5001/users", {
+        params: {
+          email: person.email,
+          password: person.password
+        }
+      });
       //prompt 3
       console.log(response.data.users_list);
       return response.data.users_list;
@@ -44,11 +49,11 @@ function MyApp() {
     }
   }
 
-  useEffect(() => {
-    fetchAll().then((result) => {
-      if (result) setCharacters(result);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchAll().then((result) => {
+  //     if (result) setCharacters(result);
+  //   });
+  // }, []);
 
   async function makePostCall(person) {
     try {
@@ -98,7 +103,7 @@ function MyApp() {
        <BrowserRouter>
          <Routes>
            <Route path="/" element={<HomePage />} />
-           <Route path="/login" element={<Login />} />
+           <Route path="/login" element={<Login verify={verifyAccount}/>} />
            <Route path="/register" element={<Register />} />
          </Routes>
        </BrowserRouter>
