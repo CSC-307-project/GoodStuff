@@ -68,7 +68,6 @@ function MyApp() {
   function updateList(person) {
     console.log("update list");
     makePostCall(person).then((result) => {
-      //if (result && result.status === 200)
       if (result && result.status === 201)
         setCharacters([...characters, result.data]);
     });
@@ -104,7 +103,7 @@ function MyApp() {
          <Routes>
            <Route path="/" element={<HomePage />} />
            <Route path="/login" element={<Login verify={verifyAccount}/>} />
-           <Route path="/register" element={<Register />} />
+           <Route path="/register" element={<Register handleSubmit={updateList}/>} />
          </Routes>
        </BrowserRouter>
     </div>

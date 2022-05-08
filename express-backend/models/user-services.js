@@ -46,15 +46,39 @@ async function findUserByEmailAndPassword(email, password) {
   //return await userModel.find({email: email, password: password}); 
 }
 
-async function addUser(user) {
+// Improve error codes
+async function addUniqueUser(user, username, email) {
+  var queryUsername = await findByUsername(username);
+  var queryEmail = await findByEmail(email);
+  if (queryUsername.length > 0) {
+    console.log("Username already exist for: " + user);
+    return false;
+  }
+  if (queryEmail.length > 0) {
+    console.log("Email already exist for: " + user);
+    return false;
+  }
   try {
     const userToAdd = new userModel(user);
     const savedUser = await userToAdd.save();
+    console.log("Success: " + userToAdd);
     return savedUser;
   } catch (error) {
     console.log(error);
     return false;
   }
+}
+
+async function findByUsername(username) {
+  var query = await userModel.find({username: username});
+  console.log(query);
+  return query;
+}
+
+async function findByEmail(email) {
+  var query = await userModel.find({email: email});
+  console.log(query);
+  return query;
 }
 
 // async function findUserById(id) {
@@ -76,5 +100,7 @@ async function addUser(user) {
 // }
 
 exports.getUser = getUser;
-exports.addUser = addUser;
-exports.findUserByEmailAndPassword = findUserByEmailAndPassword; 
+exports.addUniqueUser = addUniqueUser;
+exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
+exports.findByEmail = findByEmail;
+exports.findByUsername = findByUsername;

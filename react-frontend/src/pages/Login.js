@@ -31,7 +31,7 @@ const Login = (props) => {
     const result = props.verify(person);
     setPerson({ email: "", password: "", username: "" });
     console.log(result);
-  }
+  } 
 
   return (
     <>

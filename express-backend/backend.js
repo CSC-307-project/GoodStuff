@@ -154,11 +154,20 @@ function findUserById(id) {
 
 app.post('/users', async (req, res) => {
   const user = req.body;
-  const savedUser = await userServices.addUser(user);
+  const username = user.username;
+  const email = user.email;
+  const savedUser = await userServices.addUniqueUser(user, username, email);
   if (savedUser)
-      res.status(201).send(savedUser);
+    res.status(201).send(savedUser);
   else
-      res.status(500).end();
+    res.status(500).end();
+
+    //   if (savedUser === error(409))
+    //   res.status(409).end();
+    // else if (savedUser === error(500))
+    //   res.status(500).end();
+    // else
+    //   res.status(201).send(savedUser);
 });
 
 function addUser(user) {
