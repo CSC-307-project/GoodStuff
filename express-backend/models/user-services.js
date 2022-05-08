@@ -31,19 +31,30 @@ async function getUser(email, password) {
     return await findUserByEmailAndPassword(email, password);
   }
 }
+async function findUserByEmail(email){
+  let query = await userModel.findOne({email: email}).exec() 
+  if(query !== null){ 
+    return query; 
+  }else{
+    return query; 
+  }
 
-async function findUserByEmailAndPassword(email, password) { 
-  var query = await userModel.findOne({email: email, password: password}).exec();
-  // console.log(query);
-  if(query !== null){
+}
+async function findUserByEmailAndPassword(email, password) {
+  // console.log(email);
+  // console.log(password);
+  var query = await userModel
+    .findOne({ email: email, password: password })
+    .exec();
+  console.log(query);
+  if (query !== null) {
     // console.log("found");
     return query;
-  }
-  else{
+  } else {
     // console.log("Not FOund");
     return query;
   }
-  //return await userModel.find({email: email, password: password}); 
+  //return await userModel.find({email: email, password: password});
 }
 
 // Improve error codes
@@ -80,12 +91,12 @@ async function findByEmail(email) {
 //   }
 // }
 
-// async function deleteUser(id){ 
-//   try{ 
-//     return await userModel.findByIdAndDelete(id); 
-//   }catch(error){ 
-//     console.log(error); 
-//     return undefined; 
+// async function deleteUser(id){
+//   try{
+//     return await userModel.findByIdAndDelete(id);
+//   }catch(error){
+//     console.log(error);
+//     return undefined;
 //   }
 // }
 
@@ -94,3 +105,4 @@ exports.addUser = addUser;
 exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 exports.findByEmail = findByEmail;
 exports.findByUsername = findByUsername;
+exports.findUserByEmail = findUserByEmail; 
