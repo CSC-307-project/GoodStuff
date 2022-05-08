@@ -31,7 +31,15 @@ async function getUser(email, password) {
     return await findUserByEmailAndPassword(email, password);
   }
 }
+async function findUserByEmail(email){
+  let query = await userModel.findOne({email: email}).exec() 
+  if(query !== null){ 
+    return query; 
+  }else{
+    return query; 
+  }
 
+}
 async function findUserByEmailAndPassword(email, password) {
   // console.log(email);
   // console.log(password);
@@ -81,3 +89,4 @@ async function addUser(user) {
 exports.getUser = getUser;
 exports.addUser = addUser;
 exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
+exports.findUserByEmail = findUserByEmail; 
