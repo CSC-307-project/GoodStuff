@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const port = 5001;
 
-const userServices = require('./models/user-services');
+const userServices = require("./models/user-services");
 
 let users = {
   users_list: [
@@ -42,7 +42,17 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! GoodStuff ");
+});
+
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body.person;
+  let result = await userServices.findUserByEmailAndPassword(email, password);
+  if (result === null) {
+    res.status(404).json({ message: "User Not Registered" });
+  } else {
+    res.status(200).send(result);
+  }
 });
 /*
 app.get('/users', (req, res) => {
@@ -85,22 +95,20 @@ const findUserByJob = (job) => {
 //   }
 // });
 
-
-app.get('/users', async (req, res) => {
+app.get("/users", async (req, res) => {
   const email = req.query.email;
   const password = req.query.password;
   console.log("email --> " + email);
   console.log("Password --> " + password);
   try {
-      const result = await userServices.getUser(email, password);
-      console.log("result --> " + result);
-      res.send({users_list: result});         
+    const result = await userServices.getUser(email, password);
+    console.log("result --> " + result);
+    res.send({ users_list: result });
   } catch (error) {
-      console.log(error);
-      res.status(500).send('An error ocurred in the server.');
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
   }
 });
-
 
 const findUserByNameAndJob = (name, job) => {
   return users["users_list"].filter(
@@ -119,13 +127,13 @@ const findUserByNameAndJob = (name, job) => {
 //   }
 // });
 
-app.get('/users/:id', async (req, res) => {
-  const id = req.params['id'];
+app.get("/users/:id", async (req, res) => {
+  const id = req.params["id"];
   const result = await userServices.findUserById(id);
   if (result === undefined || result === null)
-      res.status(404).send('Resource not found.');
+    res.status(404).send("Resource not found.");
   else {
-      res.send({users_list: result});
+    res.send({ users_list: result });
   }
 });
 
@@ -152,13 +160,11 @@ function findUserById(id) {
 //   res.status(201).send(new_user); //prompt 1 + 3
 // });
 
-app.post('/users', async (req, res) => {
+app.post("/users", async (req, res) => {
   const user = req.body;
   const savedUser = await userServices.addUser(user);
-  if (savedUser)
-      res.status(201).send(savedUser);
-  else
-      res.status(500).end();
+  if (savedUser) res.status(201).send(savedUser);
+  else res.status(500).end();
 });
 
 function addUser(user) {
@@ -173,7 +179,7 @@ function addUser(user) {
 //     const result = removeUser(req.params.id);
 //     console.log(users);
 //     if (result == 0) {
-//         //prompt 4: successful delete 
+//         //prompt 4: successful delete
 //         res.status(204).end();
 //     } else {
 //         //resource not found
@@ -183,16 +189,16 @@ function addUser(user) {
 
 app.delete("/users/:id", async (req, res) => {
   //const result = removeUser(req.body.id)
-  console.log(req.params.id); 
-  const result = await userServices.deleteUser(req.params.id); 
-  console.log(result); 
+  console.log(req.params.id);
+  const result = await userServices.deleteUser(req.params.id);
+  console.log(result);
   //removeUser(req.params.id);
   if (result) {
-      //prompt 4: successful delete 
-      res.status(204).end();
+    //prompt 4: successful delete
+    res.status(204).end();
   } else {
-      //resource not found
-      res.status(404).end();
+    //resource not found
+    res.status(404).end();
   }
 });
 
@@ -212,21 +218,21 @@ app.delete("/users/:id", async (req, res) => {
 // });
 
 function removeUser(user_to_delete_id) {
-    user_to_delete = users["users_list"].find(
-        (user) => user["id"] === user_to_delete_id
-        );
-        if (user_to_delete) {
-            users["users_list"].splice(users["users_list"].indexOf(user_to_delete), 1);
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-    
-    app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
-    });
-    /*
+  user_to_delete = users["users_list"].find(
+    (user) => user["id"] === user_to_delete_id
+  );
+  if (user_to_delete) {
+    users["users_list"].splice(users["users_list"].indexOf(user_to_delete), 1);
+    return 0;
+  } else {
+    return 1;
+  }
+}
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+/*
 Trying to make a fecth call and have recent user added to the list 
 
 useEffect(() => {
