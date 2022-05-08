@@ -47,17 +47,7 @@ async function findUserByEmailAndPassword(email, password) {
 }
 
 // Improve error codes
-async function addUniqueUser(user, username, email) {
-  var queryUsername = await findByUsername(username);
-  var queryEmail = await findByEmail(email);
-  if (queryUsername.length > 0) {
-    console.log("Username already exist for: " + user);
-    return false;
-  }
-  if (queryEmail.length > 0) {
-    console.log("Email already exist for: " + user);
-    return false;
-  }
+async function addUser(user) {
   try {
     const userToAdd = new userModel(user);
     const savedUser = await userToAdd.save();
@@ -100,7 +90,7 @@ async function findByEmail(email) {
 // }
 
 exports.getUser = getUser;
-exports.addUniqueUser = addUniqueUser;
+exports.addUser = addUser;
 exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 exports.findByEmail = findByEmail;
 exports.findByUsername = findByUsername;
