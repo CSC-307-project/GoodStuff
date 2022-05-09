@@ -57,15 +57,29 @@ async function findUserByEmailAndPassword(email, password) {
   //return await userModel.find({email: email, password: password});
 }
 
+// Improve error codes
 async function addUser(user) {
   try {
     const userToAdd = new userModel(user);
     const savedUser = await userToAdd.save();
+    console.log("Success: " + userToAdd);
     return savedUser;
   } catch (error) {
     console.log(error);
     return false;
   }
+}
+
+async function findByUsername(username) {
+  var query = await userModel.find({username: username});
+  console.log(query);
+  return query;
+}
+
+async function findByEmail(email) {
+  var query = await userModel.find({email: email});
+  console.log(query);
+  return query;
 }
 
 // async function findUserById(id) {
@@ -89,4 +103,6 @@ async function addUser(user) {
 exports.getUser = getUser;
 exports.addUser = addUser;
 exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
+exports.findByEmail = findByEmail;
+exports.findByUsername = findByUsername;
 exports.findUserByEmail = findUserByEmail; 

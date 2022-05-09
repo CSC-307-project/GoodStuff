@@ -54,6 +54,10 @@ const Login = (props) => {
   const login = async (e) => {
     e.preventDefault();
     console.log(person);
+    const result = props.verify(person);
+    setPerson({ email: "", password: "", username: "" });
+    console.log(result);
+  } 
 
     await axios
       .post("http://localhost:5001/login", {
