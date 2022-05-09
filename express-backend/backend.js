@@ -49,13 +49,12 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body.person;
   //let result = await userServices.findUserByEmailAndPassword(email, password);
   let result = await userServices.findUserByEmail(email);
-  console.log(result); 
+  console.log(result);
   if (result === null) {
     res.status(404).json({ message: "User Not Registered" });
-  }else if(result !== null && password !== result.password) {
-    res.status(404).json({message: "Password Incorrect"})
-  }
-  else {
+  } else if (result !== null && password !== result.password) {
+    res.status(404).json({ message: "Password Incorrect" });
+  } else {
     res.status(200).send(result);
   }
 });

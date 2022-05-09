@@ -57,7 +57,7 @@ const Login = (props) => {
     const result = props.verify(person);
     setPerson({ email: "", password: "", username: "" });
     console.log(result);
-  } 
+  
 
     await axios
       .post("http://localhost:5001/login", {
@@ -120,5 +120,8 @@ const Login = (props) => {
     </>
   );
 };
+  
+
+
 
 export default Login;
