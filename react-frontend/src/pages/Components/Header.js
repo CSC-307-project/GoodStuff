@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -73,6 +74,12 @@ export default function SearchAppBar() {
           >
             GoodStuff
           </Typography>
+
+          <Link to="/login"><button>
+              Login 
+            </button>
+            </Link>
+            
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
