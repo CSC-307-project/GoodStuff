@@ -8,7 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 export default function Imglist() {
   return (
-    <ImageList sx={{ width: 500, height: 450 }}>
+    <ImageList sx={{ flexGrow: 1 }}>
       <ImageListItem key="Subheader" cols={2}>
         <ListSubheader component="div">December</ListSubheader>
       </ImageListItem>
