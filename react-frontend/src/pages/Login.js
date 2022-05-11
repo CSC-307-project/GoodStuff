@@ -112,7 +112,9 @@ const Login = (props) => {
             />
             <button type="submit">Login</button>
             <p>
-              <Link to={"/register"}>Create Account</Link>
+            <Link to={"/login"}>
+              I Have Account <strong>Login</strong>
+            </Link>
             </p>
           </form>
         </span>
@@ -121,7 +123,4 @@ const Login = (props) => {
   );
 };
   
-
-
-
 export default Login;
