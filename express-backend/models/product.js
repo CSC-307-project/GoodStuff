@@ -33,9 +33,9 @@ const UserSchema = new mongoose.Schema(
         trim: true,
     },
     address: {
-    type: String,
-    required: true,
-    trim: true,
+        type: String,
+        required: true,
+        trim: true,
     },
     image: {
         type: String,
