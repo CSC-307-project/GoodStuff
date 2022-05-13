@@ -79,8 +79,10 @@ export default function SearchAppBar() {
           >
             GoodStuff
           </Typography>
-          <Link to="/profile"> <ImageAvatars/> </Link>
-          
+          <Link to="/profile">
+            {" "}
+            <ImageAvatars />{" "}
+          </Link>
 
           <Link to="/login">
             <button>Logout</button>

@@ -25,7 +25,6 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-
 export default function Dashboard() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -38,13 +37,7 @@ export default function Dashboard() {
       {
         cloudName: "dicchtih6",
         uploadPreset: "lehelgx4",
-        sources: [
-          "local",
-          "url",
-          "facebook",
-          "dropbox",
-          "instagram",
-        ],
+        sources: ["local", "url", "facebook", "dropbox", "instagram"],
         showAdvancedOptions: true,
         cropping: true,
         multiple: false,
@@ -54,9 +47,9 @@ export default function Dashboard() {
       },
       (err, info) => {
         if (info.event === "success") {
-        //   setDelToken(info.info.delete_token);
-        //   setPath(info.info.path);
-        //   setFileName(info.info.original_filename);
+          //   setDelToken(info.info.delete_token);
+          //   setPath(info.info.path);
+          //   setFileName(info.info.original_filename);
           console.log(info.info.path);
         }
       }
@@ -67,13 +60,13 @@ export default function Dashboard() {
       <CardHeader
         sx={{ marginLeft: "15%" }}
         avatar={
-          <ButtonBase sx={{borderRadius: '50%'}}>
-          <Avatar
-          onClick={handleOpenWidget}
-            sx={{ width: 200, height: 200 }}
-            aria-label="recipe"
-            src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-          />
+          <ButtonBase sx={{ borderRadius: "50%" }}>
+            <Avatar
+              onClick={handleOpenWidget}
+              sx={{ width: 200, height: 200 }}
+              aria-label="recipe"
+              src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
+            />
           </ButtonBase>
         }
       />
