@@ -8,6 +8,7 @@ import "./responsive.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
+import PostItem from "./pages/PostItem";
 
 const characters = [
   {
@@ -104,6 +105,7 @@ function MyApp() {
            <Route path="/" element={<HomePage />} />
            <Route path="/login" element={<Login verify={verifyAccount}/>} />
            <Route path="/register" element={<Register handleSubmit={updateList}/>} />
+           <Route path="/post" element={<PostItem />} />
          </Routes>
        </BrowserRouter>
     </div>
