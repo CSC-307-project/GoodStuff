@@ -1,18 +1,13 @@
-import Container from '@material-ui/core/Container';
-import { blue } from '@mui/material/colors';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Container from "@material-ui/core/Container";
+import { blue } from "@mui/material/colors";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Link from "@material-ui/core/Link";
 
 export default function Footer() {
-
   return (
     <footer>
-      <Box
-        sx={{ flexGrow: 1 }}
-        bgcolor="#1565c0"
-        color="white"
-      >
+      <Box sx={{ flexGrow: 1 }} bgcolor="#1565c0" color="white">
         <Container maxWidth="lg">
           <Grid container spacing={5}>
             <Grid item xs={12} sm={4}>

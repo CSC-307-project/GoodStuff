@@ -1,7 +1,7 @@
 import Table from "./Table";
 import Form from "./Form";
 import axios from "axios";
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./MyApp.css";
 import "./responsive.css";
@@ -36,8 +36,8 @@ function MyApp() {
       const response = await axios.get("http://localhost:5001/users", {
         params: {
           email: person.email,
-          password: person.password
-        }
+          password: person.password,
+        },
       });
       //prompt 3
       console.log(response.data.users_list);
@@ -73,14 +73,16 @@ function MyApp() {
     });
   }
 
-  async function makeDeleteCall(user_id){
-    try{
-      console.log(user_id)
+  async function makeDeleteCall(user_id) {
+    try {
+      console.log(user_id);
       //const response = await axios.delete("http://localhost:5001/users", {id: user_id});
       //prompt 4
-      const response = await axios.delete(`http://localhost:5001/users/${user_id}`);
+      const response = await axios.delete(
+        `http://localhost:5001/users/${user_id}`
+      );
       return response;
-    }catch (error){
+    } catch (error) {
       console.log(error);
       return false;
     }
@@ -88,9 +90,7 @@ function MyApp() {
 
   function removeOneCharacter(index) {
     //console.log(characters[index].id)
-    makeDeleteCall(characters[index]._id).then((result) => {
-
-    });
+    makeDeleteCall(characters[index]._id).then((result) => {});
     const updated = characters.filter((character, i) => {
       return i !== index;
     });
@@ -99,15 +99,18 @@ function MyApp() {
 
   return (
     <div className="container">
-       <BrowserRouter>
-         <Routes>
-           <Route path="/" element={<HomePage />} />
-           <Route path="/login" element={<Login verify={verifyAccount}/>} />
-           <Route path="/register" element={<Register handleSubmit={updateList}/>} />
-         </Routes>
-       </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login verify={verifyAccount} />} />
+          <Route
+            path="/register"
+            element={<Register handleSubmit={updateList} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-};
+}
 
 export default MyApp;

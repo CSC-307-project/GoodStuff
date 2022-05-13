@@ -57,7 +57,6 @@ const Login = (props) => {
     //const result = props.verify(person);
     //setPerson({ email: "", password: "", username: "" });
     //console.log(result);
-  
 
     await axios
       .post("http://localhost:5001/login", {
@@ -112,9 +111,9 @@ const Login = (props) => {
             />
             <button type="submit">Login</button>
             <p>
-            <Link to={"/register"}>
-              Create an Account <strong>Register</strong>
-            </Link>
+              <Link to={"/register"}>
+                Create an Account <strong>Register</strong>
+              </Link>
             </p>
           </form>
         </span>
@@ -122,5 +121,5 @@ const Login = (props) => {
     </>
   );
 };
-  
+
 export default Login;

@@ -174,11 +174,16 @@ app.post("/register", async (req, res) => {
     if (err.name === "ValidationError") {
       res.status(404).json({ message: err.message }).end();
     } else if (err.code && err.code === 11000) {
-      res.status(404).json({ message: "DuplicationError: Username and/or Email Already Exist" }).end();
+      res
+        .status(404)
+        .json({
+          message: "DuplicationError: Username and/or Email Already Exist",
+        })
+        .end();
     } else {
-      res.status(500).json( { message: 'An unknown error occurred' }).end();
+      res.status(500).json({ message: "An unknown error occurred" }).end();
     }
-  }  
+  }
 });
 
 function addUser(user) {
