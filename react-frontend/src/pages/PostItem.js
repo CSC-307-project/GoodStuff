@@ -86,13 +86,6 @@ const Register = (props) => {
     }    
   }
 
-  function register(){
-    console.log(item);
-    const result = props.handleSubmit(item);
-    setUser({username:"", email: "", password: ""}); 
-    console.log(result);
-  }
-
   return (
     <>
       <h1 style={styles}> GoodStuff </h1>
