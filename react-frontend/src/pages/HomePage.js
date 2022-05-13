@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./Components/Header";
-import Imglist from "./Components/Imglist";
+import Header from "./Header";
+import Imglist from "./Imglist";
 
 const HomePage = () => {
   window.scrollTo(0, 0);

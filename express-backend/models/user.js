@@ -37,6 +37,10 @@ const UserSchema = new mongoose.Schema(
           throw new Error("Invalid password, must be at least 4 character.");
       },
     },
+    avatar: {
+      type: String,
+      default: "default.jpg"
+    },
   },
   { collection: "users_list" }
 );

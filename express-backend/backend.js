@@ -55,7 +55,7 @@ app.post("/login", async (req, res) => {
   } else if (result !== null && password !== result.password) {
     res.status(404).json({ message: "Password Incorrect" });
   } else {
-    res.status(200).send(result);
+    res.status(200).send(result.toObject());
   }
 });
 /*

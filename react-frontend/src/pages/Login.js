@@ -11,6 +11,17 @@ const styles = {
   textAlign: "center",
 };
 
+function deleteAllCookies() {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
+}
+
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
   window.scrollTo(0, 0);
@@ -53,10 +64,9 @@ const Login = (props) => {
   // }
   const login = async (e) => {
     e.preventDefault();
-    console.log(person);
-    const result = props.verify(person);
+    //const result = props.verify(person);
     setPerson({ email: "", password: "", username: "" });
-    console.log(result);
+    //console.log(result);
   
 
     await axios
@@ -64,7 +74,10 @@ const Login = (props) => {
         person,
       })
       .then((res) => {
-        window.location = "/";
+        deleteAllCookies(); 
+        document.cookie = `${res.data._id}`;
+        console.log(document.cookie);
+        // window.location = "/";
       })
       .catch((err) => {
         setErrorLogin(err.response.data.message);
@@ -78,15 +91,16 @@ const Login = (props) => {
   async function fetchAll() {
     try {
       const response = await axios.get("http://localhost:5001/users");
-      console.log(response.data.users_list);
+      // console.log(response.data.users_list);
       return response.data.users_list;
     } catch (error) {
       console.log(error);
     }
   }
-
+  
   useEffect(() => {
     console.log(fetchAll());
+    
   });
 
   return (
