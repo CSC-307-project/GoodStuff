@@ -92,20 +92,6 @@ const Login = (props) => {
   return (
     <>
       <div>
-<<<<<<< HEAD
-      <h1 style ={styles}> GoodStuff </h1> 
-      <span className="container d-flex flex-column justify-content-center align-items-center login-center">     
-        <form className="Login col-md-8 col-lg-4 col-11">
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button type="submit">Login</button>
-          <p>
-            <Link to={"/register"}>Create Account</Link>
-          </p>
-        </form>
-      </span>
-      </div> 
-=======
         <h1 style={styles}> GoodStuff </h1>
         <span className="container d-flex flex-column justify-content-center align-items-center login-center">
           <form className="Login col-md-8 col-lg-4 col-11" onSubmit={login}>
@@ -126,14 +112,13 @@ const Login = (props) => {
             />
             <button type="submit">Login</button>
             <p>
-            <Link to={"/login"}>
-              I Have Account <strong>Login</strong>
+            <Link to={"/register"}>
+              Create Account 
             </Link>
             </p>
           </form>
         </span>
       </div>
->>>>>>> frontend-backend
     </>
   );
 };
