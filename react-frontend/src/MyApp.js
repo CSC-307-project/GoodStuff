@@ -1,7 +1,7 @@
-import Table from "./Table";
-import Form from "./Form";
+// import Table from "./Table";
+// import Form from "./Form";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react"; //useEffect
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./MyApp.css";
 import "./responsive.css";
@@ -10,24 +10,24 @@ import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import Profile from "./pages/Profile";
 
-const characters = [
-  {
-    name: "Charlie",
-    job: "Janitor",
-  },
-  {
-    name: "Mac",
-    job: "Bouncer",
-  },
-  {
-    name: "Dee",
-    job: "Aspring actress",
-  },
-  {
-    name: "Dennis",
-    job: "Bartender",
-  },
-];
+// const characters = [
+//   {
+//     name: "Charlie",
+//     job: "Janitor",
+//   },
+//   {
+//     name: "Mac",
+//     job: "Bouncer",
+//   },
+//   {
+//     name: "Dee",
+//     job: "Aspring actress",
+//   },
+//   {
+//     name: "Dennis",
+//     job: "Bartender",
+//   },
+// ];
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -89,14 +89,14 @@ function MyApp() {
     }
   }
 
-  function removeOneCharacter(index) {
-    //console.log(characters[index].id)
-    makeDeleteCall(characters[index]._id).then((result) => {});
-    const updated = characters.filter((character, i) => {
-      return i !== index;
-    });
-    setCharacters(updated);
-  }
+  // function removeOneCharacter(index) {
+  //   //console.log(characters[index].id)
+  //   makeDeleteCall(characters[index]._id).then((result) => {});
+  //   const updated = characters.filter((character, i) => {
+  //     return i !== index;
+  //   });
+  //   setCharacters(updated);
+  // }
 
   return (
     <div className="container">

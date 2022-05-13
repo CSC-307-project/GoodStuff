@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "react-bootstrap";
+//import { Button } from "react-bootstrap";
 import * as ReactDOM from "react-dom";
 import ImageAvatars from "./avatar";
 
@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+//const root = ReactDOM.createRoot(document.getElementById("root"));
 
 export default function SearchAppBar() {
   return (
