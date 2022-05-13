@@ -59,15 +59,9 @@ async function findUserByEmailAndPassword(email, password) {
 
 // Improve error codes
 async function addUser(user) {
-  try {
-    const userToAdd = new userModel(user);
-    const savedUser = await userToAdd.save();
-    console.log("Success: " + userToAdd);
-    return savedUser;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+  const userToAdd = new userModel(user);
+  const savedUser = await userToAdd.save();
+  return savedUser;
 }
 
 async function findByUsername(username) {
