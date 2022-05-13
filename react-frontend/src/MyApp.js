@@ -10,33 +10,37 @@ import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 
 const characters = [
-    {
-      name: 'Charlie',
-      job: 'Janitor',
-    },
-    {
-      name: 'Mac',
-      job: 'Bouncer',
-    },
-    {
-      name: 'Dee',
-      job: 'Aspring actress',
-    },
-    {
-      name: 'Dennis',
-      job: 'Bartender',
-    },
+  {
+    name: "Charlie",
+    job: "Janitor",
+  },
+  {
+    name: "Mac",
+    job: "Bouncer",
+  },
+  {
+    name: "Dee",
+    job: "Aspring actress",
+  },
+  {
+    name: "Dennis",
+    job: "Bartender",
+  },
 ];
-
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
 
-  async function fetchAll() {
+  async function verifyAccount(person) {
     try {
-      const response = await axios.get("http://localhost:5001/users");
+      const response = await axios.get("http://localhost:5001/users", {
+        params: {
+          email: person.email,
+          password: person.password
+        }
+      });
       //prompt 3
-      console.log(response.data.users_list)
+      console.log(response.data.users_list);
       return response.data.users_list;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -45,11 +49,11 @@ function MyApp() {
     }
   }
 
-  useEffect(() => {
-    fetchAll().then((result) => {
-      if (result) setCharacters(result);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchAll().then((result) => {
+  //     if (result) setCharacters(result);
+  //   });
+  // }, []);
 
   async function makePostCall(person) {
     try {
@@ -64,7 +68,6 @@ function MyApp() {
   function updateList(person) {
     console.log("update list");
     makePostCall(person).then((result) => {
-      //if (result && result.status === 200)
       if (result && result.status === 201)
         setCharacters([...characters, result.data]);
     });
@@ -99,8 +102,8 @@ function MyApp() {
        <BrowserRouter>
          <Routes>
            <Route path="/" element={<HomePage />} />
-           <Route path="/login" element={<Login />} />
-           <Route path="/register" element={<Register />} />
+           <Route path="/login" element={<Login verify={verifyAccount}/>} />
+           <Route path="/register" element={<Register handleSubmit={updateList}/>} />
          </Routes>
        </BrowserRouter>
     </div>
