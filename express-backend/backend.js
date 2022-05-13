@@ -164,11 +164,21 @@ function findUserById(id) {
 //   res.status(201).send(new_user); //prompt 1 + 3
 // });
 
-app.post("/users", async (req, res) => {
-  const user = req.body;
-  const savedUser = await userServices.addUser(user);
-  if (savedUser) res.status(201).send(savedUser);
-  else res.status(500).end();
+app.post("/register", async (req, res) => {
+  try {
+    const user = req.body;
+    const savedUser = await userServices.addUser(user);
+    console.log("Success: " + savedUser);
+    res.status(201).send(savedUser);
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      res.status(404).json({ message: err.message }).end();
+    } else if (err.code && err.code === 11000) {
+      res.status(404).json({ message: "DuplicationError: Username and/or Email Already Exist" }).end();
+    } else {
+      res.status(500).json( { message: 'An unknown error occurred' }).end();
+    }
+  }  
 });
 
 function addUser(user) {
