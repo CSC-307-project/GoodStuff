@@ -40,3 +40,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "csc307-frontend-propeller"
           heroku_email: "hank1413159@gmail.com"
+          appdir: "express-backend"
