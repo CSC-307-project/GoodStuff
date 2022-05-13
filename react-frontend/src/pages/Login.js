@@ -112,8 +112,8 @@ const Login = (props) => {
             />
             <button type="submit">Login</button>
             <p>
-            <Link to={"/login"}>
-              I Have Account <strong>Login</strong>
+            <Link to={"/register"}>
+              Create Account
             </Link>
             </p>
           </form>
