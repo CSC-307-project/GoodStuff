@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var ObjectId = require("mongodb").ObjectId;
 
 var validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -30,7 +31,6 @@ const UserSchema = new mongoose.Schema(
         "Please enter a valid email address",
       ],
     },
-
     password: {
       type: String,
       trim: true,
@@ -40,6 +40,19 @@ const UserSchema = new mongoose.Schema(
           throw new Error("Invalid password, must be at least 4 character.");
       },
     },
+    // list of product objects id
+    listings: [
+      {
+        type: ObjectId,
+        trim: true,
+      },
+    ],
+    purchases: [
+      {
+        type: ObjectId,
+        trim: true,
+      },
+    ],
   },
   { collection: "users_list" }
 );

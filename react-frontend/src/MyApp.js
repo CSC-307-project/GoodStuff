@@ -79,14 +79,17 @@ function MyApp() {
 
   return (
     <div className="container">
-       <BrowserRouter>
-         <Routes>
-           <Route path="/" element={<HomePage />} />
-           <Route path="/login" element={<Login verify={verifyAccount}/>} />
-           <Route path="/register" element={<Register handleSubmit={updateList}/>} />
-           <Route path="/post" element={<PostItem />} />
-         </Routes>
-       </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login verify={verifyAccount} />} />
+          <Route
+            path="/register"
+            element={<Register handleSubmit={updateList} />}
+          />
+          <Route path="/post" element={<PostItem />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

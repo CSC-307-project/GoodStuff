@@ -6,6 +6,7 @@ const app = express();
 const port = 5001;
 //comment 2
 const userServices = require("./models/user-services");
+const productServices = require("./models/product-services");
 
 let users = {
   users_list: [
@@ -183,6 +184,18 @@ app.post("/register", async (req, res) => {
     } else {
       res.status(500).json({ message: "An unknown error occurred" }).end();
     }
+  }
+});
+
+app.post("/postitem", async (req, res) => {
+  try {
+    const item = req.body;
+    const savedItem = await productServices.addItem(item);
+    console.log("Success: " + savedItem);
+    res.status(201).send(savedItem);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: err.message }).end();
   }
 });
 
