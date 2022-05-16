@@ -2,17 +2,16 @@ import React from "react";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Imglist from "./Components/Imglist";
-import SearchBar from "./Components/SearchBar";
+import ProductHero from "../onepirate/modules/views/ProductHero";
 
 const HomePage = () => {
-  window.scrollTo(0, 0);
   return (
-    <div>
+    <React.Fragment>
       <Header />
-      <SearchBar />
+      <ProductHero />
       <Imglist />
       <Footer />
-    </div>
+    </React.Fragment>
   );
 }
 
