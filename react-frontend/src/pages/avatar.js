@@ -16,7 +16,7 @@ export default function ImageAvatars() {
 
   return (
     <div className={classes.root}>
-      <Avatar src="https://res.cloudinary.com/dicchtih6/image/upload/c_crop,g_custom/v1652422526/default.jpg.jpg" />
+      <Avatar src="https://res.cloudinary.com/dicchtih6/image/upload/v1652716035/yynsno17xatmuag7nitr.jpg" />
     </div>
   );
 }

@@ -76,7 +76,7 @@ const Login = (props) => {
         deleteAllCookies();
         document.cookie = `${res.data._id}`;
         console.log(document.cookie);
-        // window.location = "/";
+        window.location = "/";
       })
       .catch((err) => {
         setErrorLogin(err.response.data.message);
