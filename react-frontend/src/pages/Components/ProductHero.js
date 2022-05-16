@@ -2,9 +2,7 @@ import * as React from 'react';
 import Button from '../CustomMUI/Button';
 import Typography from '../CustomMUI/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
-
-const backgroundImage =
-  'https://unsplash.com/photos/SQQdP7mG-rQ';
+import backgroundImage from '../../img/main.jpeg';
 
 export default function ProductHero() {
   return (
@@ -15,14 +13,13 @@ export default function ProductHero() {
         backgroundPosition: 'center',
       }}
     >
-      {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: 'none' }}
         src={backgroundImage}
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Sundays
+        Welcome to GoodStuff
       </Typography>
       <Typography
         color="inherit"
@@ -30,14 +27,14 @@ export default function ProductHero() {
         variant="h5"
         sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
       >
-        Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
+        Enjoy the best deal of GoodStuff here.
       </Typography>
       <Button
         color="secondary"
         variant="contained"
         size="large"
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        href='../Register'
         sx={{ minWidth: 200 }}
       >
         Register
