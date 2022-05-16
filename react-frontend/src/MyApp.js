@@ -108,6 +108,7 @@ function MyApp() {
             element={<Register handleSubmit={updateList} />}
           />
           <Route path="/post" element={<PostItem />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>
