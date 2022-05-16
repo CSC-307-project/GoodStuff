@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const userModel = require("./user");
+const productModel = require("./product");
 const dotenv = require("dotenv");
 mongoose.set("debug", true);
 
@@ -27,7 +27,7 @@ mongoose
 async function getUsers(name, job) {
   let result;
   if (name === undefined && job === undefined) {
-    result = await userModel.find();
+    result = await productModel.find();
   } else if (name && !job) {
     result = await findUserByName(name);
   } else if (job && !name) {
@@ -40,26 +40,21 @@ async function getUsers(name, job) {
 
 async function findUserById(id) {
   try {
-    return await userModel.findById(id);
+    return await productModel.findById(id);
   } catch (error) {
     console.log(error);
     return undefined;
   }
 }
 
-async function addUser(user) {
-  try {
-    const userToAdd = new userModel(user);
-    const savedUser = await userToAdd.save();
-    return savedUser;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+async function addItem(item) {
+  const itemToAdd = new productModel(item);
+  const savedItem = await itemToAdd.save();
+  return savedItem;
 }
 async function deleteUser(id) {
   try {
-    return await userModel.findByIdAndDelete(id);
+    return await productModel.findByIdAndDelete(id);
   } catch (error) {
     console.log(error);
     return undefined;
@@ -67,18 +62,18 @@ async function deleteUser(id) {
 }
 
 async function findUserByName(name) {
-  return await userModel.find({ name: name });
+  return await productModel.find({ name: name });
 }
 
 async function findUserByJob(job) {
-  return await userModel.find({ job: job });
+  return await productModel.find({ job: job });
 }
 
 async function findUserByNameAndJob(name, job) {
-  return await userModel.find({ name: name, job: job });
+  return await productModel.find({ name: name, job: job });
 }
 
 exports.getUsers = getUsers;
 exports.findUserById = findUserById;
-exports.addUser = addUser;
+exports.addItem = addItem;
 exports.deleteUser = deleteUser;

@@ -1,13 +1,12 @@
-// import Table from "./Table";
-// import Form from "./Form";
 import axios from "axios";
-import React, { useState } from "react"; //useEffect
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./MyApp.css";
 import "./responsive.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
+import PostItem from "./pages/PostItem";
 import Profile from "./pages/Profile";
 
 // const characters = [
@@ -108,6 +107,7 @@ function MyApp() {
             path="/register"
             element={<Register handleSubmit={updateList} />}
           />
+          <Route path="/post" element={<PostItem />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>

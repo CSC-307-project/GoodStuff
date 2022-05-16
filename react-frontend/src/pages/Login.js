@@ -64,8 +64,9 @@ const Login = (props) => {
   // }
   const login = async (e) => {
     e.preventDefault();
+    console.log(person);
     //const result = props.verify(person);
-    setPerson({ email: "", password: "", username: "" });
+    //setPerson({ email: "", password: "", username: "" });
     //console.log(result);
 
     await axios
@@ -124,7 +125,9 @@ const Login = (props) => {
             />
             <button type="submit">Login</button>
             <p>
-              <Link to={"/register"}>Create Account</Link>
+              <Link to={"/register"}>
+                Create an Account <strong>Register</strong>
+              </Link>
             </p>
           </form>
         </span>

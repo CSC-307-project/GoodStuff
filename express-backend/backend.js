@@ -4,8 +4,9 @@ const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 const app = express();
 const port = 5001;
-
+//comment 2
 const userServices = require("./models/user-services");
+const productServices = require("./models/product-services");
 
 let users = {
   users_list: [
@@ -164,11 +165,38 @@ function findUserById(id) {
 //   res.status(201).send(new_user); //prompt 1 + 3
 // });
 
-app.post("/users", async (req, res) => {
-  const user = req.body;
-  const savedUser = await userServices.addUser(user);
-  if (savedUser) res.status(201).send(savedUser);
-  else res.status(500).end();
+app.post("/register", async (req, res) => {
+  try {
+    const user = req.body;
+    const savedUser = await userServices.addUser(user);
+    console.log("Success: " + savedUser);
+    res.status(201).send(savedUser);
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      res.status(404).json({ message: err.message }).end();
+    } else if (err.code && err.code === 11000) {
+      res
+        .status(404)
+        .json({
+          message: "DuplicationError: Username and/or Email Already Exist",
+        })
+        .end();
+    } else {
+      res.status(500).json({ message: "An unknown error occurred" }).end();
+    }
+  }
+});
+
+app.post("/postitem", async (req, res) => {
+  try {
+    const item = req.body;
+    const savedItem = await productServices.addItem(item);
+    console.log("Success: " + savedItem);
+    res.status(201).send(savedItem);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: err.message }).end();
+  }
 });
 
 function addUser(user) {

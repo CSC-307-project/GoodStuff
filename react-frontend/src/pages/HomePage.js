@@ -1,5 +1,9 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import Footer from "./Components/Footer";
+// import Header from "./Components/Header";
+// import Imglist from "./Components/Imglist";
+import SearchBar from "./Components/SearchBar";
+//import { Link } from "react-router-dom";
 import Header from "./Header";
 import Imglist from "./Imglist";
 
@@ -8,7 +12,9 @@ const HomePage = () => {
   return (
     <div>
       <Header />
+      <SearchBar />
       <Imglist />
+      <Footer />
     </div>
   );
 };
