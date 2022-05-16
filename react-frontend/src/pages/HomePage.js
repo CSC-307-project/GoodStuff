@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Imglist from "./Components/Imglist";
-import ProductHero from "../onepirate/modules/views/ProductHero";
+import ProductHero from "./Components/ProductHero";
 
 const HomePage = () => {
   return (
