@@ -56,7 +56,7 @@ app.post("/login", async (req, res) => {
   } else if (result !== null && password !== result.password) {
     res.status(404).json({ message: "Password Incorrect" });
   } else {
-    res.status(200).send(result);
+    res.status(200).send(result.toObject());
   }
 });
 /*
@@ -261,7 +261,7 @@ function removeUser(user_to_delete_id) {
   }
 }
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 /*

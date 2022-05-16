@@ -53,6 +53,10 @@ const UserSchema = new mongoose.Schema(
         trim: true,
       },
     ],
+    avatar: {
+      type: String,
+      default: "default.jpg",
+    },
   },
   { collection: "users_list" }
 );
