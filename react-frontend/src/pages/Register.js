@@ -2,6 +2,8 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../img/logo.png"
+import { Container } from "@mui/material";
 
 const styles = {
   color: "blue",
@@ -50,7 +52,22 @@ const Register = (props) => {
 
   return (
     <>
-      <h1 style={styles}> GoodStuff </h1>
+      <Container
+        sx={{
+          mt: 3,
+          mb: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <img
+          src= {logo}
+          alt="logo"
+          width="180"
+          height="180"
+        />
+        </Container>
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">
         <form className="Login col-md-8 col-lg-4 col-11" onSubmit={register}>
           {errorRegister && <p style={{ color: "red" }}>{errorRegister}</p>}
