@@ -6,12 +6,12 @@ import axios from "axios";
 import logo from "../img/logo.png"
 import { Container } from "@mui/material";
 
-const styles = {
-  color: "blue",
-  //background: "#0f0",
-  fontSize: "39px",
-  textAlign: "center",
-};
+// const styles = {
+//   color: "blue",
+//   //background: "#0f0",
+//   fontSize: "39px",
+//   textAlign: "center",
+// };
 
 function deleteAllCookies() {
   var cookies = document.cookie.split(";");
