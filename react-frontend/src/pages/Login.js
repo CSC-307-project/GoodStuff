@@ -6,6 +6,8 @@ import axios from "axios";
 import logo from "../img/logo.png"
 import { Container } from "@mui/material";
 
+import Cookies from 'js-cookie';
+
 const styles = {
   color: "blue",
   //background: "#0f0",
@@ -29,7 +31,7 @@ const Login = (props) => {
   window.scrollTo(0, 0);
 
   function handleChange(event) {
-    console.log(person);
+    //console.log(person);
     const { name, value } = event.target;
     if (name === "password")
       setPerson({
@@ -66,7 +68,7 @@ const Login = (props) => {
   // }
   const login = async (e) => {
     e.preventDefault();
-    console.log(person);
+    //console.log(person);
     //const result = props.verify(person);
     //setPerson({ email: "", password: "", username: "" });
     //console.log(result);
@@ -76,9 +78,11 @@ const Login = (props) => {
         person,
       })
       .then((res) => {
-        deleteAllCookies();
-        document.cookie = `${res.data._id}`;
-        console.log(document.cookie);
+        //deleteAllCookies();
+        //document.cookie = `${res.data._id}`;
+        Cookies.remove('user_id'); 
+        Cookies.set('user_id', res.data._id); 
+        // console.log(Cookies.get('user_id'));
         window.location = "/";
       })
       .catch((err) => {

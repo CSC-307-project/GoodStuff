@@ -55,7 +55,7 @@ const UserSchema = new mongoose.Schema(
     ],
     avatar: {
       type: String,
-      default: "default.jpg",
+      default: "v1652716035/yynsno17xatmuag7nitr.jpg",
     },
   },
   { collection: "users_list" }
