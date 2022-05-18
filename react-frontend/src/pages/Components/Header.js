@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar() {
   const [header, setHeader] = useState("");
-  const [avatar, setAvatar] = useState(false);  
+  //const [avatar, setAvatar] = useState(false);  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
