@@ -1,20 +1,23 @@
 import React from "react";
 import Footer from "./Components/Footer";
+import SearchBar from "./Components/SearchBar";
 import Header from "./Components/Header";
 import Imglist from "./Components/Imglist";
-import SearchBar from "./Components/SearchBar";
+import ProductHero from "./Components/ProductHero";
+import Cookies from 'js-cookie'; 
 
 const HomePage = () => {
-  window.scrollTo(0, 0);
+  console.log(Cookies.get('user_id'));
+
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <SearchBar />
+      <ProductHero />
       <Imglist />
-      <Footer />
-    </div>
+      <Footer /> 
+    </React.Fragment>
   );
-}
+};
 
 export default HomePage;
-

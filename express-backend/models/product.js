@@ -1,61 +1,47 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema(
+const ProductSchema = new mongoose.Schema(
   {
-    sellerID: {
-        type: String,
-        required: true,
-        trim: true,
-      },   
-    name: {
+    sellerId: {
+      type: String,
+      //required: true,
+      trim: true,
+    },
+    title: {
       type: String,
       required: true,
       trim: true,
     },
-    tags: [{
-        type: String,
-        required: true,
-        trim: true,
-    }],
     price: {
-        type: Number,
-        required: true,
-        trim: true,
-    },
-    image: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-    description: {
-        type: String,
-        required: true,
-        trim: true,
+      type: Number,
+      required: true,
+      trim: true,
     },
     address: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
     },
     image: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    tags: [
+      {
         type: String,
-        required: true,
         trim: true,
       },
-      description: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      address: {
-        type: String,
-        required: true,
-        trim: true,
-      },
+    ],
   },
   { collection: "product_list" }
 );
 
-const User = mongoose.model("User", UserSchema);
+const Product = mongoose.model("Product", ProductSchema);
 
-module.exports = User;
+module.exports = Product;

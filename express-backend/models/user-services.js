@@ -31,14 +31,13 @@ async function getUser(email, password) {
     return await findUserByEmailAndPassword(email, password);
   }
 }
-async function findUserByEmail(email){
-  let query = await userModel.findOne({email: email}).exec() 
-  if(query !== null){ 
-    return query; 
-  }else{
-    return query; 
+async function findUserByEmail(email) {
+  let query = await userModel.findOne({ email: email }).exec();
+  if (query !== null) {
+    return query;
+  } else {
+    return query;
   }
-
 }
 async function findUserByEmailAndPassword(email, password) {
   // console.log(email);
@@ -65,15 +64,33 @@ async function addUser(user) {
 }
 
 async function findByUsername(username) {
-  var query = await userModel.find({username: username});
+  var query = await userModel.find({ username: username });
   console.log(query);
   return query;
 }
 
 async function findByEmail(email) {
-  var query = await userModel.find({email: email});
+  var query = await userModel.find({ email: email });
   console.log(query);
   return query;
+}
+
+async function updateUserAvatar(user_id, avatar){ 
+  console.log(user_id); 
+  console.log(avatar); 
+  await userModel.updateOne(
+    {"_id": user_id},
+    {
+      $set: {"avatar": avatar}
+    }
+  );
+}
+
+function findUrlById(user_id){
+  let user = userModel.findOne({"_id": user_id}); 
+  console.log(user);
+  // console.log(user['avatar']);
+  return user; 
 }
 
 // async function findUserById(id) {
@@ -99,4 +116,6 @@ exports.addUser = addUser;
 exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 exports.findByEmail = findByEmail;
 exports.findByUsername = findByUsername;
-exports.findUserByEmail = findUserByEmail; 
+exports.findUserByEmail = findUserByEmail;
+exports.updateUserAvatar = updateUserAvatar; 
+exports.findUrlById = findUrlById; 

@@ -6,6 +6,7 @@ const app = express();
 const port = 5001;
 //comment 2
 const userServices = require("./models/user-services");
+const productServices = require("./models/product-services");
 
 let users = {
   users_list: [
@@ -55,9 +56,32 @@ app.post("/login", async (req, res) => {
   } else if (result !== null && password !== result.password) {
     res.status(404).json({ message: "Password Incorrect" });
   } else {
-    res.status(200).send(result);
+    res.status(200).send(result.toObject());
   }
 });
+
+app.patch("/profile", async (req, res) => { 
+  // console.log("hello patch"); 
+  console.log(req.body); 
+  const{user_id, avatar_url} = req.body; 
+  // console.log(user_id); 
+  // console.log(avatar_url); 
+  let result = await userServices.updateUserAvatar(user_id, avatar_url); 
+}); 
+
+app.get("/avatar", async (req, res) => {
+  // console.log(req.query.user_id); 
+  const user_id = req.query.user_id; 
+  let avatar_url = await userServices.findUrlById(user_id); 
+  console.log(avatar_url);
+  if(avatar_url === null){ 
+    res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
+  }
+  else{
+    console.log(avatar_url);
+    res.status(200).send(avatar_url['avatar']); 
+  }
+}); 
 /*
 app.get('/users', (req, res) => {
     const name = req.query.name; 
@@ -102,11 +126,11 @@ const findUserByJob = (job) => {
 app.get("/users", async (req, res) => {
   const email = req.query.email;
   const password = req.query.password;
-  console.log("email --> " + email);
-  console.log("Password --> " + password);
+  // console.log("email --> " + email);
+  // console.log("Password --> " + password);
   try {
     const result = await userServices.getUser(email, password);
-    console.log("result --> " + result);
+    // console.log("result --> " + result);
     res.send({ users_list: result });
   } catch (error) {
     console.log(error);
@@ -174,11 +198,28 @@ app.post("/register", async (req, res) => {
     if (err.name === "ValidationError") {
       res.status(404).json({ message: err.message }).end();
     } else if (err.code && err.code === 11000) {
-      res.status(404).json({ message: "DuplicationError: Username and/or Email Already Exist" }).end();
+      res
+        .status(404)
+        .json({
+          message: "DuplicationError: Username and/or Email Already Exist",
+        })
+        .end();
     } else {
-      res.status(500).json( { message: 'An unknown error occurred' }).end();
+      res.status(500).json({ message: "An unknown error occurred" }).end();
     }
-  }  
+  }
+});
+
+app.post("/postitem", async (req, res) => {
+  try {
+    const item = req.body;
+    const savedItem = await productServices.addItem(item);
+    console.log("Success: " + savedItem);
+    res.status(201).send(savedItem);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: err.message }).end();
+  }
 });
 
 function addUser(user) {
@@ -243,7 +284,7 @@ function removeUser(user_to_delete_id) {
   }
 }
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 /*

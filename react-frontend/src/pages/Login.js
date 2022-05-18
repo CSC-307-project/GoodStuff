@@ -1,8 +1,12 @@
-import { textAlign } from "@mui/system";
+//import { textAlign } from "@mui/system";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import logo from "../img/logo.png"
+import { Container } from "@mui/material";
+
+import Cookies from 'js-cookie';
 
 const styles = {
   color: "blue",
@@ -10,13 +14,30 @@ const styles = {
   fontSize: "39px",
   textAlign: "center",
 };
+// const styles = {
+//   color: "blue",
+//   //background: "#0f0",
+//   fontSize: "39px",
+//   textAlign: "center",
+// };
+
+function deleteAllCookies() {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
+}
 
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
   window.scrollTo(0, 0);
 
   function handleChange(event) {
-    console.log(person);
+    //console.log(person);
     const { name, value } = event.target;
     if (name === "password")
       setPerson({
@@ -53,17 +74,21 @@ const Login = (props) => {
   // }
   const login = async (e) => {
     e.preventDefault();
-    console.log(person);
+    //console.log(person);
     //const result = props.verify(person);
     //setPerson({ email: "", password: "", username: "" });
     //console.log(result);
-  
 
     await axios
       .post("http://localhost:5001/login", {
         person,
       })
       .then((res) => {
+        //deleteAllCookies();
+        //document.cookie = `${res.data._id}`;
+        Cookies.remove('user_id'); 
+        Cookies.set('user_id', res.data._id); 
+        // console.log(Cookies.get('user_id'));
         window.location = "/";
       })
       .catch((err) => {
@@ -78,7 +103,7 @@ const Login = (props) => {
   async function fetchAll() {
     try {
       const response = await axios.get("http://localhost:5001/users");
-      console.log(response.data.users_list);
+      // console.log(response.data.users_list);
       return response.data.users_list;
     } catch (error) {
       console.log(error);
@@ -92,7 +117,22 @@ const Login = (props) => {
   return (
     <>
       <div>
-        <h1 style={styles}> GoodStuff </h1>
+        <Container
+        sx={{
+          mt: 3,
+          mb: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <img
+          src= {logo}
+          alt="logo"
+          width="180"
+          height="180"
+        />
+        </Container>
         <span className="container d-flex flex-column justify-content-center align-items-center login-center">
           <form className="Login col-md-8 col-lg-4 col-11" onSubmit={login}>
             {errorLogin && <p style={{ color: "red" }}>{errorLogin}</p>}
@@ -112,9 +152,9 @@ const Login = (props) => {
             />
             <button type="submit">Login</button>
             <p>
-            <Link to={"/register"}>
-              Create an Account <strong>Register</strong>
-            </Link>
+              <Link to={"/register"}>
+                Create an Account <strong>Register</strong>
+              </Link>
             </p>
           </form>
         </span>
@@ -122,5 +162,5 @@ const Login = (props) => {
     </>
   );
 };
-  
+
 export default Login;
