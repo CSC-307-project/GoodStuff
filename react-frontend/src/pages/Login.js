@@ -14,6 +14,12 @@ const styles = {
   fontSize: "39px",
   textAlign: "center",
 };
+// const styles = {
+//   color: "blue",
+//   //background: "#0f0",
+//   fontSize: "39px",
+//   textAlign: "center",
+// };
 
 function deleteAllCookies() {
   var cookies = document.cookie.split(";");

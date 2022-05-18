@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import logo from "../img/logo.png"
 import { Container } from "@mui/material";
 
-const styles = {
-  color: "blue",
-  //background: "#0f0",
-  fontSize: "39px",
-  textAlign: "center",
-};
+// const styles = {
+//   color: "blue",
+//   //background: "#0f0",
+//   fontSize: "39px",
+//   textAlign: "center",
+// };
 
 const Register = (props) => {
   const [errorRegister, setErrorRegister] = useState(null);
