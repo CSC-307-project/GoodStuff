@@ -9,25 +9,6 @@ import HomePage from "./pages/HomePage";
 import PostItem from "./pages/PostItem";
 import Profile from "./pages/Profile";
 
-// const characters = [
-//   {
-//     name: "Charlie",
-//     job: "Janitor",
-//   },
-//   {
-//     name: "Mac",
-//     job: "Bouncer",
-//   },
-//   {
-//     name: "Dee",
-//     job: "Aspring actress",
-//   },
-//   {
-//     name: "Dennis",
-//     job: "Bartender",
-//   },
-// ];
-
 function MyApp() {
   const [characters, setCharacters] = useState([]);
 

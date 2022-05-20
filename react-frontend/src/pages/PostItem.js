@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const styles = {
   color: "blue",
@@ -65,17 +66,27 @@ const Register = (props) => {
     });
   }
 
+  const updateFields = (event) => {
+    const get_user_id = Cookies.get("user_id");
+    setUser({
+      sellerId: get_user_id,
+      title: item["title"],
+      price: item["price"],
+      address: item["address"],
+      description: item["description"],
+      image: item["image"],
+      tags: item["tags"].concat(item["title"].split(" ")),
+    });
+  }
+
   const post = async (e) => {
     e.preventDefault();
     console.log(item);
+
     await axios
       .post("http://localhost:5001/postitem", item)
       .then((res) => {
         if (res.status === 201) {
-          setUser({ username: "", email: "", password: "" });
-          window.location = "/login";
-        } else {
-          setErrorPost(res.data.message);
           setUser({
             sellerId: "",
             title: "",
@@ -85,6 +96,10 @@ const Register = (props) => {
             image: "",
             tags: [],
           });
+          setErrorPost("");
+          window.location = "/";
+        } else {
+          setErrorPost(res.data.message);
         }
       })
       .catch((err) => {
@@ -97,7 +112,7 @@ const Register = (props) => {
     <>
       <h1 style={styles}> GoodStuff </h1>
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">
-        <form className="Login col-md-8 col-lg-4 col-11" onSubmit={post}>
+        <form className="Login col-md-8 col-lg-4 col-11" onClick={updateFields} onSubmit={post}>
           {errorPost && <p style={{ color: "red" }}>{errorPost}</p>}
           <input
             type="text"
@@ -109,6 +124,11 @@ const Register = (props) => {
             type="text"
             name="price"
             placeholder="Price, $"
+            onKeyPress={(event) => {
+              if (!/[\.0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
             onChange={handleChange}
           />
           <input
