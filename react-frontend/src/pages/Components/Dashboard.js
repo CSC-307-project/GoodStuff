@@ -14,6 +14,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import ButtonBase from "@mui/material/ButtonBase";
 
+import Cookies from "js-cookie";
+import axios from "axios";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -25,6 +28,15 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const handle_avatar = async(user_id, avatar_url) =>{ 
+  console.log(user_id);
+  console.log(avatar_url); 
+  const res = await axios.patch("http://localhost:5001/profile", {
+    "user_id": user_id, 
+    "avatar_url": avatar_url
+  }).catch((error) => console.log('Error: ' + error)); 
+  
+}
 export default function Dashboard() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -42,15 +54,21 @@ export default function Dashboard() {
         cropping: true,
         multiple: false,
         defaultSource: "local",
-        max_files: 5000000,
-        client_allowed_formats: ["png", "bmp", "jpeg", "gif", "jpg"],
+        //max_files: 5000000,
+        client_allowed_formats: ["png", "bmp", "jpeg", "gif", "jpg"]
       },
       (err, info) => {
         if (info.event === "success") {
           //   setDelToken(info.info.delete_token);
           //   setPath(info.info.path);
           //   setFileName(info.info.original_filename);
-          console.log(info.info.path);
+          // console.log(Cookies.get('user_id')); 
+          // console.log(info.info.path);
+          handle_avatar(Cookies.get('user_id'), info.info.path); 
+          // const res = await axios.patch("http://localhost:5001/profile", {
+          //   "user_id": Cookies.get('user_id'), 
+          //   "avatar_url": info.info.path
+          // });
         }
       }
     );

@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import PostItem from "./pages/PostItem";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Components/Profile";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);

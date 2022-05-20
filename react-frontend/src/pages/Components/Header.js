@@ -10,6 +10,10 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import ImageAvatars from "./ImageAvatars.js";
+import { useState} from "react";
+
+import Cookies from "js-cookie";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,6 +58,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [header, setHeader] = useState("");
+  const [login, setLogin] = useState(true); 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -76,10 +82,34 @@ export default function SearchAppBar() {
             GoodStuff
           </Typography>
 
+          {/* <Link to="/">
+            <button>Logout</button>
+          </Link> */}
+
           {/* button link to login */}
-          <Button component={Link} to={"/login"} color="inherit">
-            Login
-          </Button>
+          {/* {console.log(Cookies.get("user_id"))} */}
+          
+          <Link to="/profile">
+            {" "}
+            <ImageAvatars/>{" "}
+          </Link>
+
+          {Cookies.get("user_id") == null
+              && <Button component={Link} to={"/login"} color="inherit" > Login</Button>}
+          
+          {login&&Cookies.get("user_id") != null
+              && <Button component={Link} to={"/"} color="inherit"
+                         onClick={() => {
+                          Cookies.remove('user_id');
+                          setHeader(""); 
+                          setLogin(false);
+                         }}>
+                  Logout</Button>}
+
+            {/* <Button component={Link} to={"/login"} color="inherit">
+              {Cookies.get("user_id") ? "logout" : "login"}
+            </Button> */}
+        
 
           <Search>
             <SearchIconWrapper>

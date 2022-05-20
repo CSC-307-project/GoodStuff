@@ -3,6 +3,12 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
+=======
+import logo from "../img/logo.png"
+import { Container } from "@mui/material";
+
+>>>>>>> 02f8186cc9cf0cf7844b09973f42bcddf451fb5c
 import Cookies from 'js-cookie';
 
 const styles = {
@@ -11,13 +17,19 @@ const styles = {
   fontSize: "39px",
   textAlign: "center",
 };
+// const styles = {
+//   color: "blue",
+//   //background: "#0f0",
+//   fontSize: "39px",
+//   textAlign: "center",
+// };
 
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
   window.scrollTo(0, 0);
 
   function handleChange(event) {
-    console.log(person);
+    //console.log(person);
     const { name, value } = event.target;
     if (name === "password")
       setPerson({
@@ -54,7 +66,7 @@ const Login = (props) => {
   // }
   const login = async (e) => {
     e.preventDefault();
-    console.log(person);
+    //console.log(person);
     //const result = props.verify(person);
     //setPerson({ email: "", password: "", username: "" });
     //console.log(result);
@@ -94,7 +106,22 @@ const Login = (props) => {
   return (
     <>
       <div>
-        <h1 style={styles}> GoodStuff </h1>
+        <Container
+        sx={{
+          mt: 3,
+          mb: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <img
+          src= {logo}
+          alt="logo"
+          width="180"
+          height="180"
+        />
+        </Container>
         <span className="container d-flex flex-column justify-content-center align-items-center login-center">
           <form className="Login col-md-8 col-lg-4 col-11" onSubmit={login}>
             {errorLogin && <p style={{ color: "red" }}>{errorLogin}</p>}

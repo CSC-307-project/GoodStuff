@@ -14,6 +14,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ImageAvatars from "./avatar";
 import Cookies from 'js-cookie';
 
+import ImageAvatars from "./Components/ImageAvatars";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

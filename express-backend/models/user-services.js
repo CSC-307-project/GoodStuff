@@ -75,6 +75,24 @@ async function findByEmail(email) {
   return query;
 }
 
+async function updateUserAvatar(user_id, avatar){ 
+  console.log(user_id); 
+  console.log(avatar); 
+  await userModel.updateOne(
+    {"_id": user_id},
+    {
+      $set: {"avatar": avatar}
+    }
+  );
+}
+
+function findUrlById(user_id){
+  let user = userModel.findOne({"_id": user_id}); 
+  console.log(user);
+  // console.log(user['avatar']);
+  return user; 
+}
+
 // async function findUserById(id) {
 //   try {
 //     return await userModel.findById(id);
@@ -99,3 +117,5 @@ exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 exports.findByEmail = findByEmail;
 exports.findByUsername = findByUsername;
 exports.findUserByEmail = findUserByEmail;
+exports.updateUserAvatar = updateUserAvatar; 
+exports.findUrlById = findUrlById; 

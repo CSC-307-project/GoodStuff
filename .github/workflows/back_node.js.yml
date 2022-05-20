@@ -5,9 +5,9 @@ name: Backend Node.js CI
 
 on:
   push:
-    branches: [frontend-backend, with-subfolder]
+    branches: [Hank_work_branch, with-subfolder]
   pull_request:
-    branches: [frontend-backend, with-subfolder]
+    branches: [Hank_work_branch, with-subfolder]
 
 defaults:
   run:

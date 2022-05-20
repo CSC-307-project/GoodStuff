@@ -59,6 +59,29 @@ app.post("/login", async (req, res) => {
     res.status(200).send(result.toObject());
   }
 });
+
+app.patch("/profile", async (req, res) => { 
+  // console.log("hello patch"); 
+  console.log(req.body); 
+  const{user_id, avatar_url} = req.body; 
+  // console.log(user_id); 
+  // console.log(avatar_url); 
+  let result = await userServices.updateUserAvatar(user_id, avatar_url); 
+}); 
+
+app.get("/avatar", async (req, res) => {
+  // console.log(req.query.user_id); 
+  const user_id = req.query.user_id; 
+  let avatar_url = await userServices.findUrlById(user_id); 
+  console.log(avatar_url);
+  if(avatar_url === null){ 
+    res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
+  }
+  else{
+    console.log(avatar_url);
+    res.status(200).send(avatar_url['avatar']); 
+  }
+}); 
 /*
 app.get('/users', (req, res) => {
     const name = req.query.name; 
@@ -103,11 +126,11 @@ const findUserByJob = (job) => {
 app.get("/users", async (req, res) => {
   const email = req.query.email;
   const password = req.query.password;
-  console.log("email --> " + email);
-  console.log("Password --> " + password);
+  // console.log("email --> " + email);
+  // console.log("Password --> " + password);
   try {
     const result = await userServices.getUser(email, password);
-    console.log("result --> " + result);
+    // console.log("result --> " + result);
     res.send({ users_list: result });
   } catch (error) {
     console.log(error);

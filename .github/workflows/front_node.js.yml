@@ -5,9 +5,9 @@ name: Frontend Node.js CI
 
 on:
   push:
-    branches: [frontend-backend, with-subfolder]
+    branches: [Hank_work_branch, with-subfolder]
   pull_request:
-    branches: [frontend-backend, with-subfolder]
+    branches: [Hank_work_branch, with-subfolder]
 
 defaults:
   run:
@@ -33,3 +33,9 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       #- run: npm test
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "csc307-propeller-backend"
+          heroku_email: "hank1413159@gmail.com"
+          appdir: "react-frontend"
