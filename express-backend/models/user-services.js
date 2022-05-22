@@ -86,30 +86,20 @@ async function updateUserAvatar(user_id, avatar){
   );
 }
 
-function findUrlById(user_id){
+function findUserById(user_id) {
   let user = userModel.findOne({"_id": user_id}); 
   console.log(user);
   // console.log(user['avatar']);
   return user; 
 }
 
-// async function findUserById(id) {
-//   try {
-//     return await userModel.findById(id);
-//   } catch (error) {
-//     console.log(error);
-//     return undefined;
-//   }
-// }
+async function updateUserListings(sellerid, listingId) {
+  console.log(sellerid);
+  console.log(listingId);
+  let user = await userModel.updateOne({ _id: sellerid }, { $push: { listingId: listingId }});
+  return user;
+}
 
-// async function deleteUser(id){
-//   try{
-//     return await userModel.findByIdAndDelete(id);
-//   }catch(error){
-//     console.log(error);
-//     return undefined;
-//   }
-// }
 
 exports.getUser = getUser;
 exports.addUser = addUser;
@@ -118,4 +108,5 @@ exports.findByEmail = findByEmail;
 exports.findByUsername = findByUsername;
 exports.findUserByEmail = findUserByEmail;
 exports.updateUserAvatar = updateUserAvatar; 
-exports.findUrlById = findUrlById; 
+exports.findUserById = findUserById; 
+exports.updateUserListings = updateUserListings;

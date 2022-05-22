@@ -66,7 +66,7 @@ const Register = (props) => {
     });
   }
 
-  const updateFields = (event) => {
+  const updateFields = () => {
     const get_user_id = Cookies.get("user_id");
     setUser({
       sellerId: get_user_id,
@@ -105,7 +105,7 @@ const Register = (props) => {
       .catch((err) => {
         console.log(err);
         setErrorPost(err.response.data.message);
-      });
+      }); 
   };
 
   return (

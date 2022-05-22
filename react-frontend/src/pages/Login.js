@@ -3,12 +3,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-=======
 import logo from "../img/logo.png"
 import { Container } from "@mui/material";
 
->>>>>>> 02f8186cc9cf0cf7844b09973f42bcddf451fb5c
 import Cookies from 'js-cookie';
 
 const styles = {
