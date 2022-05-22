@@ -93,6 +93,12 @@ function findUrlById(user_id){
   return user; 
 }
 
+function findUserById(user_id){ 
+  let user = userModel.findOne({"_id": user_id}); 
+  return user; 
+}
+
+
 // async function findUserById(id) {
 //   try {
 //     return await userModel.findById(id);
@@ -119,3 +125,4 @@ exports.findByUsername = findByUsername;
 exports.findUserByEmail = findUserByEmail;
 exports.updateUserAvatar = updateUserAvatar; 
 exports.findUrlById = findUrlById; 
+exports.findUserById = findUserById; 

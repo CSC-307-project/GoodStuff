@@ -68,7 +68,15 @@ app.patch("/profile", async (req, res) => {
   // console.log(avatar_url); 
   let result = await userServices.updateUserAvatar(user_id, avatar_url); 
 }); 
-
+app.get("/username", async(req, res) => { 
+  const user_id = req.query.user_id; 
+  let user = await userServices.findUserById(user_id); 
+  if (user === null) { 
+    res.status(404).send({message: "User not found"}); 
+  } else{ 
+    res.status(200).send(user);  
+  }
+});
 app.get("/avatar", async (req, res) => {
   // console.log(req.query.user_id); 
   const user_id = req.query.user_id; 
@@ -78,7 +86,7 @@ app.get("/avatar", async (req, res) => {
     res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
   }
   else{
-    console.log(avatar_url);
+    //console.log(avatar_url);
     res.status(200).send(avatar_url['avatar']); 
   }
 }); 

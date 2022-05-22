@@ -13,10 +13,15 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import ButtonBase from "@mui/material/ButtonBase";
+import { useEffect, useState} from "react";
 
 import Cookies from "js-cookie";
 import axios from "axios";
 
+const overlay ={ 
+  position: 'absolute',
+  backgroundColor: 'linen'
+}
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -73,8 +78,27 @@ export default function Dashboard() {
       }
     );
   };
+  let user_id = Cookies.get("user_id");
+  const [avatar, setAvatar] = useState("");
+  const [user, setUser] = useState(""); 
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const avatar = await axios.get("http://localhost:5001/avatar", {
+        params: { user_id: user_id },
+      });
+      const user = await axios.get("http://localhost:5001/username", {
+        params: {user_id: user_id}
+      }); 
+      setAvatar(avatar.data);
+      setUser(user.data); 
+      console.log(avatar.data); 
+    }
+    fetchData();
+  }, []);
+
   return (
-    <Card sx={{ maxWidth: 345, marginLeft: "" }}>
+    <Card sx={{ maxWidth: 345, marginLeft: "" }} style={overlay}>
       <CardHeader
         sx={{ marginLeft: "15%" }}
         avatar={
@@ -83,7 +107,7 @@ export default function Dashboard() {
               onClick={handleOpenWidget}
               sx={{ width: 200, height: 200 }}
               aria-label="recipe"
-              src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
+              src={`https://res.cloudinary.com/dicchtih6/image/upload/${avatar}`}
             />
           </ButtonBase>
         }
@@ -97,6 +121,7 @@ export default function Dashboard() {
           required
           id="standard-required"
           defaultValue="User Name"
+          value= {user.username}
           variant="standard"
         />
         <TextField
@@ -105,6 +130,7 @@ export default function Dashboard() {
           type="email"
           id="standard-required"
           defaultValue="Email@gmail.com"
+          value ={user.email}
           variant="standard"
         />
       </CardContent>
@@ -127,8 +153,7 @@ export default function Dashboard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
+            Heat 1/2 cup of the broth in a pot until you made a purchase here, in GoodStuff 
           </Typography>
         </CardContent>
       </Collapse>

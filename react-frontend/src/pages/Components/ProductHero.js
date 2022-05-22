@@ -3,6 +3,7 @@ import Button from '../CustomMUI/Button';
 import Typography from '../CustomMUI/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 import backgroundImage from '../../img/main.jpeg';
+import Grid from "@material-ui/core/Grid";
 
 export default function ProductHero() {
   return (
@@ -29,6 +30,7 @@ export default function ProductHero() {
       >
         Enjoy the best deal of GoodStuff here.
       </Typography>
+      <Grid container justify="center">
       <Button
         color="secondary"
         variant="contained"
@@ -39,6 +41,7 @@ export default function ProductHero() {
       >
         Register
       </Button>
+      </Grid>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience
       </Typography>
