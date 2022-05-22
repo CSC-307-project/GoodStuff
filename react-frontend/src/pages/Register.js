@@ -22,32 +22,49 @@ const Register = (props) => {
     password: "",
   });
 
+  const [verifyPassword, setVerifyPassword] = useState({
+    verifyPassword: "",
+  })
+
   function handleChange(event) {
     const { name, value } = event.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
+    if (name === "verifyPassword") {
+      setVerifyPassword({
+        [name]: value,
+      });
+    } else {
+      setUser({
+        ...user,
+        [name]: value,
+      });
+    }
   }
 
   const register = async (e) => {
     e.preventDefault();
     console.log(user);
-    await axios
-      .post("http://localhost:5001/register", user)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 201) {
-          setUser({ username: "", email: "", password: "" });
-          window.location = "/login";
-        } else {
-          setErrorRegister(res.data.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorRegister(err.response.data.message);
-      });
+    console.log(verifyPassword);
+    if (verifyPassword.verifyPassword !== user.password) {
+      setErrorRegister("Verify Password does not match with Password");
+    } else {
+      setErrorRegister("");
+      await axios
+        .post("http://localhost:5001/register", user)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            setUser({ username: "", email: "", password: "" });
+            setVerifyPassword({ password: "" });
+            window.location = "/login";
+          } else {
+            setErrorRegister(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrorRegister(err.response.data.message);
+        });
+      }
   };
 
   return (
@@ -90,6 +107,13 @@ const Register = (props) => {
             placeholder="Password"
             value={user.password}
             name="password"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="Verify Password"
+            value={user.verifyPassword}
+            name="verifyPassword"
             onChange={handleChange}
           />
 

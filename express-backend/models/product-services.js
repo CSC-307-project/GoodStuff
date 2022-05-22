@@ -47,6 +47,15 @@ async function findUserById(id) {
   }
 }
 
+async function findProductsByTags(tags) {
+  try {
+    return await productModel.find({ tags: { $all: tags } } )
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
 async function addItem(item) {
   const itemToAdd = new productModel(item);
   const savedItem = await itemToAdd.save();
@@ -77,3 +86,4 @@ exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addItem = addItem;
 exports.deleteUser = deleteUser;
+exports.findProductsByTags = findProductsByTags;

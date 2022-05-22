@@ -74,14 +74,28 @@ app.get("/avatar", async (req, res) => {
   const user_id = req.query.user_id; 
   let avatar_url = await userServices.findUserById(user_id); 
   console.log(avatar_url);
-  if(avatar_url === null){ 
+  if(avatar_url === null || avatar_url === undefined){ 
     res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
   }
   else{
     console.log(avatar_url);
     res.status(200).send(avatar_url['avatar']); 
   }
-}); 
+});
+
+app.get("/searchitem", async (req, res) => {
+  let userSearchBarInput = req.query.userSearchBarInput;
+  userSearchBarInput = userSearchBarInput.split(" ");
+  let filteredProducts = await productServices.findProductsByTags(userSearchBarInput); 
+  console.log(filteredProducts);
+
+  if (filteredProducts === null || filteredProducts === undefined) { 
+    res.status(200).send(filteredProducts);
+  } else {
+    res.status(404).json({ message: "No products found" }).end(); 
+  }
+})
+
 /*
 app.get('/users', (req, res) => {
     const name = req.query.name; 
