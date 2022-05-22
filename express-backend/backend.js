@@ -46,6 +46,16 @@ app.get("/", (req, res) => {
   res.send("Hello World! GoodStuff ");
 });
 
+app.get("/post", async (req, res) =>{ 
+  const products_list = await productServices.getProducts(); 
+  console.log(products_list);
+  if (products_list === undefined || products_list === null){ 
+    res.status(404).send({message:"No product posted yet"})
+  }else{
+    res.status(200).send(products_list); 
+  }
+});
+
 app.post("/login", async (req, res) => {
   const { email, password } = req.body.person;
   //let result = await userServices.findUserByEmailAndPassword(email, password);

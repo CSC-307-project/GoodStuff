@@ -13,7 +13,7 @@ const styles = {
 
 const Register = (props) => {
   const [errorPost, setErrorPost] = useState(null);
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 
   const tags = [
     "Car",
@@ -97,7 +97,7 @@ const Register = (props) => {
             tags: [],
           });
           setErrorPost("");
-          window.location = "/";
+          // window.location = "/";
         } else {
           setErrorPost(res.data.message);
         }
