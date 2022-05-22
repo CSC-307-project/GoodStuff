@@ -93,6 +93,20 @@ function findUserById(user_id) {
   return user; 
 }
 
+function findUserById(user_id){ 
+  let user = userModel.findOne({"_id": user_id}); 
+  return user; 
+}
+
+
+// async function findUserById(id) {
+//   try {
+//     return await userModel.findById(id);
+//   } catch (error) {
+//     console.log(error);
+//     return undefined;
+//   }
+// }
 async function updateUserListings(sellerid, listingId) {
   console.log(sellerid);
   console.log(listingId);
