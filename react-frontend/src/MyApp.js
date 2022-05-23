@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import PostItem from "./pages/PostItem";
 import Profile from "./pages/Components/Profile";
+import Product from "./pages/ProductPage";
 
 // const characters = [
 //   {
@@ -109,6 +110,7 @@ function MyApp() {
           />
           <Route path="/post" element={<PostItem />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/product" element={<Product />} />
         </Routes>
       </BrowserRouter>
     </div>
