@@ -97,7 +97,7 @@ const Register = (props) => {
             tags: [],
           });
           setErrorPost("");
-          // window.location = "/";
+          window.location = "/";
         } else {
           setErrorPost(res.data.message);
         }

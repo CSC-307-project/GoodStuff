@@ -77,7 +77,7 @@ export default function Imglist() {
           console.log("Product Data received");
         })
         .catch((res) => {
-          alert("Not receiving data");
+          console.log("Not receiving data");
         });
     }
     getProductsList();
@@ -112,9 +112,7 @@ export default function Imglist() {
             />
           </ImageListItem>
         ))}
-        {/* <Button>This button has disabled ripples.</Button> */}
       </ImageList>
-      <Button>font-size: 1rem</Button>
     </ThemeProvider>
   );
 }
