@@ -4,6 +4,8 @@ import Typography from '../CustomMUI/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 import backgroundImage from '../../img/main.jpeg';
 import Grid from "@material-ui/core/Grid";
+import Cookies from "js-cookie";
+import SearchBar from "material-ui-search-bar";
 
 export default function ProductHero() {
   return (
@@ -31,17 +33,30 @@ export default function ProductHero() {
         Enjoy the best deal of GoodStuff here.
       </Typography>
       <Grid container justify="center">
-      <Button
-        color="secondary"
-        variant="contained"
-        size="large"
-        component="a"
-        href='../Register'
-        sx={{ minWidth: 200 }}
-      >
-        Register
-      </Button>
+        {Cookies.get("user_id") == null &&
+        <Button
+          color="secondary"
+          variant="contained"
+          size="large"
+          component="a"
+          href='../Register'
+          sx={{ minWidth: 200 }}
+        >
+          Register
+        </Button>}
       </Grid>
+
+      {Cookies.get("user_id") != null && 
+        <SearchBar
+        onChange={() => console.log("onChange")}
+        onRequestSearch={() => console.log("onRequestSearch")}
+        style={{
+          margin: "0 auto",
+          maxWidth: 1600,
+          minWidth: 500
+        }}
+      />}
+
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience
       </Typography>
