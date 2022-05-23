@@ -21,17 +21,6 @@ const styles = {
 //   textAlign: "center",
 // };
 
-function deleteAllCookies() {
-  var cookies = document.cookie.split(";");
-
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i];
-    var eqPos = cookie.indexOf("=");
-    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  }
-}
-
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
   window.scrollTo(0, 0);
@@ -84,11 +73,8 @@ const Login = (props) => {
         person,
       })
       .then((res) => {
-        //deleteAllCookies();
-        //document.cookie = `${res.data._id}`;
-        Cookies.remove('user_id'); 
-        Cookies.set('user_id', res.data._id); 
-        // console.log(Cookies.get('user_id'));
+        Cookies.set("user_id", res.data._id, { expires: 7 });
+        console.log(document.cookie);
         window.location = "/";
       })
       .catch((err) => {

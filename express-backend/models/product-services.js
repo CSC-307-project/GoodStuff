@@ -24,6 +24,17 @@ mongoose
   )
   .catch((error) => console.log(error));
 
+async function getProducts(){ 
+  const product_list = await productModel.find();
+  return product_list;
+  // if (product_list === undefined || product_list === null){ 
+  //   return undefined; 
+  // }else{ 
+  //   return product_list;  
+  // }
+}  
+
+
 async function getUsers(name, job) {
   let result;
   if (name === undefined && job === undefined) {
@@ -41,6 +52,15 @@ async function getUsers(name, job) {
 async function findUserById(id) {
   try {
     return await productModel.findById(id);
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
+async function findProductsByTags(tags) {
+  try {
+    return await productModel.find({ tags: { $all: tags } } )
   } catch (error) {
     console.log(error);
     return undefined;
@@ -77,3 +97,5 @@ exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addItem = addItem;
 exports.deleteUser = deleteUser;
+exports.findProductsByTags = findProductsByTags;
+exports.getProducts = getProducts; 

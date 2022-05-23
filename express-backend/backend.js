@@ -46,6 +46,16 @@ app.get("/", (req, res) => {
   res.send("Hello World! GoodStuff ");
 });
 
+app.get("/post", async (req, res) =>{ 
+  const products_list = await productServices.getProducts(); 
+  console.log(products_list);
+  if (products_list === undefined || products_list === null){ 
+    res.status(404).send({message:"No product posted yet"})
+  }else{
+    res.status(200).send(products_list); 
+  }
+});
+
 app.post("/login", async (req, res) => {
   const { email, password } = req.body.person;
   //let result = await userServices.findUserByEmailAndPassword(email, password);
@@ -68,20 +78,42 @@ app.patch("/profile", async (req, res) => {
   // console.log(avatar_url); 
   let result = await userServices.updateUserAvatar(user_id, avatar_url); 
 }); 
-
+app.get("/username", async(req, res) => { 
+  const user_id = req.query.user_id; 
+  let user = await userServices.findUserById(user_id); 
+  if (user === null) { 
+    res.status(404).send({message: "User not found"}); 
+  } else{ 
+    res.status(200).send(user);  
+  }
+});
 app.get("/avatar", async (req, res) => {
   // console.log(req.query.user_id); 
   const user_id = req.query.user_id; 
-  let avatar_url = await userServices.findUrlById(user_id); 
+  let avatar_url = await userServices.findUserById(user_id); 
   console.log(avatar_url);
-  if(avatar_url === null){ 
+  if(avatar_url === null || avatar_url === undefined){ 
     res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
   }
   else{
-    console.log(avatar_url);
+    //console.log(avatar_url);
     res.status(200).send(avatar_url['avatar']); 
   }
-}); 
+});
+
+app.get("/searchitem", async (req, res) => {
+  let userSearchBarInput = req.query.userSearchBarInput;
+  userSearchBarInput = userSearchBarInput.split(" ");
+  let filteredProducts = await productServices.findProductsByTags(userSearchBarInput); 
+  console.log(filteredProducts);
+
+  if (filteredProducts === null || filteredProducts === undefined) { 
+    res.status(200).send(filteredProducts);
+  } else {
+    res.status(404).json({ message: "No products found" }).end(); 
+  }
+})
+
 /*
 app.get('/users', (req, res) => {
     const name = req.query.name; 
@@ -144,17 +176,6 @@ const findUserByNameAndJob = (name, job) => {
   );
 };
 
-// app.get("/users/:id", (req, res) => {
-//   const id = req.params["id"];
-//   let result = findUserById(id);
-//   if (result === undefined || result.length == 0)
-//     res.status(404).send("Resource not found.");
-//   else {
-//     result = { users_list: result };
-//     res.send(result);
-//   }
-// });
-
 app.get("/users/:id", async (req, res) => {
   const id = req.params["id"];
   const result = await userServices.findUserById(id);
@@ -164,29 +185,6 @@ app.get("/users/:id", async (req, res) => {
     res.send({ users_list: result });
   }
 });
-
-function findUserById(id) {
-  return users["users_list"].find((user) => user["id"] === id);
-  //or
-  //return users['users_list'].filter( (user) => user['id'] === id);
-}
-
-// app.post("/users", (req, res) => {
-//   console.log(req.body)
-//   const userToAdd = req.body;
-//   console.log("app.post" + userToAdd);
-//   /* prompt 2*/
-//   new_user = {
-//     id: uuidv4().slice(0, 8),
-//     name: userToAdd.name,
-//     job: userToAdd.job,
-//   };
-//   console.log(new_user.id)
-//   addUser(new_user);
-//   //res.status(200).end();
-//   //res.status(201).end();
-//   res.status(201).send(new_user); //prompt 1 + 3
-// });
 
 app.post("/register", async (req, res) => {
   try {
@@ -213,34 +211,17 @@ app.post("/register", async (req, res) => {
 app.post("/postitem", async (req, res) => {
   try {
     const item = req.body;
+    const sellerId = item.sellerId;
     const savedItem = await productServices.addItem(item);
-    console.log("Success: " + savedItem);
+    const sellerObj = await userServices.findUserById(sellerId);
+    const updateUserListings = await userServices.updateUserListings(sellerObj._id, savedItem._id);
+    console.log("Success: " + savedItem + updateUserListings);
     res.status(201).send(savedItem);
   } catch (err) {
     console.log(err);
     res.status(404).json({ message: err.message }).end();
   }
 });
-
-function addUser(user) {
-  //Add the ID field with a random ID
-  users["users_list"].push(new_user);
-}
-
-//app.delete("/users/", (req, res) => {
-
-// app.delete("/users/:id", (req, res) => {
-//     //const result = removeUser(req.body.id)
-//     const result = removeUser(req.params.id);
-//     console.log(users);
-//     if (result == 0) {
-//         //prompt 4: successful delete
-//         res.status(204).end();
-//     } else {
-//         //resource not found
-//         res.status(404).end();
-//     }
-// });
 
 app.delete("/users/:id", async (req, res) => {
   //const result = removeUser(req.body.id)

@@ -1,35 +1,36 @@
 const mongoose = require("mongoose");
+//var ObjectId = require("mongodb").ObjectId;
 
 const ProductSchema = new mongoose.Schema(
   {
     sellerId: {
       type: String,
-      //required: true,
+      required: "No user is login",
       trim: true,
     },
     title: {
       type: String,
-      required: true,
+      required: "Title is required",
       trim: true,
     },
     price: {
       type: Number,
-      required: true,
+      required: "Price is required",
       trim: true,
     },
     address: {
       type: String,
-      required: true,
+      required: "Address is required",
       trim: true,
     },
     description: {
       type: String,
-      required: true,
+      required: "Description is required",
       trim: true,
     },
     image: {
       type: String,
-      required: true,
+      required: "Image URL is required",
       trim: true,
     },
     tags: [

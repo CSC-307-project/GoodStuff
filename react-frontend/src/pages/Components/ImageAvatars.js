@@ -30,7 +30,7 @@ export default function ImageAvatars() {
     fetchData();
   }, []);
 
-  //console.log(response);
+  //console.log(response);gg
   return (
     <div className={classes.root}>
       {avatar && <Avatar

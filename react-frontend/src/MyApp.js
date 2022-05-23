@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./MyApp.css";
 import "./responsive.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
@@ -28,6 +29,7 @@ import Product from "./pages/ProductPage";
 //     job: "Bartender",
 //   },
 // ];
+import SearchResult from "./pages/SearchResult";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -111,6 +113,7 @@ function MyApp() {
           <Route path="/post" element={<PostItem />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/product" element={<Product />} />
+          <Route path="/searchresult" element={<SearchResult />} />
         </Routes>
       </BrowserRouter>
     </div>

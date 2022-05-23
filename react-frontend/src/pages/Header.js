@@ -11,6 +11,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 //import { Button } from "react-bootstrap";
 //import * as ReactDOM from "react-dom";
+import ImageAvatars from "./avatar";
+import Cookies from 'js-cookie';
+
 import ImageAvatars from "./Components/ImageAvatars";
 
 const Search = styled("div")(({ theme }) => ({
@@ -55,6 +58,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+function removeUserCookie() {
+  const status = Cookies.remove("user_id");
+  console.log(status);
+}
+
 //const root = ReactDOM.createRoot(document.getElementById("root"));
 
 export default function SearchAppBar() {
@@ -85,7 +93,7 @@ export default function SearchAppBar() {
           </Link>
 
           <Link to="/login">
-            <button>Logout</button>
+            <button onClick={removeUserCookie}>Logout</button>
           </Link>
 
           <Search>

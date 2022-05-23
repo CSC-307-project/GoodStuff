@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar() {
   const [header, setHeader] = useState("");
-  const [avatar, setAvatar] = useState(false);  
+  const [login, setLogin] = useState(true); 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -81,10 +81,6 @@ export default function SearchAppBar() {
           >
             GoodStuff
           </Typography>
-          <Link to="/profile">
-            {" "}
-            <ImageAvatars/>{" "}
-          </Link>
 
           {/* <Link to="/">
             <button>Logout</button>
@@ -92,15 +88,21 @@ export default function SearchAppBar() {
 
           {/* button link to login */}
           {/* {console.log(Cookies.get("user_id"))} */}
+          
+          <Link to="/profile">
+            {" "}
+            <ImageAvatars/>{" "}
+          </Link>
 
           {Cookies.get("user_id") == null
-              && <Button component={Link} to={"/login"} color="inherit"> Login</Button>}
+              && <Button component={Link} to={"/login"} color="inherit" > Login</Button>}
           
-          {Cookies.get("user_id") != null
+          {login&&Cookies.get("user_id") != null
               && <Button component={Link} to={"/"} color="inherit"
                          onClick={() => {
                           Cookies.remove('user_id');
                           setHeader(""); 
+                          setLogin(false);
                           this.forceUpdate(); 
                          }}>
                   Logout</Button>}
