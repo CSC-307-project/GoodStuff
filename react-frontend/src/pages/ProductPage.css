@@ -1,0 +1,24 @@
+
+.productContainer{
+    margin: 0px;
+    height: 100vh;
+    width: 100%;
+    background-color: lightgrey;
+    display: flex;
+}
+
+img{
+    height: auto;
+    width: 500px;
+    margin-top: 50%;
+    
+}
+
+.info{
+    /* border-style: solid;
+    border-color:black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25%;
+}
