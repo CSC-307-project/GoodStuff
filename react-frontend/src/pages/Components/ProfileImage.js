@@ -7,7 +7,7 @@ export default function ProfileImage() {
         backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: 'no-repeat',
         width:'1200px',
-        height:'500px' 
+        height:'1200px' 
       }}>
     </div>
   );

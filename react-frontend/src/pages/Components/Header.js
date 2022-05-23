@@ -103,6 +103,7 @@ export default function SearchAppBar() {
                           Cookies.remove('user_id');
                           setHeader(""); 
                           setLogin(false);
+                          this.forceUpdate(); 
                          }}>
                   Logout</Button>}
 

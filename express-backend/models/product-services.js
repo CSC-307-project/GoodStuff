@@ -24,6 +24,17 @@ mongoose
   )
   .catch((error) => console.log(error));
 
+async function getProducts(){ 
+  const product_list = await productModel.find();
+  return product_list;
+  // if (product_list === undefined || product_list === null){ 
+  //   return undefined; 
+  // }else{ 
+  //   return product_list;  
+  // }
+}  
+
+
 async function getUsers(name, job) {
   let result;
   if (name === undefined && job === undefined) {
@@ -87,3 +98,4 @@ exports.findUserById = findUserById;
 exports.addItem = addItem;
 exports.deleteUser = deleteUser;
 exports.findProductsByTags = findProductsByTags;
+exports.getProducts = getProducts; 
