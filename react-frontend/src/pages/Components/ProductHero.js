@@ -48,11 +48,11 @@ export default function ProductHero() {
 
       {Cookies.get("user_id") != null && 
         <SearchBar
+        value=""
         onChange={() => console.log("onChange")}
         onRequestSearch={() => console.log("onRequestSearch")}
         style={{
           margin: "0 auto",
-          maxWidth: 1600,
           minWidth: 500
         }}
       />}
@@ -60,6 +60,19 @@ export default function ProductHero() {
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience
       </Typography>
+      
+      {Cookies.get("user_id") != null && 
+        <Button
+        color="secondary"
+        variant="contained"
+        size="large"
+        component="a"
+        href='../post'
+        sx={{ minWidth: 200, mt: 5  }}
+      >
+        Post Item
+      </Button>}
+    
     </ProductHeroLayout>
   );
 }

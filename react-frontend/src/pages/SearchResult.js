@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "material-ui-search-bar";
+import { useState, useEffect} from "react";
+import axios from "axios";
 
 //sample data
 const products = [
@@ -60,6 +62,23 @@ const products = [
   ];
 
 const ShopSection = () => {
+    const [product_list, setProductList] = useState([]);
+    useEffect(() => {
+        async function getProductsList() {
+        await axios
+            .get("http://localhost:5001/post")
+            .then((response) => {
+            const data_list = response.data;
+            setProductList(data_list);
+            console.log("Product Data received");
+            })
+            .catch((res) => {
+            console.log("Not receiving data");
+            });
+        }
+        getProductsList();
+    }, []);
+
   return (
     <>
      <SearchBar
