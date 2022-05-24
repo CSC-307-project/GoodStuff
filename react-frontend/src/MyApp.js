@@ -9,27 +9,8 @@ import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import PostItem from "./pages/PostItem";
 import Profile from "./pages/Components/Profile";
-import Product from "./pages/ProductPage";
-
-// const characters = [
-//   {
-//     name: "Charlie",
-//     job: "Janitor",
-//   },
-//   {
-//     name: "Mac",
-//     job: "Bouncer",
-//   },
-//   {
-//     name: "Dee",
-//     job: "Aspring actress",
-//   },
-//   {
-//     name: "Dennis",
-//     job: "Bartender",
-//   },
-// ];
 import SearchResult from "./pages/SearchResult";
+import Helmet from 'react-helmet';
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -112,7 +93,6 @@ function MyApp() {
           />
           <Route path="/post" element={<PostItem />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/product" element={<Product />} />
           <Route path="/searchresult" element={<SearchResult />} />
         </Routes>
       </BrowserRouter>

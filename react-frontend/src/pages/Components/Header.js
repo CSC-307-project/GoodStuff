@@ -12,6 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ImageAvatars from "./ImageAvatars.js";
 import { useState} from "react";
+import SearchBar from "material-ui-search-bar";
 
 import Cookies from "js-cookie";
 
@@ -56,6 +57,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+function redirect(){
+  window.location ="searchresult";
+};
 
 export default function SearchAppBar() {
   const [header, setHeader] = useState("");
@@ -112,15 +117,21 @@ export default function SearchAppBar() {
             </Button> */}
         
 
-          <Search>
+        {Cookies.get("user_id") == null&&<Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
+            {/* <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+            <Button compoent={Link} to="/searchresult" variant="button" color="inherit"/> */}
+            <SearchBar 
+              onChange={(newValue) => this.setState({ value: newValue })}
+              onRequestSearch={() => redirect()}
+              color="inherit"
+            />
+          </Search>}
         </Toolbar>
       </AppBar>
     </Box>
