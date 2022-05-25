@@ -49,9 +49,18 @@ async function getUsers(name, job) {
   return result;
 }
 
-async function findUserById(id) {
+async function findProductById(id) {
   try {
     return await productModel.findById(id);
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
+async function archiveProduct(productId) {
+  try {
+    return await productModel.updateOne({ _id: productId },{ "$set": { "archived": true }});
   } catch (error) {
     console.log(error);
     return undefined;
@@ -94,7 +103,7 @@ async function findUserByNameAndJob(name, job) {
 }
 
 exports.getUsers = getUsers;
-exports.findUserById = findUserById;
+exports.findProductById = findProductById;
 exports.addItem = addItem;
 exports.deleteUser = deleteUser;
 exports.findProductsByTags = findProductsByTags;

@@ -114,6 +114,12 @@ async function updateUserListings(sellerid, listingId) {
   return user;
 }
 
+async function updateUserPurchases(sellerid, listingId) {
+  console.log(sellerid);
+  console.log(listingId);
+  let user = await userModel.updateOne({ _id: sellerid }, { $push: { purchaseId: listingId }});
+  return user;
+}
 
 exports.getUser = getUser;
 exports.addUser = addUser;
@@ -124,3 +130,4 @@ exports.findUserByEmail = findUserByEmail;
 exports.updateUserAvatar = updateUserAvatar; 
 exports.findUserById = findUserById; 
 exports.updateUserListings = updateUserListings;
+exports.updateUserPurchases = updateUserPurchases;
