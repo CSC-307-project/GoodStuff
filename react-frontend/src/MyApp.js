@@ -11,6 +11,7 @@ import PostItem from "./pages/PostItem";
 import Profile from "./pages/Components/Profile";
 import SearchResult from "./pages/SearchResult";
 import Helmet from 'react-helmet';
+import ProductPage from './pages/ProductPage';
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -94,6 +95,7 @@ function MyApp() {
           <Route path="/post" element={<PostItem />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/searchresult" element={<SearchResult />} />
+          <Route path="/product" element={<ProductPage />} />
         </Routes>
       </BrowserRouter>
     </div>

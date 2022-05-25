@@ -6,6 +6,7 @@ import Imglist from "./Components/Imglist";
 import ProductHero from "./Components/ProductHero";
 import Cookies from 'js-cookie'; 
 import ProductCategories from './Components/ProductCategories';
+import Imglist from './Imglist';
 
 const HomePage = () => {
   console.log(Cookies.get('user_id'));
@@ -15,7 +16,8 @@ const HomePage = () => {
       <Header />
       <SearchBar />
       <ProductHero />
-      <ProductCategories />
+      <Imglist />
+      {/* <ProductCategories /> */}
       <Footer /> 
     </React.Fragment>
   );
