@@ -9,6 +9,9 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { Link } from "react-router-dom";
+
 
 const Img = styled("img")({
     margin: "auto",
@@ -21,9 +24,9 @@ const Img = styled("img")({
     const location = useLocation(); 
     //const {image} = location.state.product_info.image;
     return (
-      <React.Fragment>
+      <React.Fragment >
         <CssBaseline />
-        <Container
+        <Container 
           maxWidth="sm"
           sx={{
             p: 2,
@@ -57,13 +60,19 @@ const Img = styled("img")({
                   </Typography>
                 </Grid>
                 <Grid item>
+                <Box display="flex" justifyContent="space-between">
                   <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  <Button variant="contained">Confirm Purchase</Button>
+                  <Button variant="contained" style={{display:"flex", alignItems:"center"}}>Confirm Purchase</Button>
                   </Typography>
+                  <Typography sx={{ cursor: "pointer" }} variant="body2" fontSize={12}>
+                  <Button variant="contained" onClick={() => {window.location = "/"}}
+                        style={{display:"flex", alignItems:"center"}}>Return to Home</Button>
+                  </Typography>
+                </Box>
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="subtitle1" component="div">
+                <Typography variant="subtitle1" component="div" fontSize={19}>
                   GoodStuff
                 </Typography>
               </Grid>
@@ -71,6 +80,7 @@ const Img = styled("img")({
           </Grid>
         </Container>
       </React.Fragment>
+    
     );
   }
   
