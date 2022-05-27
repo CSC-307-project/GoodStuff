@@ -16,13 +16,13 @@ mongoose
       "/" +
       process.env.MONGO_DB +
       "?retryWrites=true&w=majority",
-    // "mongodb://localhost:27017/users",
     {
       useNewUrlParser: true, //useFindAndModify: false,
       useUnifiedTopology: true,
     }
   )
   .catch((error) => console.log(error));
+
 
 async function getProducts(){ 
   const product_list = await productModel.find();
@@ -60,16 +60,16 @@ async function findProductById(id) {
 
 async function archiveProduct(productId) {
   try {
-    return await productModel.updateOne({ _id: productId },{ "$set": { "archived": true }});
+    return await productModel.updateOne({ _id: productId }, { "$set": { "archived": true }});
   } catch (error) {
     console.log(error);
     return undefined;
   }
 }
 
-async function findProductsByTags(tags) {
+async function findProductsByTags(tags, archivedStatus) {
   try {
-    return await productModel.find({ tags: { $all: tags } } )
+    return await productModel.find({ tags: { $all: tags }, archived: archivedStatus })
   } catch (error) {
     console.log(error);
     return undefined;

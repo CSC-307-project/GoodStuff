@@ -71,7 +71,7 @@ const Register = (props) => {
     setUser({
       ...item,
       sellerId: get_user_id,
-      tags: [...new Set([...item["tags"], ...(item["title"].split(" ")), ...(item["address"].replace(/[0-9]/g, '').split(", ")), ...[""]])],
+      tags: [...new Set([...item["tags"], ...(item["title"].split(/[, ]+/)), ...(item["address"].replace(/[0-9]/g, '').split(/[, ]+/)), ...[""]])],
     });
   }
 

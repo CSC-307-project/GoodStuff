@@ -42,31 +42,14 @@ const Login = (props) => {
       });
   }
 
-  // function handleEntailmentRequest(e) {
-  //   e.preventDefault();
-
-  // }
-
   const [person, setPerson] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  // async function login(){
-  //   //console.log(person);
-  //   const response = await axios.post("http://localhost:5001/login", { person });
-  //   console.log(response);
-  //   // const result = props.verify(person);
-  //   // setPerson({ email: "", password: "", username: "" });
-  //   // console.log(result);
-  // }
   const login = async (e) => {
     e.preventDefault();
-    //console.log(person);
-    //const result = props.verify(person);
-    //setPerson({ email: "", password: "", username: "" });
-    //console.log(result);
 
     await axios
       .post("http://localhost:5001/login", {
@@ -80,10 +63,6 @@ const Login = (props) => {
       .catch((err) => {
         setErrorLogin(err.response.data.message);
       });
-
-    // const result = props.verify(person);
-    // setPerson({ email: "", password: "", username: "" });
-    // console.log(result);
   };
 
   async function fetchAll() {
