@@ -1,5 +1,4 @@
-
-.productContainer{
+.productContainerDetail{
     margin: 0px;
     height: 100vh;
     width: 100%;
@@ -7,16 +6,14 @@
     display: flex;
 }
 
-img{
+.imgDetail{
     height: auto;
     width: 500px;
     margin-top: 50%;
     
 }
 
-.info{
-    /* border-style: solid;
-    border-color:black; */
+.infoDetail{
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -216,12 +216,38 @@ app.post("/postitem", async (req, res) => {
     const sellerObj = await userServices.findUserById(sellerId);
     const updateUserListings = await userServices.updateUserListings(sellerObj._id, savedItem._id);
     console.log("Success: " + savedItem + updateUserListings);
-    res.status(201).send(savedItem);
+    res.status(201).send(updateUserListings);
   } catch (err) {
     console.log(err);
     res.status(404).json({ message: err.message }).end();
   }
 });
+
+app.post("/purchaseitem", async (req, res) => {
+  try {
+    const item = req.body;
+    const itemId = item.itemId;
+    const buyerObj = await userServices.findUserById(itemId);
+    const updateUserPurchases = await userServices.updateUserPurchases(itemId._id, buyerObj._id);
+    const archiveProduct = await productServices.archiveProduct(itemId); 
+    res.status(201).send(updateUserPurchases + archiveProduct);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: err.message }).end();
+  }
+})
+
+app.post("/removeitem", async (req, res) => {
+  try {
+    const item = req.body;
+    const itemId = item.itemId;
+    const archiveProduct = await productServices.archiveProduct(itemId);
+    res.status(201).send(archiveProduct);
+  } catch (error) {
+    console.log(err);
+    res.status(404).json({ message: err.message }).end();
+  }
+})
 
 app.delete("/users/:id", async (req, res) => {
   //const result = removeUser(req.body.id)
