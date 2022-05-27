@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//var ObjectId = require("mongodb").ObjectId;
 
 var validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

@@ -1,6 +1,6 @@
-const { response } = require("express");
+//const { response } = require("express");
 const express = require("express");
-const { v4: uuidv4 } = require("uuid");
+//const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 const app = express();
 const port = 5001;
@@ -199,8 +199,8 @@ app.post("/purchaseitem", async (req, res) => {
   try {
     const item = req.body;
     const itemId = item.itemId;
-    const buyerObj = await userServices.findUserById(itemId);
-    const updateUserPurchases = await userServices.updateUserPurchases(itemId._id, buyerObj._id);
+    const buyerId = item.buyerId;
+    const updateUserPurchases = await userServices.updateUserPurchases(buyerId, itemId);
     const archiveProduct = await productServices.archiveProduct(itemId); 
     res.status(201).send(updateUserPurchases + archiveProduct);
   } catch (err) {
