@@ -69,12 +69,12 @@ const ShopSection = () => {
         await axios
             .get("http://localhost:5001/post")
             .then((response) => {
-            const data_list = response.data;
-            setProductList(data_list);
-            console.log("Product Data received");
+              const data_list = response.data;
+              setProductList(data_list);
+              console.log("Product Data received");
             })
             .catch((res) => {
-            console.log("Not receiving data");
+              console.log("Not receiving data");
             });
         }
         getProductsList();

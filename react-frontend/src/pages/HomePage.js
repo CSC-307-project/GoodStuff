@@ -9,8 +9,8 @@ import ProductCategories from './Components/ProductCategories';
 import Imglist from './Imglist';
 
 const HomePage = () => {
-  console.log(Cookies.get('user_id'));
-
+  // console.log(Cookies.get('user_id'));
+  
   return (
     <React.Fragment>
       <Header />
