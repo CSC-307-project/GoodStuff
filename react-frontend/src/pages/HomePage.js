@@ -7,9 +7,10 @@ import ProductHero from "./Components/ProductHero";
 import Cookies from 'js-cookie'; 
 
 const HomePage = () => {
-  console.log(Cookies.get('user_id'));
+  // console.log(Cookies.get('user_id'));
 
   return (
+    
     <React.Fragment>
       <Header />
       <SearchBar />

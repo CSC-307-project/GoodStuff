@@ -25,7 +25,7 @@ export default function ImageAvatars() {
         params: { user_id: user_id },
       });
       setAvatar(avatar.data);
-      console.log(avatar.data); 
+      // console.log(avatar.data); 
     }
     fetchData();
   }, []);

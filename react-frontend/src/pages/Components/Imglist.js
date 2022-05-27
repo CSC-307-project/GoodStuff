@@ -4,48 +4,10 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
-import InfoIcon from "@mui/icons-material/Info";
 import axios from "axios";
-
-import Button from "@mui/material/Button";
-
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-// let state = {
-//   sellerId: "",
-//     title: "",
-//     price: "",
-//     address: "",
-//     description: "",
-//     image: "",
-//     tags: []
-// };
-
-// const getImageList = () => {
-//   axios.get('http://localhost:5001/post')
-//     .then((response) => {
-//       const data = response.data;
-//       this.setState({products: data})
-//       console.log('Product Data received');
-//     }).catch( ()=> {
-//       alert('Not receiving data');
-//     })
-// }
-
-// const theme = createTheme({
-//   components: {
-//     // Name of the component
-//     ImageListItemBar: {
-//       styleOverrides: {
-//         // Name of the slot
-//         title: {
-//           // Some CSS
-//           fontSize: "3rem",
-//         },
-//       },
-//     },
-//   },
-// });
+import Button from "@mui/material/Button";
+import { useNavigate, Link } from "react-router-dom";
 
 const theme = createTheme({
   components: {
@@ -67,6 +29,7 @@ const theme = createTheme({
 
 export default function Imglist() {
   const [product_list, setProductList] = useState([]);
+  let navigate = useNavigate();
   useEffect(() => {
     async function getProductsList() {
       await axios
@@ -74,10 +37,10 @@ export default function Imglist() {
         .then((response) => {
           const data_list = response.data;
           setProductList(data_list);
-          console.log("Product Data received");
+          //console.log("Product Data received");
         })
         .catch((res) => {
-          console.log("Not receiving data");
+          //console.log("Not receiving data");
         });
     }
     getProductsList();
@@ -98,7 +61,6 @@ export default function Imglist() {
               loading="lazy"
             />
             <ImageListItemBar
-              // position="top"
               title={item.title}
               subtitle={"$" + item.price}
               actionIcon={
@@ -106,7 +68,16 @@ export default function Imglist() {
                   sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                   aria-label={`info about ${item.title}`}
                 >
-                  <InfoIcon />
+                  <Button variant="contained" onClick={()=>{
+                  // console.log(item);
+                  // navigate('/product', {name: 'name'})
+                  navigate('/product', {state: {product_info: item}});
+                  //navigate("/product");
+                }}
+                  >purchase</Button> 
+                  {/* <Link to={{ pathname: "/product", state:{ product: item } }}>
+                    <Button variant="contained">Hello</Button>
+                  </Link> */}
                 </IconButton>
               }
             />

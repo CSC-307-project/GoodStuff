@@ -23,7 +23,7 @@ const styles = {
 
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
-  //window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 
   function handleChange(event) {
     //console.log(person);
