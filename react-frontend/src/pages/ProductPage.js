@@ -13,6 +13,11 @@ import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
 
 
+/* 
+This is a change used for Code Review: Hank 
+*/
+
+
 const Img = styled("img")({
     margin: "auto",
     display: "block",
