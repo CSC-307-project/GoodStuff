@@ -200,6 +200,8 @@ app.post("/purchaseitem", async (req, res) => {
     const item = req.body;
     const itemId = item.itemId;
     const buyerId = item.buyerId;
+    console.log('Hello' + itemId); 
+    console.log('Hey' + buyerId); 
     const updateUserPurchases = await userServices.updateUserPurchases(buyerId, itemId);
     const archiveProduct = await productServices.archiveProduct(itemId); 
     res.status(201).send(updateUserPurchases + archiveProduct);

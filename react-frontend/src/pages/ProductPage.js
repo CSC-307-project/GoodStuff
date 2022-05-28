@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie'; 
+import axios from "axios";
 
 
 const Img = styled("img")({
@@ -21,19 +22,31 @@ const Img = styled("img")({
     maxHeight: "100%"
   });
 
-  const handlePurchase = async(buyer_id, product_id) => {
-
-  }
+ 
   
   export default function ProductPage() {
     const location = useLocation(); 
     //const {image} = location.state.product_info.image;
     console.log(location.state.product_info);
-    console.log('Buyer' + Cookies.get('user_id'));
+    
+    const handlePurchase = async() => {
+      console.log('buyer' + buyer_id); 
+      console.log('product ' + product_id);
+      await axios.post("http://localhost:5001/purchaseitem", { 
+        itemId: product_id, 
+        buyerId: buyer_id
+      }).then((res) =>{ 
+        console.log(res); 
+      }
+      ).catch((err) =>{ 
+        console.log(err); 
+      }
+      )
+    }
+
     let buyer_id = Cookies.get('user_id'); 
     let product_id = location.state.product_info._id;
-    console.log(buyer_id); 
-    console.log('product ' + product_id); 
+     
     
   
     return (
@@ -76,7 +89,7 @@ const Img = styled("img")({
                 <Box display="flex" justifyContent="space-between">
                   <Typography sx={{ cursor: "pointer" }} variant="body2">
                   <Button variant="contained" style={{display:"flex", alignItems:"center"}}
-                  onClick = {handlePurchase(buyer_id, product_id)}
+                    onClick = {handlePurchase}
                   >Confirm Purchase</Button>
                   </Typography>
                   <Typography sx={{ cursor: "pointer" }} variant="body2" fontSize={12}>

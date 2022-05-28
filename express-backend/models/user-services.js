@@ -114,9 +114,10 @@ async function updateUserListings(sellerid, listingId) {
 }
 
 async function updateUserPurchases(buyerId, listingId) {
-  console.log(buyerId);
-  console.log(listingId);
+  // console.log(buyerId);
+  // console.log(listingId);
   let user = await userModel.updateOne({ _id: buyerId }, { $push: { purchaseId: listingId }});
+  console.log(user); 
   return user;
 }
 

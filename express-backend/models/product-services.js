@@ -108,3 +108,4 @@ exports.addItem = addItem;
 exports.deleteUser = deleteUser;
 exports.findProductsByTags = findProductsByTags;
 exports.getProducts = getProducts; 
+exports.archiveProduct = archiveProduct; 
