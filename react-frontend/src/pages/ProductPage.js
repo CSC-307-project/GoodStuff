@@ -11,6 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie'; 
 
 
 const Img = styled("img")({
@@ -19,10 +20,22 @@ const Img = styled("img")({
     maxWidth: "100%",
     maxHeight: "100%"
   });
+
+  const handlePurchase = async(buyer_id, product_id) => {
+
+  }
   
   export default function ProductPage() {
     const location = useLocation(); 
     //const {image} = location.state.product_info.image;
+    console.log(location.state.product_info);
+    console.log('Buyer' + Cookies.get('user_id'));
+    let buyer_id = Cookies.get('user_id'); 
+    let product_id = location.state.product_info._id;
+    console.log(buyer_id); 
+    console.log('product ' + product_id); 
+    
+  
     return (
       <React.Fragment >
         <CssBaseline />
@@ -62,7 +75,9 @@ const Img = styled("img")({
                 <Grid item>
                 <Box display="flex" justifyContent="space-between">
                   <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  <Button variant="contained" style={{display:"flex", alignItems:"center"}}>Confirm Purchase</Button>
+                  <Button variant="contained" style={{display:"flex", alignItems:"center"}}
+                  onClick = {handlePurchase(buyer_id, product_id)}
+                  >Confirm Purchase</Button>
                   </Typography>
                   <Typography sx={{ cursor: "pointer" }} variant="body2" fontSize={12}>
                   <Button variant="contained" onClick={() => {window.location = "/"}}
