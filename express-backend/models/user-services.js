@@ -16,7 +16,6 @@ mongoose
       "/" +
       process.env.MONGO_DB +
       "?retryWrites=true&w=majority",
-    // "mongodb://localhost:27017/users",
     {
       useNewUrlParser: true, //useFindAndModify: false,
       useUnifiedTopology: true,
@@ -114,10 +113,10 @@ async function updateUserListings(sellerid, listingId) {
   return user;
 }
 
-async function updateUserPurchases(sellerid, listingId) {
-  console.log(sellerid);
+async function updateUserPurchases(buyerId, listingId) {
+  console.log(buyerId);
   console.log(listingId);
-  let user = await userModel.updateOne({ _id: sellerid }, { $push: { purchaseId: listingId }});
+  let user = await userModel.updateOne({ _id: buyerId }, { $push: { purchaseId: listingId }});
   return user;
 }
 
