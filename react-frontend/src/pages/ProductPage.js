@@ -1,5 +1,6 @@
 
 import React from "react";
+import ReactDOM from "react-dom";
 import "./ProductPage.css"; 
 import {useLocation} from 'react-router-dom';
 import { styled } from '@mui/material/styles';
@@ -10,19 +11,30 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { Marker } from "react-map-gl";
+import InteractiveMap from "react-map-gl";
 import { Link } from "react-router-dom";
 
 
-const Img = styled("img")({
+  const Img = styled("img")({
     margin: "auto",
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%"
   });
-  
+
   export default function ProductPage() {
     const location = useLocation(); 
-    //const {image} = location.state.product_info.image;
+    const [markers, setMarkers] = React.useState([]);
+    const handleClick = ({ lngLat: [longitude, latitude] }) =>
+      setMarkers(markers => [...markers, { longitude, latitude }]);
+    const [viewport, setViewport] = React.useState({
+      latitude: -37.8136,
+      longitude: 144.96332,
+      zoom: 14.5,
+      pitch: 40,
+      bearing: 0
+    });
     return (
       <React.Fragment >
         <CssBaseline />
@@ -59,6 +71,26 @@ const Img = styled("img")({
                   {'$'+location.state.product_info.price}
                   </Typography>
                 </Grid>
+                <Grid>
+                  <InteractiveMap
+                    mapDetail
+                    onClick={handleClick}
+                    width="100vw"
+                    height="100vh"
+                    mapboxApiAccessToken="pk.eyJ1IjoiY3NjMzA3IiwiYSI6ImNsM2d5bHB3OTBmM2QzYmxqMzl1am5sb2QifQ.3cp3sKxK3QcOrPugRV-vWg"
+                    onViewportChange={viewport => setViewport(viewport)}
+                    {...viewport}
+                  >
+                    {markers.length
+                      ? markers.map((m, i) => (
+                          // <Marker /> just places its children at the right lat lng.
+                          <Marker {...m} key={i}>
+                            {`Clicked here: \n ${m.longitude}, ${m.latitude}`}
+                          </Marker>
+                        ))
+                      : null}
+                  </InteractiveMap>
+                </Grid>
                 <Grid item>
                 <Box display="flex" justifyContent="space-between">
                   <Typography sx={{ cursor: "pointer" }} variant="body2">
@@ -80,7 +112,6 @@ const Img = styled("img")({
           </Grid>
         </Container>
       </React.Fragment>
-    
     );
   }
   
