@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const userModel = require("./user");
 const dotenv = require("dotenv");
-mongoose.set("debug", true);
+//mongoose.set("debug", true);
 
 dotenv.config();
 
@@ -30,55 +30,38 @@ async function getUser(email, password) {
     return await findUserByEmailAndPassword(email, password);
   }
 }
+
 async function findUserByEmail(email) {
   let query = await userModel.findOne({ email: email }).exec();
-  if (query !== null) {
-    return query;
-  } else {
-    return query;
-  }
+  return query;
 }
+
 async function findUserByEmailAndPassword(email, password) {
-  // console.log(email);
-  // console.log(password);
   var query = await userModel
     .findOne({ email: email, password: password })
     .exec();
-  console.log(query);
-  if (query !== null) {
-    // console.log("found");
-    return query;
-  } else {
-    // console.log("Not FOund");
-    return query;
-  }
-  //return await userModel.find({email: email, password: password});
+  //console.log(query);
+  return query;
 }
 
 // Improve error codes
 async function addUser(user) {
   const userToAdd = new userModel(user);
   const savedUser = await userToAdd.save();
-  console.log(savedUser);
+  //console.log(savedUser);
   return savedUser;
 }
 
-async function findByUsername(username) {
+async function findUserByUsername(username) {
   var query = await userModel.findOne({ username: username });
-  console.log(query);
-  return query;
-}
-
-async function findByEmail(email) {
-  var query = await userModel.findOne({ email: email });
-  console.log(query);
+  //console.log(query);
   return query;
 }
 
 async function updateUserAvatar(user_id, avatar) {
-  console.log(user_id);
-  console.log(avatar);
-  await userModel.updateOne(
+  //console.log(user_id);
+  //console.log(avatar);
+  return await userModel.updateOne(
     { _id: user_id },
     {
       $set: { avatar: avatar },
@@ -88,13 +71,13 @@ async function updateUserAvatar(user_id, avatar) {
 
 function findUserById(user_id) {
   let user = userModel.findOne({ _id: user_id });
-  console.log(user);
+  //console.log(user);
   return user;
 }
 
 async function updateUserListings(sellerid, listingId) {
-  console.log(sellerid);
-  console.log(listingId);
+  //console.log(sellerid);
+  //console.log(listingId);
   let user = await userModel.updateOne(
     { _id: sellerid },
     { $push: { listingId: listingId } }
@@ -103,8 +86,8 @@ async function updateUserListings(sellerid, listingId) {
 }
 
 async function updateUserPurchases(buyerId, listingId) {
-  console.log(buyerId);
-  console.log(listingId);
+  //console.log(buyerId);
+  //console.log(listingId);
   let user = await userModel.updateOne(
     { _id: buyerId },
     { $push: { purchaseId: listingId } }
@@ -121,8 +104,7 @@ async function deleteUser(userId) {
 exports.getUser = getUser;
 exports.addUser = addUser;
 exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
-exports.findByEmail = findByEmail;
-exports.findByUsername = findByUsername;
+exports.findUserByUsername = findUserByUsername;
 exports.findUserByEmail = findUserByEmail;
 exports.updateUserAvatar = updateUserAvatar;
 exports.findUserById = findUserById;

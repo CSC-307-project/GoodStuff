@@ -49,7 +49,7 @@ app.get("/", (req, res) => {
 // - does not consider whether product is archived...
 // gets all post
 app.get("/post", async (req, res) => {
-  const products_list = await productServices.getProducts();
+  const products_list = await productServices.findProductsByTags([""], false);
   console.log(products_list);
   if (products_list === undefined || products_list === null) {
     res.status(404).send({ message: "No product posted yet" });

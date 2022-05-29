@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Code coverage report for user.js</title>
+    <title>Code coverage report for product.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -17,30 +17,30 @@
   <body>
     <div class="wrapper">
       <div class="pad1">
-        <h1><a href="index.html">All files</a> user.js</h1>
+        <h1><a href="index.html">All files</a> product.js</h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">11/11</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Branches</span>
             <span class="fraction">4/4</span>
           </div>
 
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
+            <span class="quiet">Branches</span>
+            <span class="fraction">0/0</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">3/3</span>
+            <span class="fraction">0/0</span>
           </div>
 
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">11/11</span>
+            <span class="fraction">4/4</span>
           </div>
         </div>
         <p class="quiet">
@@ -116,19 +116,7 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,8 +127,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,8 +146,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,71 +178,64 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require("mongoose");
 &nbsp;
-var validateEmail = function (email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email);
-};
-&nbsp;
-const UserSchema = new mongoose.Schema(
+const ProductSchema = new mongoose.Schema(
   {
-    username: {
+    sellerId: {
       type: String,
-      lowercase: true,
+      required: "No user is login",
       trim: true,
-      unique: "Username already exist",
-      required: "Username is required",
-      validate(value) {
-        if (value.length &lt; 2)
-          throw new Error("Invalid username, must be at least 1 character.");
+    },
+    archived: {
+      type: Boolean,
+      required: "Status is required",
+      default: false,
+    },
+    title: {
+      type: String,
+      required: "Title is required",
+      trim: true,
+    },
+    price: {
+      type: Number,
+      required: "Price is required",
+      trim: true,
+    },
+    address: {
+      type: String,
+      required: "Address is required",
+      trim: true,
+    },
+    cordinates: [
+      {
+        type: Number,
+        required: "Cordinates are required",
+        trim: true,
       },
-    },
-    email: {
+    ],
+    description: {
       type: String,
+      required: "Description is required",
       trim: true,
-      lowercase: true,
-      unique: "Email address already exist",
-      required: "Email address is required",
-      validate: [validateEmail, "Please enter a valid email address"],
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please enter a valid email address",
-      ],
     },
-    password: {
+    image: {
       type: String,
+      required: "Image URL is required",
       trim: true,
-      required: "Password is required",
-      validate(value) {
-        if (value.length &lt; 4)
-          throw new Error("Invalid password, must be at least 4 character.");
-      },
     },
-    // list of product objects id
-    listingId: [
+    tags: [
       {
         type: String,
         trim: true,
-        default: [],
+        default: [""],
       },
     ],
-    purchaseId: [
-      {
-        type: String,
-        trim: true,
-        default: [],
-      },
-    ],
-    avatar: {
-      type: String,
-      default: "v1652716035/yynsno17xatmuag7nitr.jpg",
-    },
   },
-  { collection: "users_list" }
+  { collection: "product_list" }
 );
 &nbsp;
-const User = mongoose.model("User", UserSchema);
+const Product = mongoose.model("Product", ProductSchema);
 &nbsp;
-module.exports = User;
+module.exports = Product;
 &nbsp;</pre></td></tr></table></pre>
 
       <div class="push"></div>

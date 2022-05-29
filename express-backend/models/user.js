@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
       unique: "Username already exist",
       required: "Username is required",
       validate(value) {
-        if (value.length < 1)
+        if (value.length < 2)
           throw new Error("Invalid username, must be at least 1 character.");
       },
     },
