@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const productServices = require("./product-services");
 
+jest.setTimeout(60000);
+
 const testProductData = {
   sellerId: "none",
   title: "CD ROM",
@@ -27,9 +29,7 @@ const testProductData = {
 
 let actualTestProductData = undefined;
 
-beforeAll(async () => {
-  jest.setTimeout(60000);
-  try {
+beforeAll(async () => {  try {
     const toDeleteProductObj = await productServices.findProductsByTags(
       ["jesttest"],
       false
@@ -47,7 +47,6 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  jest.setTimeout(60000);
   try {
     const toDeleteProductObj = await productServices.findProductsByTags(
       ["jesttest"],

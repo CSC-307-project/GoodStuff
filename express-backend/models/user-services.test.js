@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const userServices = require("./user-services");
 
+jest.setTimeout(60000);
+
 const testUserData = {
   username: "jesttest",
   email: "jesttest@calpoly.edu",
@@ -12,8 +14,6 @@ let actualTestUserData = undefined;
 const actualTestProductId = "6291132e0f7b7ec4342a5d2f";
 
 beforeAll(async () => {
-  jest.setTimeout(60000);
-
   const toDeleteUserObj = await userServices.findUserByUsername(
     testUserData.username
   );
@@ -24,8 +24,6 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  jest.setTimeout(60000);
-
   const toDeleteUserObj = await userServices.findUserByUsername(
     testUserData.username
   );
@@ -37,7 +35,7 @@ afterAll(async () => {
   const toDeleteUserObj2 = await userServices.findUserByUsername(
     "jesttestmistake"
   );
-  if (toDeleteUserObj !== null) {
+  if (toDeleteUserObj2 !== null) {
     const toDeleteUserId2 = toDeleteUserObj2._id;
     await userServices.deleteUser(toDeleteUserId2);
   }
