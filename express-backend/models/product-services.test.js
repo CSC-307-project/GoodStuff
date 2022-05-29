@@ -29,7 +29,8 @@ const testProductData = {
 
 let actualTestProductData = undefined;
 
-beforeAll(async () => {  try {
+beforeAll(async () => {
+  try {
     const toDeleteProductObj = await productServices.findProductsByTags(
       ["jesttest"],
       false
