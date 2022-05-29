@@ -69,10 +69,8 @@ async function updateUserAvatar(user_id, avatar) {
   );
 }
 
-function findUserById(user_id) {
-  let user = userModel.findOne({ _id: user_id });
-  //console.log(user);
-  return user;
+async function findUserById(id) {
+  return await userModel.findById(id);
 }
 
 async function updateUserListings(sellerid, listingId) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653813140242" clover="3.2.0">
-  <project timestamp="1653813140242" name="All files">
-    <metrics statements="74" coveredstatements="72" conditionals="8" coveredconditionals="8" methods="20" coveredmethods="18" elements="102" coveredelements="98" complexity="0" loc="74" ncloc="74" packages="1" files="4" classes="4"/>
+<coverage generated="1653852806081" clover="3.2.0">
+  <project timestamp="1653852806081" name="All files">
+    <metrics statements="73" coveredstatements="71" conditionals="8" coveredconditionals="8" methods="20" coveredmethods="18" elements="101" coveredelements="97" complexity="0" loc="73" ncloc="73" packages="1" files="4" classes="4"/>
     <file name="product-services.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/product-services.js">
       <metrics statements="22" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
       <line num="1" count="1" type="stmt"/>
@@ -35,7 +35,7 @@
       <line num="60" count="1" type="stmt"/>
     </file>
     <file name="user-services.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/user-services.js">
-      <metrics statements="37" coveredstatements="36" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="10"/>
+      <metrics statements="36" coveredstatements="35" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="10"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
@@ -56,13 +56,14 @@
       <line num="58" count="6" type="stmt"/>
       <line num="64" count="3" type="stmt"/>
       <line num="73" count="3" type="stmt"/>
-      <line num="75" count="3" type="stmt"/>
-      <line num="81" count="2" type="stmt"/>
-      <line num="85" count="2" type="stmt"/>
-      <line num="91" count="2" type="stmt"/>
-      <line num="95" count="2" type="stmt"/>
-      <line num="100" count="1" type="stmt"/>
-      <line num="101" count="1" type="stmt"/>
+      <line num="79" count="2" type="stmt"/>
+      <line num="83" count="2" type="stmt"/>
+      <line num="89" count="2" type="stmt"/>
+      <line num="93" count="2" type="stmt"/>
+      <line num="98" count="1" type="stmt"/>
+      <line num="99" count="1" type="stmt"/>
+      <line num="102" count="1" type="stmt"/>
+      <line num="103" count="1" type="stmt"/>
       <line num="104" count="1" type="stmt"/>
       <line num="105" count="1" type="stmt"/>
       <line num="106" count="1" type="stmt"/>
@@ -71,8 +72,6 @@
       <line num="109" count="1" type="stmt"/>
       <line num="110" count="1" type="stmt"/>
       <line num="111" count="1" type="stmt"/>
-      <line num="112" count="1" type="stmt"/>
-      <line num="113" count="1" type="stmt"/>
     </file>
     <file name="user.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/user.js">
       <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
