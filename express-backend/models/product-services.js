@@ -71,5 +71,5 @@ exports.findProductById = findProductById;
 exports.addItem = addItem;
 exports.deleteProducts = deleteProducts;
 exports.findProductsByTags = findProductsByTags;
-// exports.getProducts = getProducts; 
-exports.archiveProduct = archiveProduct; 
+// exports.getProducts = getProducts;
+exports.archiveProduct = archiveProduct;

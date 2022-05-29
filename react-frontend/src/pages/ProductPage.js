@@ -10,70 +10,69 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
-import Cookies from 'js-cookie'; 
+import Cookies from "js-cookie";
 import axios from "axios";
 
 const Img = styled("img")({
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%"
-  });
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  maxHeight: "100%",
+});
 
- 
-  
-  export default function ProductPage() {
-    const location = useLocation(); 
-    //const {image} = location.state.product_info.image;
-    console.log(location.state.product_info);
-    
-    const handlePurchase = async() => {
-      console.log('buyer' + buyer_id); 
-      console.log('product ' + product_id);
-      await axios.post("http://localhost:5001/purchaseitem", { 
-        itemId: product_id, 
-        buyerId: buyer_id
-      }).then((res) =>{ 
-        console.log(res); 
-      }
-      ).catch((err) =>{ 
-        console.log(err); 
-      }
-      )
-    }
+export default function ProductPage() {
+  const location = useLocation();
+  //const {image} = location.state.product_info.image;
+  console.log(location.state.product_info);
 
-    let buyer_id = Cookies.get('user_id'); 
-    let product_id = location.state.product_info._id;
-     
-    
-  
-    return (
-      <React.Fragment >
-        <CssBaseline />
-        <Container 
-          maxWidth="sm"
-          sx={{
-            p: 2,
-            margin: "auto",
-            maxWidth: "xl",
-            flexGrow: 1,
-            backgroundColor: (theme) =>
-              theme.palette.mode === "dark" ? "#1AA2027" : "#fff"
-          }}
-        >
-          <Grid container spacing={5}>
-            <Grid item>
-              <ButtonBase sx={{ width: 1, height: 1 }}>
-                <Img
-                  alt="product"
-                  src = {location.state.product_info.image} 
-                />
-              </ButtonBase>
-            </Grid>
-            <Grid item xs={4} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1" component="div" fontSize={22}>
+  const handlePurchase = async () => {
+    console.log("buyer" + buyer_id);
+    console.log("product " + product_id);
+    await axios
+      .post("http://localhost:5001/purchaseitem", {
+        itemId: product_id,
+        buyerId: buyer_id,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  let buyer_id = Cookies.get("user_id");
+  let product_id = location.state.product_info._id;
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <Container
+        maxWidth="sm"
+        sx={{
+          p: 2,
+          margin: "auto",
+          maxWidth: "xl",
+          flexGrow: 1,
+          backgroundColor: (theme) =>
+            theme.palette.mode === "dark" ? "#1AA2027" : "#fff",
+        }}
+      >
+        <Grid container spacing={5}>
+          <Grid item>
+            <ButtonBase sx={{ width: 1, height: 1 }}>
+              <Img alt="product" src={location.state.product_info.image} />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={4} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography
+                  gutterBottom
+                  variant="subtitle1"
+                  component="div"
+                  fontSize={22}
+                >
                   {location.state.product_info.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom fontSize={16}>
@@ -91,9 +90,13 @@ const Img = styled("img")({
               <Grid item>
                 <Box display="flex" justifyContent="space-between">
                   <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  <Button variant="contained" style={{display:"flex", alignItems:"center"}}
-                    onClick = {handlePurchase}
-                  >Confirm Purchase</Button>
+                    <Button
+                      variant="contained"
+                      style={{ display: "flex", alignItems: "center" }}
+                      onClick={handlePurchase}
+                    >
+                      Confirm Purchase
+                    </Button>
                   </Typography>
                   <Typography
                     sx={{ cursor: "pointer" }}
@@ -124,4 +127,3 @@ const Img = styled("img")({
     </React.Fragment>
   );
 }
-

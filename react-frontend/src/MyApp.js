@@ -57,20 +57,20 @@ function MyApp() {
     });
   }
 
-//   const Go_Back_Button = React.createClass({
-//     render: () => {
-//         return (
-//             <div><button onClick={History.goBack}>Go Back</button></div>
-//         );
-//     }
-// });
+  //   const Go_Back_Button = React.createClass({
+  //     render: () => {
+  //         return (
+  //             <div><button onClick={History.goBack}>Go Back</button></div>
+  //         );
+  //     }
+  // });
 
   return (
     <div className="container">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />}/>
-         
+          <Route path="/" element={<HomePage />} />
+
           <Route path="/login" element={<Login verify={verifyAccount} />} />
           <Route
             path="/register"
