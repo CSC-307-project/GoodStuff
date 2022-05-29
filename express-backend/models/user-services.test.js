@@ -11,18 +11,9 @@ let actualTestUserData = undefined;
 
 const actualTestProductId = "6291132e0f7b7ec4342a5d2f";
 
-// ensures that if a failed test actually inserts { username: "jesttestmistake", ...} that it gets removed
-afterEach(async () => {
-  const toDeleteUserObj = await userServices.findUserByUsername(
-    "jesttestmistake"
-  );
-  if (toDeleteUserObj !== null) {
-    const toDeleteUserId = toDeleteUserObj._id;
-    await userServices.deleteUser(toDeleteUserId);
-  }
-});
-
 beforeAll(async () => {
+  jest.setTimeout(60000);
+
   const toDeleteUserObj = await userServices.findUserByUsername(
     testUserData.username
   );
@@ -33,12 +24,22 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  jest.setTimeout(60000);
+
   const toDeleteUserObj = await userServices.findUserByUsername(
     testUserData.username
   );
   if (toDeleteUserObj !== null) {
     const toDeleteUserId = toDeleteUserObj._id;
     await userServices.deleteUser(toDeleteUserId);
+  }
+
+  const toDeleteUserObj2 = await userServices.findUserByUsername(
+    "jesttestmistake"
+  );
+  if (toDeleteUserObj !== null) {
+    const toDeleteUserId2 = toDeleteUserObj2._id;
+    await userServices.deleteUser(toDeleteUserId2);
   }
 });
 

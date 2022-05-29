@@ -27,26 +27,8 @@ const testProductData = {
 
 let actualTestProductData = undefined;
 
-// ensures that if a failed test actually inserts { tags: ["jesttestmistake", ...], ...} that it gets removed
-afterEach(async () => {
-  try {
-    const toDeleteProductObj = await productServices.findProductsByTags(
-      ["jesttestmistake"],
-      false
-    );
-    const toDeleteProductIds = toDeleteProductObj.map((obj) => obj._id);
-    await productServices.deleteProduct(toDeleteProductIds);
-
-    const toDeleteProductObj2 = await productServices.findProductsByTags(
-      ["jesttestmistake"],
-      true
-    );
-    const toDeleteProductIds2 = toDeleteProductObj2.map((obj) => obj._id);
-    await productServices.deleteProducts(toDeleteProductIds2);
-  } catch {}
-});
-
 beforeAll(async () => {
+  jest.setTimeout(60000);
   try {
     const toDeleteProductObj = await productServices.findProductsByTags(
       ["jesttest"],
@@ -65,6 +47,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  jest.setTimeout(60000);
   try {
     const toDeleteProductObj = await productServices.findProductsByTags(
       ["jesttest"],
@@ -75,6 +58,22 @@ afterAll(async () => {
 
     const toDeleteProductObj2 = await productServices.findProductsByTags(
       ["jesttest"],
+      true
+    );
+    const toDeleteProductIds2 = toDeleteProductObj2.map((obj) => obj._id);
+    await productServices.deleteProducts(toDeleteProductIds2);
+  } catch {}
+
+  try {
+    const toDeleteProductObj = await productServices.findProductsByTags(
+      ["jesttestmistake"],
+      false
+    );
+    const toDeleteProductIds = toDeleteProductObj.map((obj) => obj._id);
+    await productServices.deleteProduct(toDeleteProductIds);
+
+    const toDeleteProductObj2 = await productServices.findProductsByTags(
+      ["jesttestmistake"],
       true
     );
     const toDeleteProductIds2 = toDeleteProductObj2.map((obj) => obj._id);
