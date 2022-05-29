@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 //import address from "./Components/AddressAutocomplete/inputField";
 import useInput from "./Components/AddressAutocomplete/useInput";
 import styled from "styled-components";
@@ -71,9 +71,16 @@ const Register = (props) => {
     setUser({
       ...item,
       sellerId: get_user_id,
-      tags: [...new Set([...item["tags"], ...(item["title"].split(/[, ]+/)), ...(item["address"].replace(/[0-9]/g, '').split(/[, ]+/)), ...[""]])],
+      tags: [
+        ...new Set([
+          ...item["tags"],
+          ...item["title"].split(/[, ]+/),
+          ...item["address"].replace(/[0-9]/g, "").split(/[, ]+/),
+          ...[""],
+        ]),
+      ],
     });
-  }
+  };
 
   const post = async (e) => {
     e.preventDefault();
@@ -102,14 +109,18 @@ const Register = (props) => {
       .catch((err) => {
         console.log(err);
         setErrorPost(err.response.data.message);
-      }); 
+      });
   };
 
   return (
     <>
       <h1 style={styles}> GoodStuff </h1>
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">
-        <form className="Login col-md-8 col-lg-4 col-11" onClick={updateFields} onSubmit={post}>
+        <form
+          className="Login col-md-8 col-lg-4 col-11"
+          onClick={updateFields}
+          onSubmit={post}
+        >
           {errorPost && <p style={{ color: "red" }}>{errorPost}</p>}
           <input
             type="text"
@@ -147,7 +158,7 @@ const Register = (props) => {
 
                         item.address = suggestion.place_name;
                         item.cordinates = suggestion.center;
-                        console.log(item);                    
+                        console.log(item);
                       }}
                     >
                       {suggestion.place_name}
@@ -157,7 +168,7 @@ const Register = (props) => {
               </SuggestionWrapper>
             )}
           </Wrapper>
-          
+
           <input
             type="text"
             name="description"
@@ -203,35 +214,35 @@ const Register = (props) => {
 export default Register;
 
 const Wrapper = styled.div`
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    margin: 0 auto;
-  `;
-  
-  const Input = styled.input`
-    width: 400px;
-    background: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    position: relative;
-    display: grid;
-    justify-self: center;
-    &:focus {
-      outline: none;
-      border-radius: ${(props) => props.isTyping && "10px 10px 0px 0px"};
-    }
-  `;
-  
-  const SuggestionWrapper = styled.div`
-    background: gainsboro;
-    position: absolute;
-    width: 400px;
-    padding: 10px 20px;
-    border-radius: 0px 0px 10px 10px;
-  `;
-  
-  const Suggestion = styled.p`
-    cursor: pointer;
-    max-width: 400px;
-  `;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0 auto;
+`;
+
+const Input = styled.input`
+  width: 400px;
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  position: relative;
+  display: grid;
+  justify-self: center;
+  &:focus {
+    outline: none;
+    border-radius: ${(props) => props.isTyping && "10px 10px 0px 0px"};
+  }
+`;
+
+const SuggestionWrapper = styled.div`
+  background: gainsboro;
+  position: absolute;
+  width: 400px;
+  padding: 10px 20px;
+  border-radius: 0px 0px 10px 10px;
+`;
+
+const Suggestion = styled.p`
+  cursor: pointer;
+  max-width: 400px;
+`;

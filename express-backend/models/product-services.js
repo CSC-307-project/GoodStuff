@@ -23,17 +23,15 @@ mongoose
   )
   .catch((error) => console.log(error));
 
-
-async function getProducts(){ 
+async function getProducts() {
   const product_list = await productModel.find();
   return product_list;
-  // if (product_list === undefined || product_list === null){ 
-  //   return undefined; 
-  // }else{ 
-  //   return product_list;  
+  // if (product_list === undefined || product_list === null){
+  //   return undefined;
+  // }else{
+  //   return product_list;
   // }
-}  
-
+}
 
 async function getUsers(name, job) {
   let result;
@@ -60,7 +58,10 @@ async function findProductById(id) {
 
 async function archiveProduct(productId) {
   try {
-    return await productModel.updateOne({ _id: productId }, { "$set": { "archived": true }});
+    return await productModel.updateOne(
+      { _id: productId },
+      { $set: { archived: true } }
+    );
   } catch (error) {
     console.log(error);
     return undefined;
@@ -69,7 +70,10 @@ async function archiveProduct(productId) {
 
 async function findProductsByTags(tags, archivedStatus) {
   try {
-    return await productModel.find({ tags: { $all: tags }, archived: archivedStatus })
+    return await productModel.find({
+      tags: { $all: tags },
+      archived: archivedStatus,
+    });
   } catch (error) {
     console.log(error);
     return undefined;
@@ -107,4 +111,4 @@ exports.findProductById = findProductById;
 exports.addItem = addItem;
 exports.deleteUser = deleteUser;
 exports.findProductsByTags = findProductsByTags;
-exports.getProducts = getProducts; 
+exports.getProducts = getProducts;

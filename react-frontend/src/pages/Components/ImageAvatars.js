@@ -25,7 +25,7 @@ export default function ImageAvatars() {
         params: { user_id: user_id },
       });
       setAvatar(avatar.data);
-      // console.log(avatar.data); 
+      // console.log(avatar.data);
     }
     fetchData();
   }, []);
@@ -33,9 +33,11 @@ export default function ImageAvatars() {
   //console.log(response);gg
   return (
     <div className={classes.root}>
-      {avatar && <Avatar
-        src={`https://res.cloudinary.com/dicchtih6/image/upload/${avatar}`}
-      />}
+      {avatar && (
+        <Avatar
+          src={`https://res.cloudinary.com/dicchtih6/image/upload/${avatar}`}
+        />
+      )}
     </div>
   );
 }

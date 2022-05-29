@@ -13,15 +13,15 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import ButtonBase from "@mui/material/ButtonBase";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const overlay ={ 
-  position: 'absolute',
-  backgroundColor: 'linen'
-}
+const overlay = {
+  position: "absolute",
+  backgroundColor: "linen",
+};
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -33,15 +33,16 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const handle_avatar = async(user_id, avatar_url) =>{ 
+const handle_avatar = async (user_id, avatar_url) => {
   console.log(user_id);
-  console.log(avatar_url); 
-  const res = await axios.patch("http://localhost:5001/profile", {
-    "user_id": user_id, 
-    "avatar_url": avatar_url
-  }).catch((error) => console.log('Error: ' + error)); 
-  
-}
+  console.log(avatar_url);
+  const res = await axios
+    .patch("http://localhost:5001/profile", {
+      user_id: user_id,
+      avatar_url: avatar_url,
+    })
+    .catch((error) => console.log("Error: " + error));
+};
 export default function Dashboard() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -60,18 +61,18 @@ export default function Dashboard() {
         multiple: false,
         defaultSource: "local",
         //max_files: 5000000,
-        client_allowed_formats: ["png", "bmp", "jpeg", "gif", "jpg"]
+        client_allowed_formats: ["png", "bmp", "jpeg", "gif", "jpg"],
       },
       (err, info) => {
         if (info.event === "success") {
           //   setDelToken(info.info.delete_token);
           //   setPath(info.info.path);
           //   setFileName(info.info.original_filename);
-          // console.log(Cookies.get('user_id')); 
+          // console.log(Cookies.get('user_id'));
           // console.log(info.info.path);
-          handle_avatar(Cookies.get('user_id'), info.info.path); 
+          handle_avatar(Cookies.get("user_id"), info.info.path);
           // const res = await axios.patch("http://localhost:5001/profile", {
-          //   "user_id": Cookies.get('user_id'), 
+          //   "user_id": Cookies.get('user_id'),
           //   "avatar_url": info.info.path
           // });
         }
@@ -80,7 +81,7 @@ export default function Dashboard() {
   };
   let user_id = Cookies.get("user_id");
   const [avatar, setAvatar] = useState("");
-  const [user, setUser] = useState(""); 
+  const [user, setUser] = useState("");
   useEffect(() => {
     async function fetchData() {
       // You can await here
@@ -88,11 +89,11 @@ export default function Dashboard() {
         params: { user_id: user_id },
       });
       const user = await axios.get("http://localhost:5001/username", {
-        params: {user_id: user_id}
-      }); 
+        params: { user_id: user_id },
+      });
       setAvatar(avatar.data);
-      setUser(user.data); 
-      console.log(avatar.data); 
+      setUser(user.data);
+      console.log(avatar.data);
     }
     fetchData();
   }, []);
@@ -121,7 +122,7 @@ export default function Dashboard() {
           required
           id="standard-required"
           defaultValue="User Name"
-          value= {user.username}
+          value={user.username}
           variant="standard"
         />
         <TextField
@@ -130,7 +131,7 @@ export default function Dashboard() {
           type="email"
           id="standard-required"
           defaultValue="Email@gmail.com"
-          value ={user.email}
+          value={user.email}
           variant="standard"
         />
       </CardContent>
@@ -153,7 +154,8 @@ export default function Dashboard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until you made a purchase here, in GoodStuff 
+            Heat 1/2 cup of the broth in a pot until you made a purchase here,
+            in GoodStuff
           </Typography>
         </CardContent>
       </Collapse>

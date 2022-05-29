@@ -48,13 +48,13 @@ app.get("/", (req, res) => {
 // look into using "...app.get("/searchitem")..." instead, want to consolidate, all tags have "", so put that in for same functionality
 // - does not consider whether product is archived...
 // gets all post
-app.get("/post", async (req, res) =>{ 
-  const products_list = await productServices.getProducts(); 
+app.get("/post", async (req, res) => {
+  const products_list = await productServices.getProducts();
   console.log(products_list);
-  if (products_list === undefined || products_list === null){ 
-    res.status(404).send({message:"No product posted yet"})
-  }else{
-    res.status(200).send(products_list); 
+  if (products_list === undefined || products_list === null) {
+    res.status(404).send({ message: "No product posted yet" });
+  } else {
+    res.status(200).send(products_list);
   }
 });
 
@@ -72,39 +72,38 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// updates a user profile picture 
-app.patch("/profile", async (req, res) => { 
-  // console.log("hello patch"); 
-  console.log(req.body); 
-  const{user_id, avatar_url} = req.body; 
-  // console.log(user_id); 
-  // console.log(avatar_url); 
-  let result = await userServices.updateUserAvatar(user_id, avatar_url); 
-}); 
+// updates a user profile picture
+app.patch("/profile", async (req, res) => {
+  // console.log("hello patch");
+  console.log(req.body);
+  const { user_id, avatar_url } = req.body;
+  // console.log(user_id);
+  // console.log(avatar_url);
+  let result = await userServices.updateUserAvatar(user_id, avatar_url);
+});
 
 // gets a user by a username
-app.get("/username", async(req, res) => { 
-  const user_id = req.query.user_id; 
-  let user = await userServices.findUserById(user_id); 
-  if (user === null) { 
-    res.status(404).send({message: "User not found"}); 
-  } else{ 
-    res.status(200).send(user);  
+app.get("/username", async (req, res) => {
+  const user_id = req.query.user_id;
+  let user = await userServices.findUserById(user_id);
+  if (user === null) {
+    res.status(404).send({ message: "User not found" });
+  } else {
+    res.status(200).send(user);
   }
 });
 
 // gets the avatar url image from the user
 app.get("/avatar", async (req, res) => {
-  // console.log(req.query.user_id); 
-  const user_id = req.query.user_id; 
-  let avatar_url = await userServices.findUserById(user_id); 
+  // console.log(req.query.user_id);
+  const user_id = req.query.user_id;
+  let avatar_url = await userServices.findUserById(user_id);
   console.log(avatar_url);
-  if(avatar_url === null || avatar_url === undefined){ 
+  if (avatar_url === null || avatar_url === undefined) {
     res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
-  }
-  else{
+  } else {
     //console.log(avatar_url);
-    res.status(200).send(avatar_url['avatar']); 
+    res.status(200).send(avatar_url["avatar"]);
   }
 });
 
@@ -113,15 +112,18 @@ app.get("/searchItem", async (req, res) => {
   let userSearchBarInput = req.query.userSearchBarInput;
   userSearchBarInput = userSearchBarInput.split(/[, ]+/);
   // findProductsByTags takes in an array of tags to filter and a boolean for archieved to filter
-  let filteredProducts = await productServices.findProductsByTags(userSearchBarInput, false); 
+  let filteredProducts = await productServices.findProductsByTags(
+    userSearchBarInput,
+    false
+  );
   console.log(filteredProducts);
 
-  if (filteredProducts === null || filteredProducts === undefined) { 
+  if (filteredProducts === null || filteredProducts === undefined) {
     res.status(200).send(filteredProducts);
   } else {
-    res.status(404).json({ message: "No products found" }).end(); 
+    res.status(404).json({ message: "No products found" }).end();
   }
-})
+});
 
 // gets a user from the database, verifies password and email match in the backend
 app.get("/users", async (req, res) => {
@@ -155,7 +157,7 @@ app.get("/users", async (req, res) => {
 //   }
 // });
 
-// post a new user object, returns errors if unable to complete process 
+// post a new user object, returns errors if unable to complete process
 app.post("/register", async (req, res) => {
   try {
     const user = req.body;
@@ -185,7 +187,10 @@ app.post("/postitem", async (req, res) => {
     const sellerId = item.sellerId;
     const savedItem = await productServices.addItem(item);
     const sellerObj = await userServices.findUserById(sellerId);
-    const updateUserListings = await userServices.updateUserListings(sellerObj._id, savedItem._id);
+    const updateUserListings = await userServices.updateUserListings(
+      sellerObj._id,
+      savedItem._id
+    );
     console.log("Success: " + savedItem + updateUserListings);
     res.status(201).send(updateUserListings);
   } catch (err) {
@@ -200,14 +205,17 @@ app.post("/purchaseitem", async (req, res) => {
     const item = req.body;
     const itemId = item.itemId;
     const buyerId = item.buyerId;
-    const updateUserPurchases = await userServices.updateUserPurchases(buyerId, itemId);
-    const archiveProduct = await productServices.archiveProduct(itemId); 
+    const updateUserPurchases = await userServices.updateUserPurchases(
+      buyerId,
+      itemId
+    );
+    const archiveProduct = await productServices.archiveProduct(itemId);
     res.status(201).send(updateUserPurchases + archiveProduct);
   } catch (err) {
     console.log(err);
     res.status(404).json({ message: err.message }).end();
   }
-})
+});
 
 // removes item by setting "archived" value to true
 app.post("/removeitem", async (req, res) => {
@@ -220,7 +228,7 @@ app.post("/removeitem", async (req, res) => {
     console.log(err);
     res.status(404).json({ message: err.message }).end();
   }
-})
+});
 
 // app.delete("/users/:id", async (req, res) => {
 //   //const result = removeUser(req.body.id)

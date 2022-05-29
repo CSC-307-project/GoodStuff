@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import logo from "../img/logo.png"
+import logo from "../img/logo.png";
 import { Container } from "@mui/material";
 
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const styles = {
   color: "blue",
@@ -83,20 +83,15 @@ const Login = (props) => {
     <>
       <div>
         <Container
-        sx={{
-          mt: 3,
-          mb: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <img
-          src= {logo}
-          alt="logo"
-          width="180"
-          height="180"
-        />
+          sx={{
+            mt: 3,
+            mb: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img src={logo} alt="logo" width="180" height="180" />
         </Container>
         <span className="container d-flex flex-column justify-content-center align-items-center login-center">
           <form className="Login col-md-8 col-lg-4 col-11" onSubmit={login}>

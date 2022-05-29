@@ -44,12 +44,14 @@ const UserSchema = new mongoose.Schema(
       {
         type: String,
         trim: true,
+        default: [],
       },
     ],
     purchaseId: [
       {
         type: String,
         trim: true,
+        default: [],
       },
     ],
     avatar: {

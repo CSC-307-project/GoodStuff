@@ -36,7 +36,7 @@ export default function Imglist() {
   useEffect(() => {
     async function getProductsList() {
       await axios
-        .get("http://localhost:5001/post", )
+        .get("http://localhost:5001/post")
         .then((response) => {
           const data_list = response.data;
           setProductList(data_list);
@@ -71,13 +71,17 @@ export default function Imglist() {
                   sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                   aria-label={`info about ${item.title}`}
                 >
-                  <Button variant="contained" onClick={()=>{
-                  // console.log(item);
-                  // navigate('/product', {name: 'name'})
-                  navigate('/product', {state: {product_info: item}});
-                  //navigate("/product");
-                }}
-                  >purchase</Button> 
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      // console.log(item);
+                      // navigate('/product', {name: 'name'})
+                      navigate("/product", { state: { product_info: item } });
+                      //navigate("/product");
+                    }}
+                  >
+                    purchase
+                  </Button>
                   {/* <Link to={{ pathname: "/product", state:{ product: item } }}>
                     <Button variant="contained">Hello</Button>
                   </Link> */}

@@ -11,7 +11,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ImageAvatars from "./ImageAvatars.js";
-import { useState} from "react";
+import { useState } from "react";
 
 import Cookies from "js-cookie";
 
@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar() {
   const [header, setHeader] = useState("");
-  const [login, setLogin] = useState(true); 
+  const [login, setLogin] = useState(true);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -88,29 +88,38 @@ export default function SearchAppBar() {
 
           {/* button link to login */}
           {/* {console.log(Cookies.get("user_id"))} */}
-          
+
           <Link to="/profile">
             {" "}
-            <ImageAvatars/>{" "}
+            <ImageAvatars />{" "}
           </Link>
 
-          {Cookies.get("user_id") == null
-              && <Button component={Link} to={"/login"} color="inherit" > Login</Button>}
-          
-          {login&&Cookies.get("user_id") != null
-              && <Button component={Link} to={"/"} color="inherit"
-                         onClick={() => {
-                          Cookies.remove('user_id');
-                          setHeader(""); 
-                          setLogin(false);
-                          this.forceUpdate(); 
-                         }}>
-                  Logout</Button>}
+          {Cookies.get("user_id") == null && (
+            <Button component={Link} to={"/login"} color="inherit">
+              {" "}
+              Login
+            </Button>
+          )}
 
-            {/* <Button component={Link} to={"/login"} color="inherit">
+          {login && Cookies.get("user_id") != null && (
+            <Button
+              component={Link}
+              to={"/"}
+              color="inherit"
+              onClick={() => {
+                Cookies.remove("user_id");
+                setHeader("");
+                setLogin(false);
+                this.forceUpdate();
+              }}
+            >
+              Logout
+            </Button>
+          )}
+
+          {/* <Button component={Link} to={"/login"} color="inherit">
               {Cookies.get("user_id") ? "logout" : "login"}
             </Button> */}
-        
 
           <Search>
             <SearchIconWrapper>

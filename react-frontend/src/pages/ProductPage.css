@@ -1,21 +1,20 @@
-.productContainerDetail{
-    margin: 0px;
-    height: 100vh;
-    width: 100%;
-    background-color: lightgrey;
-    display: flex;
+.productContainerDetail {
+  margin: 0px;
+  height: 100vh;
+  width: 100%;
+  background-color: lightgrey;
+  display: flex;
 }
 
-.imgDetail{
-    height: auto;
-    width: 500px;
-    margin-top: 50%;
-    
+.imgDetail {
+  height: auto;
+  width: 500px;
+  margin-top: 50%;
 }
 
-.infoDetail{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 25%;
+.infoDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 25%;
 }

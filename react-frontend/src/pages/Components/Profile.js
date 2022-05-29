@@ -8,10 +8,8 @@ const Profile = () => {
   window.scrollTo(0, 0);
   return (
     <div>
-      <Dashboard/>
-      <ProfileImage/>
-      
-    
+      <Dashboard />
+      <ProfileImage />
     </div>
   );
 };

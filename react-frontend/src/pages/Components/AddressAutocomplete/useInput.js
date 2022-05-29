@@ -22,7 +22,7 @@ const useInput = (initialValue) => {
     onChange: handleChange,
     setValue,
     suggestions,
-    setSuggestions
+    setSuggestions,
   };
 };
 
