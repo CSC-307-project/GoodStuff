@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-//import address from "./Components/AddressAutocomplete/inputField";
 import useInput from "./Components/AddressAutocomplete/useInput";
 import styled from "styled-components";
 

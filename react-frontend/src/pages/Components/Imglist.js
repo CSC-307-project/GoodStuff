@@ -52,9 +52,9 @@ export default function Imglist() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <ImageList sx={{ flexGrow: 1 }}>
-        <ImageListItem key="Subheader" cols={2}>
+    <ThemeProvider theme={theme} >
+      <ImageList sx={{ flexGrow: 1 }} cols= {3} >
+        <ImageListItem key="Subheader" >
           <ListSubheader component="div">May</ListSubheader>
         </ImageListItem>
         {product_list.map((item) => (
