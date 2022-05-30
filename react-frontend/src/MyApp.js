@@ -67,21 +67,21 @@ function MyApp() {
 
   return (
     // <div className="container">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-          <Route path="/login" element={<Login verify={verifyAccount} />} />
-          <Route
-            path="/register"
-            element={<Register handleSubmit={updateList} />}
-          />
-          <Route path="/post" element={<PostItem />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/searchresult" element={<SearchResult />} />
-        </Routes>
-      </BrowserRouter>
+        <Route path="/login" element={<Login verify={verifyAccount} />} />
+        <Route
+          path="/register"
+          element={<Register handleSubmit={updateList} />}
+        />
+        <Route path="/post" element={<PostItem />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/searchresult" element={<SearchResult />} />
+      </Routes>
+    </BrowserRouter>
     // </div>
   );
 }

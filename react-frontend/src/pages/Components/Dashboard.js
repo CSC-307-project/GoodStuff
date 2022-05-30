@@ -93,78 +93,82 @@ export default function Dashboard() {
       });
       setAvatar(avatar.data);
       setUser(user.data);
-      
     }
     fetchData();
   }, []);
 
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-    <Card sx={{ maxWidth: 345, marginLeft: "" }} style={{backgroundColor: "linen"}} >
-      <CardHeader
-        sx={{ marginLeft: "15%" }}
-        avatar={
-          <ButtonBase sx={{ borderRadius: "50%" }}>
-            <Avatar
-              onClick={handleOpenWidget}
-              sx={{ width: 200, height: 200 }}
-              aria-label="recipe"
-              src={`https://res.cloudinary.com/dicchtih6/image/upload/${avatar}`}
-            />
-          </ButtonBase>
-        }
-      />
-      <CardContent>
-        <TextField
-          sx={{
-            marginBottom: 2,
-          }}
-          fullWidth
-          required
-          id="standard-required"
-          defaultValue="User Name"
-          value={user.username}
-          variant="standard"
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Card
+        sx={{ maxWidth: 345, marginLeft: "" }}
+        style={{ backgroundColor: "linen" }}
+      >
+        <CardHeader
+          sx={{ marginLeft: "15%" }}
+          avatar={
+            <ButtonBase sx={{ borderRadius: "50%" }}>
+              <Avatar
+                onClick={handleOpenWidget}
+                sx={{ width: 200, height: 200 }}
+                aria-label="recipe"
+                src={`https://res.cloudinary.com/dicchtih6/image/upload/${avatar}`}
+              />
+            </ButtonBase>
+          }
         />
-        <TextField
-          fullWidth
-          required
-          type="email"
-          id="standard-required"
-          defaultValue="Email@gmail.com"
-          value={user.email}
-          variant="standard"
-        />
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until you made a purchase here,
-            in GoodStuff
-          </Typography>
+          <TextField
+            sx={{
+              marginBottom: 2,
+            }}
+            fullWidth
+            required
+            id="standard-required"
+            defaultValue="User Name"
+            value={user.username}
+            variant="standard"
+          />
+          <TextField
+            fullWidth
+            required
+            type="email"
+            id="standard-required"
+            defaultValue="Email@gmail.com"
+            value={user.email}
+            variant="standard"
+          />
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>
+              Heat 1/2 cup of the broth in a pot until you made a purchase here,
+              in GoodStuff
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
     </div>
   );
 }

@@ -1,19 +1,17 @@
-
 import React from "react";
-import "./ProductPage.css"; 
-import {useLocation} from 'react-router-dom';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
+import "./ProductPage.css";
+import { useLocation } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import ButtonBase from "@mui/material/ButtonBase";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Cookies from 'js-cookie'; 
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Cookies from "js-cookie";
 import axios from "axios";
 import Map, { Marker, ScaleControl, FullscreenControl } from "react-map-gl";
-
 
 const Img = styled("img")({
   margin: "auto",
@@ -22,27 +20,26 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
- 
-  
-  export default function ProductPage() {
-    const location = useLocation(); 
-    const userId = Cookies.get("user_id"); 
-    const handlePurchase = async() => {
-      if (location.state.product_info.sellerId != userId){
-        await axios.post("http://localhost:5001/purchaseitem", { 
-          itemId: product_id, 
-          buyerId: buyer_id
-        }).then((res) =>{ 
-          window.location = "/profile"
-        }
-        ).catch((err) =>{ 
-          console.log(err); 
-        }
-        )
-      }else if(location.state.product_info.sellerId == userId){ 
-        alert('This is your own Listing');
-      }
+export default function ProductPage() {
+  const location = useLocation();
+  const userId = Cookies.get("user_id");
+  const handlePurchase = async () => {
+    if (location.state.product_info.sellerId != userId) {
+      await axios
+        .post("http://localhost:5001/purchaseitem", {
+          itemId: product_id,
+          buyerId: buyer_id,
+        })
+        .then((res) => {
+          window.location = "/profile";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (location.state.product_info.sellerId == userId) {
+      alert("This is your own Listing");
     }
+  };
 
   let buyer_id = Cookies.get("user_id");
   let product_id = location.state.product_info._id;
@@ -107,42 +104,58 @@ const Img = styled("img")({
                       Confirm Purchase
                     </Button>
                   </Typography>
-                  <Typography sx={{ cursor: "pointer" }} variant="body2" fontSize={12}>
-                    <Button variant="contained" onClick={() => {window.location = "/"}}
-                          style={{display:"flex", alignItems:"center"}}>Return to Home</Button>
+                  <Typography
+                    sx={{ cursor: "pointer" }}
+                    variant="body2"
+                    fontSize={12}
+                  >
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        window.location = "/";
+                      }}
+                      style={{ display: "flex", alignItems: "center" }}
+                    >
+                      Return to Home
+                    </Button>
                   </Typography>
                 </Box>
-                </Grid>
               </Grid>
-              <Grid item>
-                <Typography variant="subtitle1" component="div" overflow={true} fontSize={20}>
-                  GoodStuff
-                </Typography>
-              </Grid>
-              <Map
-                initialViewState={{
-                  longitude: location.state.product_info.cordinates[0],
-                  latitude: location.state.product_info.cordinates[1],
-                  zoom: 16,
-                }}
-                style={{ height: 400, marginTop: 25 }}
-                mapStyle="mapbox://styles/mapbox/streets-v9"
-                mapboxAccessToken="pk.eyJ1IjoiY3NjMzA3IiwiYSI6ImNsM2d5bHB3OTBmM2QzYmxqMzl1am5sb2QifQ.3cp3sKxK3QcOrPugRV-vWg"
-              >
-                <FullscreenControl position="top-left" />
-                <ScaleControl />
-                <link
-                  href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
-                  rel="stylesheet"
-                ></link>
-                <Marker
-                  longitude={location.state.product_info.cordinates[0]}
-                  latitude={location.state.product_info.cordinates[1]}
-                  anchor="bottom"
-                ></Marker>
-              </Map>
             </Grid>
+            <Grid item>
+              <Typography
+                variant="subtitle1"
+                component="div"
+                overflow={true}
+                fontSize={20}
+              >
+                GoodStuff
+              </Typography>
+            </Grid>
+            <Map
+              initialViewState={{
+                longitude: location.state.product_info.cordinates[0],
+                latitude: location.state.product_info.cordinates[1],
+                zoom: 16,
+              }}
+              style={{ height: 400, marginTop: 25 }}
+              mapStyle="mapbox://styles/mapbox/streets-v9"
+              mapboxAccessToken="pk.eyJ1IjoiY3NjMzA3IiwiYSI6ImNsM2d5bHB3OTBmM2QzYmxqMzl1am5sb2QifQ.3cp3sKxK3QcOrPugRV-vWg"
+            >
+              <FullscreenControl position="top-left" />
+              <ScaleControl />
+              <link
+                href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+                rel="stylesheet"
+              ></link>
+              <Marker
+                longitude={location.state.product_info.cordinates[0]}
+                latitude={location.state.product_info.cordinates[1]}
+                anchor="bottom"
+              ></Marker>
+            </Map>
           </Grid>
+        </Grid>
       </Container>
     </React.Fragment>
   );

@@ -63,27 +63,27 @@ app.get("/username", async (req, res) => {
   }
 });
 
-app.get("/sellbuy", async(req, res) =>{ 
+app.get("/sellbuy", async (req, res) => {
   const user_id = req.query.user_id;
   let user = await userServices.findUserById(user_id);
-  const listing_items = await productServices.findProductList(user.listingId); 
-  const buying_items = await productServices.findProductList(user.purchaseId); 
-  res.status(201).send( {data: { sell: listing_items, buy: buying_items}}); 
-})
+  const listing_items = await productServices.findProductList(user.listingId);
+  const buying_items = await productServices.findProductList(user.purchaseId);
+  res.status(201).send({ data: { sell: listing_items, buy: buying_items } });
+});
 
-// app.get("/listings", async(req, res) =>{ 
+// app.get("/listings", async(req, res) =>{
 //   const user_id = req.query.user_id;
 //   let user = await userServices.findUserById(user_id);
-//   const listing_items = await productServices.findProductList(user.listingId); 
-//   res.status(201).send(listing_items); 
+//   const listing_items = await productServices.findProductList(user.listingId);
+//   res.status(201).send(listing_items);
 // })
 
-// app.get("/purchasings", async(req, res) =>{ 
+// app.get("/purchasings", async(req, res) =>{
 //   const user_id = req.query.user_id;
 //   let user = await userServices.findUserById(user_id);
-//   const buying_items = await productServices.findProductList(user.purchaseId); 
-//   res.status(201).send(buying_items); 
-// }); 
+//   const buying_items = await productServices.findProductList(user.purchaseId);
+//   res.status(201).send(buying_items);
+// });
 
 // gets the avatar url image from the user
 app.get("/avatar", async (req, res) => {
@@ -203,7 +203,7 @@ app.post("/purchaseitem", async (req, res) => {
     );
     const archiveProduct = await productServices.archiveProduct(itemId);
     console.log(updateUserPurchases);
-    console.log(archiveProduct); 
+    console.log(archiveProduct);
     res.status(201).send(updateUserPurchases + archiveProduct);
   } catch (err) {
     console.log(err);

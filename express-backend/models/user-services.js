@@ -73,8 +73,8 @@ async function findUserById(id) {
   return await userModel.findById(id);
 }
 
-// async function findUserListings(user_id){ 
-//   return await productModel.find({ 
+// async function findUserListings(user_id){
+//   return await productModel.find({
 //     _id: user_id
 //   })
 // }
