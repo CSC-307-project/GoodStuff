@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Map, { Marker, ScaleControl, FullscreenControl } from "react-map-gl";
 
 const Img = styled("img")({
   margin: "auto",
@@ -48,7 +49,7 @@ export default function ProductPage() {
     <React.Fragment>
       <CssBaseline />
       <Container
-        maxWidth="sm"
+        maxWidth="md"
         sx={{
           p: 2,
           margin: "auto",
@@ -76,8 +77,7 @@ export default function ProductPage() {
                   {location.state.product_info.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom fontSize={16}>
-                  {"Product Description: " +
-                    location.state.product_info.description}
+                  {"Description: " + location.state.product_info.description}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -85,6 +85,13 @@ export default function ProductPage() {
                   fontSize={20}
                 >
                   {"$" + location.state.product_info.price}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  fontSize={15}
+                >
+                  {location.state.product_info.address}
                 </Typography>
               </Grid>
               <Grid item>
@@ -115,6 +122,28 @@ export default function ProductPage() {
                   </Typography>
                 </Box>
               </Grid>
+              <Map
+                initialViewState={{
+                  longitude: location.state.product_info.cordinates[0],
+                  latitude: location.state.product_info.cordinates[1],
+                  zoom: 16,
+                }}
+                style={{ height: 400, marginTop: 25 }}
+                mapStyle="mapbox://styles/mapbox/streets-v9"
+                mapboxAccessToken="pk.eyJ1IjoiY3NjMzA3IiwiYSI6ImNsM2d5bHB3OTBmM2QzYmxqMzl1am5sb2QifQ.3cp3sKxK3QcOrPugRV-vWg"
+              >
+                <FullscreenControl position="top-left" />
+                <ScaleControl />
+                <link
+                  href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+                  rel="stylesheet"
+                ></link>
+                <Marker
+                  longitude={location.state.product_info.cordinates[0]}
+                  latitude={location.state.product_info.cordinates[1]}
+                  anchor="bottom"
+                ></Marker>
+              </Map>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1" component="div" fontSize={19}>
@@ -127,3 +156,14 @@ export default function ProductPage() {
     </React.Fragment>
   );
 }
+
+/* <FullscreenControl position="top-left" />
+      <ScaleControl />
+      <Marker
+        longitude={location.state.product_info.cordinates[0]}
+        latitude={location.state.product_info.cordinates[1]}
+        anchor="bottom"
+        offsetTop={-600}
+        offsetLeft={-400 / 2}
+      ></Marker> 
+*/
