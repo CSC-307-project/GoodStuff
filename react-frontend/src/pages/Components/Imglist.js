@@ -8,6 +8,7 @@ import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { useNavigate, Link } from "react-router-dom";
+import Cookies from 'js-cookie'; 
 
 const theme = createTheme({
   components: {
@@ -30,6 +31,7 @@ const theme = createTheme({
 export default function Imglist() {
   const [product_list, setProductList] = useState([]);
   let navigate = useNavigate();
+  const user_id = Cookies.get("user_id"); 
   const [search, setSearch] = useState({
     searchStr: "",
   });
@@ -76,7 +78,13 @@ export default function Imglist() {
                     onClick={() => {
                       // console.log(item);
                       // navigate('/product', {name: 'name'})
-                      navigate("/product", { state: { product_info: item } });
+                      console.log(user_id); 
+                      console.log(item.sellerId); 
+                      if (user_id === item.sellerId){
+                        alert("This is your own listing"); 
+                      }else{
+                        navigate("/product", { state: { product_info: item } });
+                      }
                       //navigate("/product");
                     }}
                   >

@@ -93,13 +93,18 @@ export default function Dashboard() {
       });
       setAvatar(avatar.data);
       setUser(user.data);
-      console.log(avatar.data);
+      
     }
     fetchData();
   }, []);
 
   return (
-    <Card sx={{ maxWidth: 345, marginLeft: "" }} style={overlay}>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+    <Card sx={{ maxWidth: 345, marginLeft: "" }} style={{backgroundColor: "linen"}} >
       <CardHeader
         sx={{ marginLeft: "15%" }}
         avatar={
@@ -160,5 +165,6 @@ export default function Dashboard() {
         </CardContent>
       </Collapse>
     </Card>
+    </div>
   );
 }
