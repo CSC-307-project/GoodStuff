@@ -66,7 +66,7 @@ function MyApp() {
   // });
 
   return (
-    <div className="container">
+    // <div className="container">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -82,7 +82,7 @@ function MyApp() {
           <Route path="/searchresult" element={<SearchResult />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    // </div>
   );
 }
 

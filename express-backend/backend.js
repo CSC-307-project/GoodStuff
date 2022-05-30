@@ -7,36 +7,6 @@ const port = 5001;
 const userServices = require("./models/user-services");
 const productServices = require("./models/product-services");
 
-// let users = {
-//   users_list: [
-//     {
-//       id: "xyz789",
-//       name: "Charlie",
-//       job: "Janitor",
-//     },
-//     {
-//       id: "abc123",
-//       name: "Macs",
-//       job: "Bouncer",
-//     },
-//     {
-//       id: "ppp222",
-//       name: "Mac",
-//       job: "Professor",
-//     },
-//     {
-//       id: "yat999",
-//       name: "Dee",
-//       job: "Aspring actress",
-//     },
-//     {
-//       id: "zap555",
-//       name: "Dennis",
-//       job: "Bartender",
-//     },
-//   ],
-// };
-
 app.use(cors());
 
 app.use(express.json());
@@ -50,7 +20,7 @@ app.get("/", (req, res) => {
 // gets all post
 app.get("/post", async (req, res) => {
   const products_list = await productServices.findProductsByTags([""], false);
-  console.log(products_list);
+  //console.log(products_list);
   if (products_list === undefined || products_list === null) {
     res.status(404).send({ message: "No product posted yet" });
   } else {
@@ -62,7 +32,7 @@ app.get("/post", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body.person;
   let result = await userServices.findUserByEmail(email);
-  console.log(result);
+  // console.log(result);
   if (result === null) {
     res.status(404).json({ message: "User Not Registered" });
   } else if (result !== null && password !== result.password) {
@@ -75,7 +45,7 @@ app.post("/login", async (req, res) => {
 // updates a user profile picture
 app.patch("/profile", async (req, res) => {
   // console.log("hello patch");
-  console.log(req.body);
+  // console.log(req.body);
   const { user_id, avatar_url } = req.body;
   // console.log(user_id);
   // console.log(avatar_url);
@@ -93,12 +63,34 @@ app.get("/username", async (req, res) => {
   }
 });
 
+app.get("/sellbuy", async(req, res) =>{ 
+  const user_id = req.query.user_id;
+  let user = await userServices.findUserById(user_id);
+  const listing_items = await productServices.findProductList(user.listingId); 
+  const buying_items = await productServices.findProductList(user.purchaseId); 
+  res.status(201).send( {data: { sell: listing_items, buy: buying_items}}); 
+})
+
+// app.get("/listings", async(req, res) =>{ 
+//   const user_id = req.query.user_id;
+//   let user = await userServices.findUserById(user_id);
+//   const listing_items = await productServices.findProductList(user.listingId); 
+//   res.status(201).send(listing_items); 
+// })
+
+// app.get("/purchasings", async(req, res) =>{ 
+//   const user_id = req.query.user_id;
+//   let user = await userServices.findUserById(user_id);
+//   const buying_items = await productServices.findProductList(user.purchaseId); 
+//   res.status(201).send(buying_items); 
+// }); 
+
 // gets the avatar url image from the user
 app.get("/avatar", async (req, res) => {
   // console.log(req.query.user_id);
   const user_id = req.query.user_id;
   let avatar_url = await userServices.findUserById(user_id);
-  console.log(avatar_url);
+  // console.log(avatar_url);
   if (avatar_url === null || avatar_url === undefined) {
     res.status(200).send("v1652716035/yynsno17xatmuag7nitr.jpg");
   } else {
@@ -210,6 +202,8 @@ app.post("/purchaseitem", async (req, res) => {
       itemId
     );
     const archiveProduct = await productServices.archiveProduct(itemId);
+    console.log(updateUserPurchases);
+    console.log(archiveProduct); 
     res.status(201).send(updateUserPurchases + archiveProduct);
   } catch (err) {
     console.log(err);
