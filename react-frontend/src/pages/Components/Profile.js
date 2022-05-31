@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 const myStyle = {
   backgroundImage:
     "url('https://storage.pixteller.com/designs/designs-images/2019-03-27/05/simple-background-backgrounds-passion-simple-1-5c9b95c5218ea.png')",
-  height: "195vh",
+  height: "200vh",
   marginTop: "-70px",
   fontSize: "50px",
   backgroundSize: "cover",
