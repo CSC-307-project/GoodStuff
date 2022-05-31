@@ -7,7 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import Cookies from "js-cookie";
 import SearchBar from "material-ui-search-bar";
 
-export default function ProductHero() {
+import { useState} from "react";
+
+
+export default function ProductHero(props) {
+
+
   return (
     <ProductHeroLayout
       sxBackground={{
@@ -46,12 +51,15 @@ export default function ProductHero() {
           </Button>
         )}
       </Grid>
-
+      {/*Home Page Search Bar */}
       {Cookies.get("user_id") != null && (
         <SearchBar
-          value=""
-          onChange={() => console.log("onChange")}
-          onRequestSearch={() => console.log("onRequestSearch")}
+          onChange={(newValue) => {
+            props.searchByKey(newValue);
+          }}
+          onCancelSearch={()=>{
+            props.searchByKey(null); 
+          }}
           style={{
             margin: "0 auto",
             minWidth: 500,

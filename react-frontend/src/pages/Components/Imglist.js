@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
-import axios from "axios";
+// import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { useNavigate, Link } from "react-router-dom";
@@ -28,28 +28,34 @@ const theme = createTheme({
   },
 });
 
-export default function Imglist() {
-  const [product_list, setProductList] = useState([]);
+export default function Imglist(props) {
+  // const [product_list, setProductList] = useState([]);
   let navigate = useNavigate();
   const user_id = Cookies.get("user_id");
-  const [search, setSearch] = useState({
-    searchStr: "",
-  });
-  useEffect(() => {
-    async function getProductsList() {
-      await axios
-        .get("http://localhost:5001/post")
-        .then((response) => {
-          const data_list = response.data;
-          setProductList(data_list);
-          //console.log("Product Data received");
-        })
-        .catch((res) => {
-          //console.log("Not receiving data");
-        });
-    }
-    getProductsList();
-  }, []);
+
+  // const [search, setSearch] = useState({
+  //   searchStr: "",
+  // });
+
+  // const searchByKey = (searchValue) => {
+  //   console.log(searchValue);
+  // }
+  
+  // useEffect(() => {
+  //   async function getProductsList() {
+  //     await axios
+  //       .get("http://localhost:5001/post")
+  //       .then((response) => {
+  //         const data_list = response.data;
+  //         setProductList(data_list);
+  //         //console.log("Product Data received");
+  //       })
+  //       .catch((res) => {
+  //         //console.log("Not receiving data");
+  //       });
+  //   }
+  //   getProductsList();
+  // }, []);
 
   return (
     <ThemeProvider theme={theme} >
@@ -57,7 +63,7 @@ export default function Imglist() {
         <ImageListItem key="Subheader" >
           <ListSubheader component="div">May</ListSubheader>
         </ImageListItem>
-        {product_list.map((item) => (
+        {props.product_list.map((item) => (
           <ImageListItem key={item.image}>
             <img
               src={`${item.image}?w=248&fit=crop&auto=format`}
