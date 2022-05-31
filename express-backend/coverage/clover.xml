@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1654034892116" clover="3.2.0">
-  <project timestamp="1654034892116" name="All files">
-    <metrics statements="81" coveredstatements="72" conditionals="8" coveredconditionals="8" methods="21" coveredmethods="18" elements="110" coveredelements="98" complexity="0" loc="81" ncloc="81" packages="1" files="4" classes="4"/>
+<coverage generated="1654035334336" clover="3.2.0">
+  <project timestamp="1654035334336" name="All files">
+    <metrics statements="80" coveredstatements="78" conditionals="10" coveredconditionals="10" methods="21" coveredmethods="19" elements="111" coveredelements="107" complexity="0" loc="80" ncloc="80" packages="1" files="4" classes="4"/>
     <file name="product-services.js" path="/Users/hanktsai/Documents/CPE307_Group/GoodStuff/express-backend/models/product-services.js">
-      <metrics statements="30" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
+      <metrics statements="29" coveredstatements="28" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="6"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
       <line num="6" count="1" type="stmt"/>
       <line num="8" count="1" type="stmt"/>
       <line num="24" count="0" type="stmt"/>
-      <line num="33" count="3" type="stmt"/>
-      <line num="34" count="3" type="stmt"/>
-      <line num="37" count="1" type="stmt"/>
-      <line num="42" count="0" type="stmt"/>
-      <line num="43" count="0" type="stmt"/>
-      <line num="44" count="0" type="stmt"/>
-      <line num="45" count="0" type="stmt"/>
-      <line num="46" count="0" type="stmt"/>
-      <line num="49" count="0" type="stmt"/>
-      <line num="51" count="0" type="stmt"/>
-      <line num="56" count="2" type="stmt"/>
-      <line num="57" count="2" type="stmt"/>
-      <line num="63" count="1" type="stmt"/>
-      <line num="68" count="6" type="stmt"/>
-      <line num="75" count="14" type="stmt"/>
-      <line num="76" count="14" type="stmt"/>
-      <line num="77" count="1" type="stmt"/>
-      <line num="81" count="2" type="stmt"/>
+      <line num="33" count="5" type="stmt"/>
+      <line num="34" count="5" type="stmt"/>
+      <line num="37" count="2" type="stmt"/>
+      <line num="42" count="2" type="stmt"/>
+      <line num="43" count="2" type="stmt"/>
+      <line num="44" count="2" type="stmt"/>
+      <line num="45" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="46" count="1" type="stmt"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="53" count="2" type="stmt"/>
+      <line num="54" count="2" type="stmt"/>
+      <line num="60" count="1" type="stmt"/>
+      <line num="65" count="6" type="stmt"/>
+      <line num="72" count="14" type="stmt"/>
+      <line num="73" count="14" type="stmt"/>
+      <line num="74" count="1" type="stmt"/>
+      <line num="78" count="2" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
+      <line num="82" count="1" type="stmt"/>
+      <line num="83" count="1" type="stmt"/>
       <line num="84" count="1" type="stmt"/>
       <line num="85" count="1" type="stmt"/>
       <line num="86" count="1" type="stmt"/>
-      <line num="87" count="1" type="stmt"/>
-      <line num="88" count="1" type="stmt"/>
-      <line num="89" count="1" type="stmt"/>
     </file>
     <file name="product.js" path="/Users/hanktsai/Documents/CPE307_Group/GoodStuff/express-backend/models/product.js">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
