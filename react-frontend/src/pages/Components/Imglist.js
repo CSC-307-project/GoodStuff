@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import Typography from "../CustomMUI/Typography";
 
 const theme = createTheme({
   components: {
@@ -53,6 +54,9 @@ export default function Imglist() {
 
   return (
     <ThemeProvider theme={theme} >
+      <Typography variant="h4" marked="center" align="center" component="h2">
+        Today's deals
+      </Typography>
       <ImageList sx={{ flexGrow: 1 }} cols= {3} >
         <ImageListItem key="Subheader" >
           <ListSubheader component="div">May</ListSubheader>
