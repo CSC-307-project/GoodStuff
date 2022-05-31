@@ -30,33 +30,9 @@ const theme = createTheme({
 });
 
 export default function Imglist(props) {
-  // const [product_list, setProductList] = useState([]);
+
   let navigate = useNavigate();
   const user_id = Cookies.get("user_id");
-
-  // const [search, setSearch] = useState({
-  //   searchStr: "",
-  // });
-
-  // const searchByKey = (searchValue) => {
-  //   console.log(searchValue);
-  // }
-  
-  // useEffect(() => {
-  //   async function getProductsList() {
-  //     await axios
-  //       .get("http://localhost:5001/post")
-  //       .then((response) => {
-  //         const data_list = response.data;
-  //         setProductList(data_list);
-  //         //console.log("Product Data received");
-  //       })
-  //       .catch((res) => {
-  //         //console.log("Not receiving data");
-  //       });
-  //   }
-  //   getProductsList();
-  // }, []);
 
   return (
     <ThemeProvider theme={theme} >
@@ -86,10 +62,6 @@ export default function Imglist(props) {
                   <Button
                     variant="contained"
                     onClick={() => {
-                      // console.log(item);
-                      // navigate('/product', {name: 'name'})
-                      // console.log(user_id);
-                      // console.log(item.sellerId);
                       if (user_id === item.sellerId) {
                         alert("This is your own listing");
                       } else {
@@ -100,9 +72,6 @@ export default function Imglist(props) {
                   >
                     purchase
                   </Button>
-                  {/* <Link to={{ pathname: "/product", state:{ product: item } }}>
-                    <Button variant="contained">Hello</Button>
-                  </Link> */}
                 </IconButton>
               }
             />

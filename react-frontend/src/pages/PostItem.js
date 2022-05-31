@@ -104,17 +104,6 @@ const Register = (props) => {
           ["image"]: `https://res.cloudinary.com/dicchtih6/image/upload/${info.info.path}`,
         });
         setUpLoaded(info.info.path);
-          //   setDelToken(info.info.delete_token);
-          //   setPath(info.info.path);
-          //   setFileName(info.info.original_filename);
-          // console.log(Cookies.get('user_id'));
-          // console.log(info.info.path);
-          // handle_avatar(Cookies.get("user_id"), info.info.path);
-          // window.location = "/profile"; 
-          // const res = await axios.patch("http://localhost:5001/profile", {
-          //   "user_id": Cookies.get('user_id'),
-          //   "avatar_url": info.info.path
-          // });
         }
       }
     );
