@@ -81,16 +81,6 @@ const images = [
     title: "Reading",
     width: "40%",
   },
-  {
-    url: "https://images.unsplash.com/photo-1453747063559-36695c8771bd?auto=format&fit=crop&w=400&q=80",
-    title: "Tour",
-    width: "50%",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1523309996740-d5315f9cc28b?auto=format&fit=crop&w=400&q=80",
-    title: "Kitchenware",
-    width: "50%",
-  },
 ];
 
 export default function ProductCategories() {

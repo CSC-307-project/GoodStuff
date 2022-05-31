@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653852806081" clover="3.2.0">
-  <project timestamp="1653852806081" name="All files">
-    <metrics statements="73" coveredstatements="71" conditionals="8" coveredconditionals="8" methods="20" coveredmethods="18" elements="101" coveredelements="97" complexity="0" loc="73" ncloc="73" packages="1" files="4" classes="4"/>
-    <file name="product-services.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/product-services.js">
-      <metrics statements="22" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+<coverage generated="1654029197540" clover="3.2.0">
+  <project timestamp="1654029197540" name="All files">
+    <metrics statements="81" coveredstatements="72" conditionals="8" coveredconditionals="8" methods="21" coveredmethods="18" elements="110" coveredelements="98" complexity="0" loc="81" ncloc="81" packages="1" files="4" classes="4"/>
+    <file name="product-services.js" path="/Users/liangzhisong/Classes/307/GoodStuff/express-backend/models/product-services.js">
+      <metrics statements="30" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
@@ -13,28 +13,36 @@
       <line num="33" count="3" type="stmt"/>
       <line num="34" count="3" type="stmt"/>
       <line num="37" count="1" type="stmt"/>
-      <line num="42" count="2" type="stmt"/>
-      <line num="43" count="2" type="stmt"/>
-      <line num="49" count="1" type="stmt"/>
-      <line num="54" count="6" type="stmt"/>
-      <line num="61" count="14" type="stmt"/>
-      <line num="62" count="14" type="stmt"/>
+      <line num="42" count="0" type="stmt"/>
+      <line num="43" count="0" type="stmt"/>
+      <line num="44" count="0" type="stmt"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="46" count="0" type="stmt"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="51" count="0" type="stmt"/>
+      <line num="56" count="2" type="stmt"/>
+      <line num="57" count="2" type="stmt"/>
       <line num="63" count="1" type="stmt"/>
-      <line num="67" count="2" type="stmt"/>
-      <line num="70" count="1" type="stmt"/>
-      <line num="71" count="1" type="stmt"/>
-      <line num="72" count="1" type="stmt"/>
-      <line num="73" count="1" type="stmt"/>
-      <line num="74" count="1" type="stmt"/>
+      <line num="68" count="6" type="stmt"/>
+      <line num="75" count="14" type="stmt"/>
+      <line num="76" count="14" type="stmt"/>
+      <line num="77" count="1" type="stmt"/>
+      <line num="81" count="2" type="stmt"/>
+      <line num="84" count="1" type="stmt"/>
+      <line num="85" count="1" type="stmt"/>
+      <line num="86" count="1" type="stmt"/>
+      <line num="87" count="1" type="stmt"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="89" count="1" type="stmt"/>
     </file>
-    <file name="product.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/product.js">
+    <file name="product.js" path="/Users/liangzhisong/Classes/307/GoodStuff/express-backend/models/product.js">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <line num="1" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
       <line num="58" count="1" type="stmt"/>
       <line num="60" count="1" type="stmt"/>
     </file>
-    <file name="user-services.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/user-services.js">
+    <file name="user-services.js" path="/Users/liangzhisong/Classes/307/GoodStuff/express-backend/models/user-services.js">
       <metrics statements="36" coveredstatements="35" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="10"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
@@ -56,24 +64,24 @@
       <line num="58" count="6" type="stmt"/>
       <line num="64" count="3" type="stmt"/>
       <line num="73" count="3" type="stmt"/>
-      <line num="79" count="2" type="stmt"/>
-      <line num="83" count="2" type="stmt"/>
+      <line num="85" count="2" type="stmt"/>
       <line num="89" count="2" type="stmt"/>
-      <line num="93" count="2" type="stmt"/>
-      <line num="98" count="1" type="stmt"/>
-      <line num="99" count="1" type="stmt"/>
-      <line num="102" count="1" type="stmt"/>
-      <line num="103" count="1" type="stmt"/>
+      <line num="95" count="2" type="stmt"/>
+      <line num="99" count="2" type="stmt"/>
       <line num="104" count="1" type="stmt"/>
       <line num="105" count="1" type="stmt"/>
-      <line num="106" count="1" type="stmt"/>
-      <line num="107" count="1" type="stmt"/>
       <line num="108" count="1" type="stmt"/>
       <line num="109" count="1" type="stmt"/>
       <line num="110" count="1" type="stmt"/>
       <line num="111" count="1" type="stmt"/>
+      <line num="112" count="1" type="stmt"/>
+      <line num="113" count="1" type="stmt"/>
+      <line num="114" count="1" type="stmt"/>
+      <line num="115" count="1" type="stmt"/>
+      <line num="116" count="1" type="stmt"/>
+      <line num="117" count="1" type="stmt"/>
     </file>
-    <file name="user.js" path="/Users/terrenceliu/Desktop/CSC307GroupProject/GoodStuff/express-backend/models/user.js">
+    <file name="user.js" path="/Users/liangzhisong/Classes/307/GoodStuff/express-backend/models/user.js">
       <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
