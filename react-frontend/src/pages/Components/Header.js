@@ -13,6 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ImageAvatars from "./ImageAvatars.js";
 import { useState } from "react";
 
+
 import Cookies from "js-cookie";
 
 const Search = styled("div")(({ theme }) => ({
@@ -57,9 +58,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
   const [header, setHeader] = useState("");
   const [login, setLogin] = useState(true);
+  const [search, setSearch] = useState(""); 
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -81,13 +84,6 @@ export default function SearchAppBar() {
           >
             GoodStuff
           </Typography>
-
-          {/* <Link to="/">
-            <button>Logout</button>
-          </Link> */}
-
-          {/* button link to login */}
-          {/* {console.log(Cookies.get("user_id"))} */}
 
           <Link to="/profile">
             {" "}
@@ -117,18 +113,22 @@ export default function SearchAppBar() {
             </Button>
           )}
 
-          {/* <Button component={Link} to={"/login"} color="inherit">
-              {Cookies.get("user_id") ? "logout" : "login"}
-            </Button> */}
-
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
+            <StyledInputBase onChange={(event) => {
+              setSearch(event.target.value)
+                console.log(search); 
+                if (event.target.value.length == 1){
+                  props.searchByTag("");
+                }
+              }
+            }
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
+            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+            <SearchIcon onClick={()=>{props.searchByTag(search)}}/>
+            </IconButton>
+            
           </Search>
         </Toolbar>
       </AppBar>

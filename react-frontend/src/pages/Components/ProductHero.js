@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import Cookies from "js-cookie";
 import SearchBar from "material-ui-search-bar";
 
-import { useState} from "react";
 
 
 export default function ProductHero(props) {

@@ -20,7 +20,14 @@ const HomePage = () => {
       searchKey = searchKey.trim();  
     }
     const filteredProducts = product_list.filter((product) => {
-      return product.title.toLowerCase().includes(searchKey);
+      const tags = product.tags; 
+      let index = -1; 
+      if (searchKey !== null){
+          index = tags.findIndex(element =>{ 
+          return element.toLowerCase() === searchKey.toLowerCase(); 
+        });
+      }
+      return product.title.toLowerCase().includes(searchKey) || index !== -1;
     });
     setSearchField(filteredProducts);
   };
@@ -41,14 +48,15 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header/>
       <SearchBar />
       <ProductHero searchByKey={searchByKey} />
       {searchField !== [] && searchMode ? (
         <Imglist product_list={searchField} />
-      ) : (
-        <Imglist product_list={product_list} />
-      )}
+      ) : ( 
+        <Imglist product_list={product_list}/>
+      )
+      }
       <Footer />
     </React.Fragment>
   );
