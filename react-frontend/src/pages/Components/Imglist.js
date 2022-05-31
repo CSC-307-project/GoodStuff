@@ -61,7 +61,7 @@ export default function Imglist(props) {
   return (
     <ThemeProvider theme={theme} >
       <Typography variant="h4" marked="center" align="center" component="h2">
-        Today's deals
+        For Sale
       </Typography>
       <ImageList sx={{ flexGrow: 1 }} cols= {3} >
         <ImageListItem key="Subheader" >
