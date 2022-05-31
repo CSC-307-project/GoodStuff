@@ -6,6 +6,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Button from "@mui/material/Button";
 import { div } from "../../node_modules/gl-matrix/esm/vec2";
+import ProductCategories from './Components/ProductCategories';
+
 //sample data
 // const products = [
 //   {
@@ -93,6 +95,7 @@ const ShopSection = () => {
           maxWidth: 800,
         }}
       />
+      <ProductCategories />
       <div className="container">
         <div className="section">
           <div className="row">
@@ -136,6 +139,7 @@ const ShopSection = () => {
           </div>
         </div>
       </div>
+
 
       {/*  sample */}
       <nav>

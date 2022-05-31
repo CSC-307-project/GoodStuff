@@ -516,7 +516,7 @@ test("Testing findProductsByTags with bad id -- failure", async () => {
   expect(validProduct).toEqual([]);
 });
 
-// testing findProductById with good tags
+// testing findProductById with good id
 test("Testing findProductById with good id -- success", async () => {
   const validProduct = await productServices.findProductById(
     actualTestProductData._id
@@ -531,6 +531,22 @@ test("Testing findProductById with bad id -- failure", async () => {
     false
   );
   expect(validProduct).toBeUndefined();
+});
+
+//testing findProductList with good List
+test("Testing findProductList with good List -- success", async () => {
+  const validProductList = await productServices.findProductList([
+    actualTestProductData._id,
+  ]);
+  expect(validProductList).toMatchObject([actualTestProductData]);
+});
+
+//testing findProductList with bad List
+test("Testing findProductList with bad List -- failure", async () => {
+  const validProductList = await productServices.findProductList([
+    "jesttestmistake",
+  ]);
+  expect(validProductList).toMatchObject([undefined]);
 });
 
 test("Testing archiveProduct with good id -- success", async () => {

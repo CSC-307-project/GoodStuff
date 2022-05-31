@@ -1,5 +1,5 @@
 node_modules/
 .env
-
+coverage/
 
 "test": "echo \"Error: no test specified\" && exit 1",
