@@ -41,6 +41,7 @@ const HomePage = () => {
           setProductList(data_list);
         })
         .catch((res) => {
+          console.error(res); 
         });
     }
     getProductsList();

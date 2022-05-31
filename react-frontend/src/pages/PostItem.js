@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import useInput from "./Components/AddressAutocomplete/useInput";
 import styled from "styled-components";
+import Button from '@mui/material/Button';
 
 const styles = {
   color: "blue",
@@ -15,6 +16,7 @@ const styles = {
 
 const Register = (props) => {
   const [errorPost, setErrorPost] = useState(null);
+  const [uploaded, setUpLoaded] = useState("Image Url");
 
   const tags = [
     "Car",
@@ -79,6 +81,43 @@ const Register = (props) => {
         ]),
       ],
     });
+  };
+
+  const handleOpenWidget = () => {
+    window.cloudinary.openUploadWidget(
+      {
+        cloudName: "dicchtih6",
+        uploadPreset: "lehelgx4",
+        sources: ["image_search", "local", "url"],
+        showAdvancedOptions: true,
+        googleApiKey: "AIzaSyCXnnhvZyEhrzGcjQ8TMtJRMskUFCpfjNE",
+        cropping: true,
+        multiple: false,
+        defaultSource: "image_search",
+        //max_files: 5000000,
+        client_allowed_formats: ["png", "bmp", "jpeg", "gif", "jpg"],
+      },
+      (err, info) => {
+        if (info.event === "success") {
+         setUser({
+          ...item,
+          ["image"]: `https://res.cloudinary.com/dicchtih6/image/upload/${info.info.path}`,
+        });
+        setUpLoaded(info.info.path);
+          //   setDelToken(info.info.delete_token);
+          //   setPath(info.info.path);
+          //   setFileName(info.info.original_filename);
+          // console.log(Cookies.get('user_id'));
+          // console.log(info.info.path);
+          // handle_avatar(Cookies.get("user_id"), info.info.path);
+          // window.location = "/profile"; 
+          // const res = await axios.patch("http://localhost:5001/profile", {
+          //   "user_id": Cookies.get('user_id'),
+          //   "avatar_url": info.info.path
+          // });
+        }
+      }
+    );
   };
 
   const post = async (e) => {
@@ -177,9 +216,12 @@ const Register = (props) => {
           <input
             type="text"
             name="image"
-            placeholder="Image URL"
+            placeholder={uploaded}
             onChange={handleChange}
           />
+          <Button variant="contained" component="span" onClick={handleOpenWidget}>
+              Upload
+          </Button>
           <div style={{ textAlign: "left" }} classname="checkList">
             <h4> Tags:</h4>
             <div classname="list-container">

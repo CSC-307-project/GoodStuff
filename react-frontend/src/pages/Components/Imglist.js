@@ -84,8 +84,8 @@ export default function Imglist(props) {
                     onClick={() => {
                       // console.log(item);
                       // navigate('/product', {name: 'name'})
-                      console.log(user_id);
-                      console.log(item.sellerId);
+                      // console.log(user_id);
+                      // console.log(item.sellerId);
                       if (user_id === item.sellerId) {
                         alert("This is your own listing");
                       } else {
