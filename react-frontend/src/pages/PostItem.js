@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import useInput from "./Components/AddressAutocomplete/useInput";
 import styled from "styled-components";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 const styles = {
   color: "blue",
@@ -99,11 +99,11 @@ const Register = (props) => {
       },
       (err, info) => {
         if (info.event === "success") {
-         setUser({
-          ...item,
-          ["image"]: `https://res.cloudinary.com/dicchtih6/image/upload/${info.info.path}`,
-        });
-        setUpLoaded(info.info.path);
+          setUser({
+            ...item,
+            ["image"]: `https://res.cloudinary.com/dicchtih6/image/upload/${info.info.path}`,
+          });
+          setUpLoaded(info.info.path);
         }
       }
     );
@@ -208,8 +208,12 @@ const Register = (props) => {
             placeholder={uploaded}
             onChange={handleChange}
           />
-          <Button variant="contained" component="span" onClick={handleOpenWidget}>
-              Upload
+          <Button
+            variant="contained"
+            component="span"
+            onClick={handleOpenWidget}
+          >
+            Upload
           </Button>
           <div style={{ textAlign: "left" }} classname="checkList">
             <h4> Tags:</h4>

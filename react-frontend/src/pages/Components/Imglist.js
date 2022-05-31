@@ -30,17 +30,16 @@ const theme = createTheme({
 });
 
 export default function Imglist(props) {
-
   let navigate = useNavigate();
   const user_id = Cookies.get("user_id");
 
   return (
-    <ThemeProvider theme={theme} >
+    <ThemeProvider theme={theme}>
       <Typography variant="h4" marked="center" align="center" component="h2">
         For Sale
       </Typography>
-      <ImageList sx={{ flexGrow: 1 }} cols= {3} >
-        <ImageListItem key="Subheader" >
+      <ImageList sx={{ flexGrow: 1 }} cols={3}>
+        <ImageListItem key="Subheader">
           <ListSubheader component="div">May</ListSubheader>
         </ImageListItem>
         {props.product_list.map((item) => (

@@ -39,17 +39,14 @@ async function findProductById(id) {
 }
 
 async function findProductList(list) {
-  try {
-    product_list = [];
-    for (let i = 0; i < list.length; i++) {
-      let item = await findProductById(list[i]);
+  product_list = [];
+  for (let i = 0; i < list.length; i++) {
+    let item = await findProductById(list[i]);
+    if (item !== undefined) {
       product_list.push(item);
     }
-    // console.log("Mongo" + product_list);
-    return product_list;
-  } catch (error) {
-    return null;
   }
+  return product_list;
 }
 
 async function archiveProduct(productId) {

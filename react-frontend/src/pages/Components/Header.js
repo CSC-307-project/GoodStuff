@@ -13,7 +13,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import ImageAvatars from "./ImageAvatars.js";
 import { useState } from "react";
 
-
 import Cookies from "js-cookie";
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar(props) {
   const [header, setHeader] = useState("");
   const [login, setLogin] = useState(true);
-  const [search, setSearch] = useState(""); 
+  const [search, setSearch] = useState("");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -114,21 +113,24 @@ export default function SearchAppBar(props) {
           )}
 
           <Search>
-            <StyledInputBase onChange={(event) => {
-              setSearch(event.target.value)
-                console.log(search); 
-                if (event.target.value.length == 1){
+            <StyledInputBase
+              onChange={(event) => {
+                setSearch(event.target.value);
+                console.log(search);
+                if (event.target.value.length == 1) {
                   props.searchByTag("");
                 }
-              }
-            }
+              }}
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-            <SearchIcon onClick={()=>{props.searchByTag(search)}}/>
+            <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+              <SearchIcon
+                onClick={() => {
+                  props.searchByTag(search);
+                }}
+              />
             </IconButton>
-            
           </Search>
         </Toolbar>
       </AppBar>

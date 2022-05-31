@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Button from "@mui/material/Button";
-import { div } from '../../node_modules/gl-matrix/esm/vec2';
+import { div } from "../../node_modules/gl-matrix/esm/vec2";
 //sample data
 // const products = [
 //   {
@@ -101,31 +101,33 @@ const ShopSection = () => {
                 {product_list.map((product) => (
                   <div
                     className="shop col-lg-4 col-md-6 col-sm-6"
-                    key={product._id}>
-                    
+                    key={product._id}
+                  >
                     <div className="border-product">
-                        <div className="shopBack">
-                          <img src={product.image} alt={product.title} />
-                        </div>
+                      <div className="shopBack">
+                        <img src={product.image} alt={product.title} />
+                      </div>
                       <div className="shoptext">
-                        <p>
-                            {product.title}
-                        </p>
+                        <p>{product.title}</p>
                         <h3>${product.price}</h3>
                       </div>
-                          <Button
-                            variant="contained"
-                            onClick={() => {
-                              console.log(user_id);
-                              console.log(product.sellerId);
-                              if (user_id === product.sellerId) {
-                                alert("This is your own listing");
-                              } else {
-                                navigate("/product", { state: { product_info: product } });
-                              }
-                              //navigate("/product");
-                          }}>purchase
-                        </Button>
+                      <Button
+                        variant="contained"
+                        onClick={() => {
+                          console.log(user_id);
+                          console.log(product.sellerId);
+                          if (user_id === product.sellerId) {
+                            alert("This is your own listing");
+                          } else {
+                            navigate("/product", {
+                              state: { product_info: product },
+                            });
+                          }
+                          //navigate("/product");
+                        }}
+                      >
+                        purchase
+                      </Button>
                     </div>
                   </div>
                 ))}

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Container from "@mui/material/Container";
 import Typography from "../CustomMUI/Typography";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -26,7 +26,6 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     width: "100% !important",
     height: 100,
-
   },
   "&:hover": {
     zIndex: 1,
