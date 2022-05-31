@@ -8,6 +8,11 @@ const ProductSchema = new mongoose.Schema(
       required: "No user is login",
       trim: true,
     },
+    archived: {
+      type: Boolean,
+      required: "Status is required",
+      default: false,
+    },
     title: {
       type: String,
       required: "Title is required",
@@ -23,6 +28,13 @@ const ProductSchema = new mongoose.Schema(
       required: "Address is required",
       trim: true,
     },
+    cordinates: [
+      {
+        type: Number,
+        required: "Cordinates are required",
+        trim: true,
+      },
+    ],
     description: {
       type: String,
       required: "Description is required",

@@ -11,7 +11,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ImageAvatars from "./ImageAvatars.js";
-import { useState} from "react";
+import SearchBar from "material-ui-search-bar";
 
 import Cookies from "js-cookie";
 
@@ -40,26 +40,28 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//   color: "inherit",
+//   "& .MuiInputBase-input": {
+//     padding: theme.spacing(1, 1, 1, 0),
+//     // vertical padding + font size from searchIcon
+//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//     transition: theme.transitions.create("width"),
+//     width: "100%",
+//     [theme.breakpoints.up("sm")]: {
+//       width: "12ch",
+//       "&:focus": {
+//         width: "20ch",
+//       },
+//     },
+//   },
+// }));
+
+function redirect(){
+  window.location ="searchresult";
+};
 
 export default function SearchAppBar() {
-  const [header, setHeader] = useState("");
-  const [login, setLogin] = useState(true); 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -97,12 +99,10 @@ export default function SearchAppBar() {
           {Cookies.get("user_id") == null
               && <Button component={Link} to={"/login"} color="inherit" > Login</Button>}
           
-          {login&&Cookies.get("user_id") != null
+          {Cookies.get("user_id") != null
               && <Button component={Link} to={"/"} color="inherit"
                          onClick={() => {
                           Cookies.remove('user_id');
-                          setHeader(""); 
-                          setLogin(false);
                           this.forceUpdate(); 
                          }}>
                   Logout</Button>}
@@ -112,15 +112,21 @@ export default function SearchAppBar() {
             </Button> */}
         
 
-          <Search>
+        {Cookies.get("user_id") == null&&<Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
+            {/* <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+            <Button compoent={Link} to="/searchresult" variant="button" color="inherit"/> */}
+            <SearchBar 
+              onChange={(newValue) => this.setState({ value: newValue })}
+              onRequestSearch={() => redirect()}
+              color="inherit"
+            />
+          </Search>}
         </Toolbar>
       </AppBar>
     </Box>

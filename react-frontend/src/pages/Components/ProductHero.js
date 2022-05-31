@@ -8,6 +8,10 @@ import Cookies from "js-cookie";
 import SearchBar from "material-ui-search-bar";
 
 export default function ProductHero() {
+  function redirect(){
+      window.location ="searchresult";
+  }
+
   return (
     <ProductHeroLayout
       sxBackground={{
@@ -45,14 +49,27 @@ export default function ProductHero() {
           Register
         </Button>}
       </Grid>
+      
+{/*   <div className="search">
+        <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for movies"
+        />
+        <img
+          src={SearchIcon}
+          alt="search"
+          onClick={() => searchMovies(searchTerm)}
+        />
+      </div> */}
 
       {Cookies.get("user_id") != null && 
         <SearchBar
-        onChange={() => console.log("onChange")}
-        onRequestSearch={() => console.log("onRequestSearch")}
+        value=""
+        onChange={() => {}}
+        onRequestSearch={() => {redirect()}}
         style={{
           margin: "0 auto",
-          maxWidth: 1600,
           minWidth: 500
         }}
       />}
@@ -60,6 +77,19 @@ export default function ProductHero() {
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience
       </Typography>
+      
+      {Cookies.get("user_id") != null && 
+        <Button
+        color="secondary"
+        variant="contained"
+        size="large"
+        component="a"
+        href='../post'
+        sx={{ minWidth: 200, mt: 5  }}
+      >
+        Post Item
+      </Button>}
+    
     </ProductHeroLayout>
   );
 }

@@ -10,26 +10,9 @@ import HomePage from "./pages/HomePage";
 import PostItem from "./pages/PostItem";
 import Profile from "./pages/Components/Profile";
 import Product from "./pages/ProductPage";
-
-// const characters = [
-//   {
-//     name: "Charlie",
-//     job: "Janitor",
-//   },
-//   {
-//     name: "Mac",
-//     job: "Bouncer",
-//   },
-//   {
-//     name: "Dee",
-//     job: "Aspring actress",
-//   },
-//   {
-//     name: "Dennis",
-//     job: "Bartender",
-//   },
-// ];
 import SearchResult from "./pages/SearchResult";
+import Helmet from 'react-helmet';
+import ProductPage from './pages/ProductPage';
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -76,30 +59,6 @@ function MyApp() {
     });
   }
 
-  // async function makeDeleteCall(user_id) {
-  //   try {
-  //     console.log(user_id);
-  //     //const response = await axios.delete("http://localhost:5001/users", {id: user_id});
-  //     //prompt 4
-  //     const response = await axios.delete(
-  //       `http://localhost:5001/users/${user_id}`
-  //     );
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return false;
-  //   }
-  // }
-
-  // function removeOneCharacter(index) {
-  //   //console.log(characters[index].id)
-  //   makeDeleteCall(characters[index]._id).then((result) => {});
-  //   const updated = characters.filter((character, i) => {
-  //     return i !== index;
-  //   });
-  //   setCharacters(updated);
-  // }
-
   return (
     <div className="container">
       <BrowserRouter>
@@ -112,8 +71,8 @@ function MyApp() {
           />
           <Route path="/post" element={<PostItem />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/product" element={<Product />} />
           <Route path="/searchresult" element={<SearchResult />} />
+          <Route path="/product" element={<ProductPage />} />
         </Routes>
       </BrowserRouter>
     </div>

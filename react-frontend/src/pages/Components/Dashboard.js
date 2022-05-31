@@ -14,9 +14,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import ButtonBase from "@mui/material/ButtonBase";
 import { useEffect, useState} from "react";
-
+import HomeIcon from '@material-ui/icons/Home';
 import Cookies from "js-cookie";
 import axios from "axios";
+
 
 const overlay ={ 
   position: 'absolute',
@@ -140,6 +141,9 @@ export default function Dashboard() {
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
+        </IconButton>
+        <IconButton aria-label="home">
+            <HomeIcon onClick={() => window.location.assign('/', '_blank')}/>
         </IconButton>
         <ExpandMore
           expand={expanded}

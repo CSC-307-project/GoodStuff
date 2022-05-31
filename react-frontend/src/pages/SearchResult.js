@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "material-ui-search-bar";
+import { useState, useEffect} from "react";
+import axios from "axios";
+import Header from "./Components/Header";
+import Footer from './Components/Footer';
 
 //sample data
 const products = [
@@ -60,16 +63,26 @@ const products = [
   ];
 
 const ShopSection = () => {
+    const [product_list, setProductList] = useState([]);
+    useEffect(() => {
+        async function getProductsList() {
+        await axios
+            .get("http://localhost:5001/post")
+            .then((response) => {
+              const data_list = response.data;
+              setProductList(data_list);
+              console.log("Product Data received");
+            })
+            .catch((res) => {
+              console.log("Not receiving data");
+            });
+        }
+        getProductsList();
+    }, []);
+
   return (
     <>
-     <SearchBar
-        onChange={() => console.log("onChange")}
-        onRequestSearch={() => console.log("onRequestSearch")}
-        style={{
-          margin: "0 auto",
-          maxWidth: 800
-        }}
-      />
+    <Header />    
       <div className="container">
         <div className="section">
           <div className="row">
@@ -81,14 +94,14 @@ const ShopSection = () => {
                     key={product._id}
                   >
                     <div className="border-product">
-                      <Link to={`/products/${product._id}`}>
+                      <Link to={`/product/${product._id}`}>
                         <div className="shopBack">
                           <img src={product.image} alt={product.name} />
                         </div>
                       </Link>
                       <div className="shoptext">
                         <p>
-                          <Link to={`/products/${product._id}`}>
+                          <Link to={`/product/${product._id}`}>
                             {product.name}
                           </Link>
                         </p>
@@ -134,6 +147,7 @@ const ShopSection = () => {
         </li>
       </ul>
     </nav>
+    <Footer/>
     </>
   );
 };

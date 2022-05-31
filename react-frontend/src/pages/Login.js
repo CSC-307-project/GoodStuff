@@ -5,8 +5,11 @@ import { useState } from "react";
 import axios from "axios";
 import logo from "../img/logo.png"
 import { Container } from "@mui/material";
+import HomeIcon from '@material-ui/icons/Home';
+import IconButton from "@mui/material/IconButton";
 
 import Cookies from 'js-cookie';
+import Home from "@material-ui/icons/Home";
 
 const styles = {
   color: "blue",
@@ -23,7 +26,7 @@ const styles = {
 
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
-  window.scrollTo(0, 0);
+  //window.scrollTo(0, 0);
 
   function handleChange(event) {
     //console.log(person);
@@ -42,31 +45,14 @@ const Login = (props) => {
       });
   }
 
-  // function handleEntailmentRequest(e) {
-  //   e.preventDefault();
-
-  // }
-
   const [person, setPerson] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  // async function login(){
-  //   //console.log(person);
-  //   const response = await axios.post("http://localhost:5001/login", { person });
-  //   console.log(response);
-  //   // const result = props.verify(person);
-  //   // setPerson({ email: "", password: "", username: "" });
-  //   // console.log(result);
-  // }
   const login = async (e) => {
     e.preventDefault();
-    //console.log(person);
-    //const result = props.verify(person);
-    //setPerson({ email: "", password: "", username: "" });
-    //console.log(result);
 
     await axios
       .post("http://localhost:5001/login", {
@@ -80,10 +66,6 @@ const Login = (props) => {
       .catch((err) => {
         setErrorLogin(err.response.data.message);
       });
-
-    // const result = props.verify(person);
-    // setPerson({ email: "", password: "", username: "" });
-    // console.log(result);
   };
 
   async function fetchAll() {
@@ -106,7 +88,7 @@ const Login = (props) => {
         <Container
         sx={{
           mt: 3,
-          mb: 1,
+          mb: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -120,7 +102,7 @@ const Login = (props) => {
         />
         </Container>
         <span className="container d-flex flex-column justify-content-center align-items-center login-center">
-          <form className="Login col-md-8 col-lg-4 col-11" onSubmit={login}>
+          <form className="Login col-md-8 col-lg-4 col-11 mb-0" onSubmit={login}>
             {errorLogin && <p style={{ color: "red" }}>{errorLogin}</p>}
             <input
               type="email"
@@ -143,6 +125,9 @@ const Login = (props) => {
               </Link>
             </p>
           </form>
+            <IconButton aria-label="home">
+              <HomeIcon onClick={() => window.location.assign('/', '_blank')}/>
+            </IconButton>
         </span>
       </div>
     </>

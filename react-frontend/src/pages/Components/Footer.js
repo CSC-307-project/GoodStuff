@@ -1,5 +1,4 @@
 import Container from "@material-ui/core/Container";
-//import { blue } from "@mui/material/colors";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
@@ -10,24 +9,6 @@ export default function Footer() {
       <Box sx={{ flexGrow: 1 }} bgcolor="#1565c0" color="white">
         <Container maxWidth="lg">
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Help</Box>
-              <Box>
-                <Link href="/" color="inherit">
-                  Contact
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/" color="inherit">
-                  Support
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/" color="inherit">
-                  Privacy
-                </Link>
-              </Box>
-            </Grid>
             <Grid item xs={12} sm={4}>
               <Box borderBottom={1}>Account</Box>
               <Box>
@@ -41,7 +22,7 @@ export default function Footer() {
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="inherit">
+                <Link href="/profile" color="inherit">
                   Profile
                 </Link>
               </Box>
@@ -61,6 +42,24 @@ export default function Footer() {
               <Box>
                 <Link href="/" color="inherit">
                   Roll
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1}>Help</Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Contact
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Support
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Home
                 </Link>
               </Box>
             </Grid>

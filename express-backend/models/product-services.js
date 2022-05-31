@@ -16,13 +16,13 @@ mongoose
       "/" +
       process.env.MONGO_DB +
       "?retryWrites=true&w=majority",
-    // "mongodb://localhost:27017/users",
     {
       useNewUrlParser: true, //useFindAndModify: false,
       useUnifiedTopology: true,
     }
   )
   .catch((error) => console.log(error));
+
 
 async function getProducts(){ 
   const product_list = await productModel.find();
@@ -49,7 +49,7 @@ async function getUsers(name, job) {
   return result;
 }
 
-async function findUserById(id) {
+async function findProductById(id) {
   try {
     return await productModel.findById(id);
   } catch (error) {
@@ -58,9 +58,18 @@ async function findUserById(id) {
   }
 }
 
-async function findProductsByTags(tags) {
+async function archiveProduct(productId) {
   try {
-    return await productModel.find({ tags: { $all: tags } } )
+    return await productModel.updateOne({ _id: productId }, { "$set": { "archived": true }});
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
+async function findProductsByTags(tags, archivedStatus) {
+  try {
+    return await productModel.find({ tags: { $all: tags }, archived: archivedStatus })
   } catch (error) {
     console.log(error);
     return undefined;
@@ -94,7 +103,7 @@ async function findUserByNameAndJob(name, job) {
 }
 
 exports.getUsers = getUsers;
-exports.findUserById = findUserById;
+exports.findProductById = findProductById;
 exports.addItem = addItem;
 exports.deleteUser = deleteUser;
 exports.findProductsByTags = findProductsByTags;
