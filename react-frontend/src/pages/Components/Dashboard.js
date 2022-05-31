@@ -55,7 +55,14 @@ export default function Dashboard() {
       {
         cloudName: "dicchtih6",
         uploadPreset: "lehelgx4",
-        sources: ["image_search", "local", "url", "facebook", "dropbox", "instagram"],
+        sources: [
+          "image_search",
+          "local",
+          "url",
+          "facebook",
+          "dropbox",
+          "instagram",
+        ],
         showAdvancedOptions: true,
         googleApiKey: "AIzaSyCXnnhvZyEhrzGcjQ8TMtJRMskUFCpfjNE",
         cropping: true,
@@ -72,7 +79,7 @@ export default function Dashboard() {
           // console.log(Cookies.get('user_id'));
           // console.log(info.info.path);
           handle_avatar(Cookies.get("user_id"), info.info.path);
-          window.location = "/profile"; 
+          window.location = "/profile";
           // const res = await axios.patch("http://localhost:5001/profile", {
           //   "user_id": Cookies.get('user_id'),
           //   "avatar_url": info.info.path

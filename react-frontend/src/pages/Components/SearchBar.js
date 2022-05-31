@@ -8,8 +8,7 @@ export default function Search() {
     <React.Fragment>
       <CssBaseline />
       <Container sx={{ flexGrow: 1 }}>
-        <Paper variant="outlined" sx={{ width: 1 }}>
-        </Paper>
+        <Paper variant="outlined" sx={{ width: 1 }}></Paper>
       </Container>
     </React.Fragment>
   );

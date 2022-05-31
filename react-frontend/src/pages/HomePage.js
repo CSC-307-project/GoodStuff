@@ -14,17 +14,17 @@ const HomePage = () => {
 
   const searchByKey = (searchKey) => {
     setSearchMode(true);
-    if (searchKey === null){ 
-      setSearchMode(false); 
-    }else{
-      searchKey = searchKey.trim();  
+    if (searchKey === null) {
+      setSearchMode(false);
+    } else {
+      searchKey = searchKey.trim();
     }
     const filteredProducts = product_list.filter((product) => {
-      const tags = product.tags; 
-      let index = -1; 
-      if (searchKey !== null){
-          index = tags.findIndex(element =>{ 
-          return element.toLowerCase() === searchKey.toLowerCase(); 
+      const tags = product.tags;
+      let index = -1;
+      if (searchKey !== null) {
+        index = tags.findIndex((element) => {
+          return element.toLowerCase() === searchKey.toLowerCase();
         });
       }
       return product.title.toLowerCase().includes(searchKey) || index !== -1;
@@ -41,7 +41,7 @@ const HomePage = () => {
           setProductList(data_list);
         })
         .catch((res) => {
-          console.error(res); 
+          console.error(res);
         });
     }
     getProductsList();
@@ -49,15 +49,14 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <Header/>
+      <Header />
       <SearchBar />
       <ProductHero searchByKey={searchByKey} />
       {searchField !== [] && searchMode ? (
         <Imglist product_list={searchField} />
-      ) : ( 
-        <Imglist product_list={product_list}/>
-      )
-      }
+      ) : (
+        <Imglist product_list={product_list} />
+      )}
       <Footer />
     </React.Fragment>
   );

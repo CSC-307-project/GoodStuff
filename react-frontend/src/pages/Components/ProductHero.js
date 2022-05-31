@@ -7,11 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Cookies from "js-cookie";
 import SearchBar from "material-ui-search-bar";
 
-
-
 export default function ProductHero(props) {
-
-
   return (
     <ProductHeroLayout
       sxBackground={{
@@ -56,8 +52,8 @@ export default function ProductHero(props) {
           onChange={(newValue) => {
             props.searchByKey(newValue);
           }}
-          onCancelSearch={()=>{
-            props.searchByKey(null); 
+          onCancelSearch={() => {
+            props.searchByKey(null);
           }}
           style={{
             margin: "0 auto",
