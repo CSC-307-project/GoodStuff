@@ -7,67 +7,10 @@ import Cookies from "js-cookie";
 import Button from "@mui/material/Button";
 import ProductCategories from "./Components/ProductCategories";
 
-//sample data
-// const products = [
-//   {
-//     _id: "1",
-//     name: "Bike",
-//     image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-//     description: "",
-//     price: 89,
-//     countInStock: 3,
-//   },
-//   {
-//     _id: "2",
-//     name: "Bike",
-//     image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-//     description: "",
-//     price: 599,
-//     countInStock: 10,
-//     rating: 2,
-//     numReviews: 2,
-//   },
-//   {
-//     _id: "3",
-//     name: "Bike",
-//     image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-//     description: "",
-//     price: 929,
-//     countInStock: 0,
-//   },
-//   {
-//     _id: "4",
-//     name: "Bike",
-//     image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-//     description: "",
-//     price: 399,
-//     countInStock: 10,
-//   },
-//   {
-//     _id: "5",
-//     name: "Bike",
-//     image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-//     description: "",
-//     price: 49,
-//     countInStock: 7,
-//   },
-//   {
-//     _id: "6",
-//     name: "Bike",
-//     image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-//     description: "",
-//     price: 29,
-//     countInStock: 0,
-//   },
-// ];
-
 const ShopSection = () => {
   const [product_list, setProductList] = useState([]);
   let navigate = useNavigate();
   const user_id = Cookies.get("user_id");
-  const [search, setSearch] = useState({
-    searchStr: "",
-  });
   useEffect(() => {
     async function getProductsList() {
       await axios
@@ -77,7 +20,7 @@ const ShopSection = () => {
           setProductList(data_list);
           console.log("Product Data received");
         })
-        .catch((res) => {
+        .catch(() => {
           console.log("Not receiving data");
         });
     }
@@ -139,7 +82,6 @@ const ShopSection = () => {
         </div>
       </div>
 
-      {/*  sample */}
       <nav>
         <ul className="pagination justify-content-center">
           <li className={`page-item active`}>

@@ -1,4 +1,3 @@
-//import { textAlign } from "@mui/system";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -8,25 +7,10 @@ import { Container } from "@mui/material";
 
 import Cookies from "js-cookie";
 
-const styles = {
-  color: "blue",
-  //background: "#0f0",
-  fontSize: "39px",
-  textAlign: "center",
-};
-// const styles = {
-//   color: "blue",
-//   //background: "#0f0",
-//   fontSize: "39px",
-//   textAlign: "center",
-// };
-
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
-  //window.scrollTo(0, 0);
 
   function handleChange(event) {
-    //console.log(person);
     const { name, value } = event.target;
     if (name === "password")
       setPerson({
@@ -68,7 +52,6 @@ const Login = (props) => {
   async function fetchAll() {
     try {
       const response = await axios.get("http://localhost:5001/users");
-      // console.log(response.data.users_list);
       return response.data.users_list;
     } catch (error) {
       console.log(error);

@@ -46,7 +46,6 @@ export default function ProductHero(props) {
           </Button>
         )}
       </Grid>
-      {/*Home Page Search Bar */}
       {Cookies.get("user_id") != null && (
         <SearchBar
           onChange={(newValue) => {

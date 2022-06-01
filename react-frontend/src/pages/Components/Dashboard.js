@@ -34,8 +34,6 @@ const ExpandMore = styled((props) => {
 }));
 
 const handle_avatar = async (user_id, avatar_url) => {
-  // console.log(user_id);
-  // console.log(avatar_url);
   const res = await axios
     .patch("http://localhost:5001/profile", {
       user_id: user_id,
@@ -73,17 +71,8 @@ export default function Dashboard() {
       },
       (err, info) => {
         if (info.event === "success") {
-          //   setDelToken(info.info.delete_token);
-          //   setPath(info.info.path);
-          //   setFileName(info.info.original_filename);
-          // console.log(Cookies.get('user_id'));
-          // console.log(info.info.path);
           handle_avatar(Cookies.get("user_id"), info.info.path);
           window.location = "/profile";
-          // const res = await axios.patch("http://localhost:5001/profile", {
-          //   "user_id": Cookies.get('user_id'),
-          //   "avatar_url": info.info.path
-          // });
         }
       }
     );
@@ -93,7 +82,6 @@ export default function Dashboard() {
   const [user, setUser] = useState("");
   useEffect(() => {
     async function fetchData() {
-      // You can await here
       const avatar = await axios.get("http://localhost:5001/avatar", {
         params: { user_id: user_id },
       });

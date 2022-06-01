@@ -30,7 +30,7 @@ export default function ProductPage() {
           itemId: product_id,
           buyerId: buyer_id,
         })
-        .then((res) => {
+        .then(() => {
           window.location = "/profile";
         })
         .catch((err) => {
@@ -160,14 +160,3 @@ export default function ProductPage() {
     </React.Fragment>
   );
 }
-
-/* <FullscreenControl position="top-left" />
-      <ScaleControl />
-      <Marker
-        longitude={location.state.product_info.cordinates[0]}
-        latitude={location.state.product_info.cordinates[1]}
-        anchor="bottom"
-        offsetTop={-600}
-        offsetLeft={-400 / 2}
-      ></Marker> 
-*/
