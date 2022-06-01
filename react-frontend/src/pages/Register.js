@@ -78,7 +78,9 @@ const Register = (props) => {
           alignItems: "center",
         }}
       >
+        <Link to="/">
         <img src={logo} alt="logo" width="180" height="180" />
+        </Link>
       </Container>
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">
         <form className="Login col-md-8 col-lg-4 col-11" onSubmit={register}>
