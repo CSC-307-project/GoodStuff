@@ -79,7 +79,7 @@ const Register = (props) => {
         }}
       >
         <Link to="/">
-        <img src={logo} alt="logo" width="180" height="180" />
+          <img src={logo} alt="logo" width="180" height="180" />
         </Link>
       </Container>
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">
