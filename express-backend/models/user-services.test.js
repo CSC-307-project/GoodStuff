@@ -91,8 +91,8 @@ test('Testing addUser with "" required field { email: "", ...} -- failed', () =>
 test('Testing addUser with "" required field { password: "", ...} -- failed', () => {
   const passwordEmpty = {
     username: "jestTestMistake",
-    email: "",
-    password: "qwerty",
+    email: "jestTestMistake@calpoly.edu",
+    password: "",
   };
 
   return userServices
@@ -265,7 +265,7 @@ test("Testing getUser with no email and no password -- failure", async () => {
 });
 
 // testing findUserByEmail with good email
-test("Testing findUserByEmail with good email -- success", async () => {
+test("Testing findUsearByEmail with good email -- success", async () => {
   const validUser = await userServices.findUserByEmail(testUserData.email);
   expect(validUser).toMatchObject(actualTestUserData);
 });

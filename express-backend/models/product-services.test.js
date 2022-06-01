@@ -291,7 +291,7 @@ test('Testing addItem with "" required field { decription: "", ...} -- failed', 
 
 // create product with defined fields but with empty required field should failed
 test('Testing addItem with "" required field { image: "", ...} -- failed', () => {
-  const priceEmpty = {
+  const imageEmpty = {
     sellerId: "none",
     title: "CD ROM",
     price: 1234.56,
@@ -315,7 +315,7 @@ test('Testing addItem with "" required field { image: "", ...} -- failed', () =>
   };
 
   return productServices
-    .addItem(priceEmpty)
+    .addItem(imageEmpty)
     .catch((e) => expect(e).toBeInstanceOf(mongoose.Error.ValidationError));
 });
 

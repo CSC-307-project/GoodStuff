@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1654035334336" clover="3.2.0">
-  <project timestamp="1654035334336" name="All files">
+<coverage generated="1654053042061" clover="3.2.0">
+  <project timestamp="1654053042061" name="All files">
     <metrics statements="80" coveredstatements="78" conditionals="10" coveredconditionals="10" methods="21" coveredmethods="19" elements="111" coveredelements="107" complexity="0" loc="80" ncloc="80" packages="1" files="4" classes="4"/>
     <file name="product-services.js" path="/Users/hanktsai/Documents/CPE307_Group/GoodStuff/express-backend/models/product-services.js">
       <metrics statements="29" coveredstatements="28" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="6"/>
@@ -84,12 +84,12 @@
       <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
-      <line num="4" count="10" type="stmt"/>
-      <line num="5" count="10" type="stmt"/>
+      <line num="4" count="11" type="stmt"/>
+      <line num="5" count="11" type="stmt"/>
       <line num="8" count="1" type="stmt"/>
       <line num="17" count="10" type="cond" truecount="2" falsecount="0"/>
       <line num="18" count="1" type="stmt"/>
-      <line num="38" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="38" count="11" type="cond" truecount="2" falsecount="0"/>
       <line num="39" count="1" type="stmt"/>
       <line num="65" count="1" type="stmt"/>
       <line num="67" count="1" type="stmt"/>
