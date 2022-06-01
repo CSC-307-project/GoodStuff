@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Button from "@mui/material/Button";
-import { div } from "../../node_modules/gl-matrix/esm/vec2";
 import ProductCategories from "./Components/ProductCategories";
 
 //sample data
