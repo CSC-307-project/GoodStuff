@@ -3,32 +3,13 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./MyApp.css";
 import "./responsive.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import PostItem from "./pages/PostItem";
 import Profile from "./pages/Components/Profile";
 import Product from "./pages/ProductPage";
-
-// const characters = [
-//   {
-//     name: "Charlie",
-//     job: "Janitor",
-//   },
-//   {
-//     name: "Mac",
-//     job: "Bouncer",
-//   },
-//   {
-//     name: "Dee",
-//     job: "Aspring actress",
-//   },
-//   {
-//     name: "Dennis",
-//     job: "Bartender",
-//   },
-// ];
 import SearchResult from "./pages/SearchResult";
 
 function MyApp() {
@@ -76,47 +57,32 @@ function MyApp() {
     });
   }
 
-  // async function makeDeleteCall(user_id) {
-  //   try {
-  //     console.log(user_id);
-  //     //const response = await axios.delete("http://localhost:5001/users", {id: user_id});
-  //     //prompt 4
-  //     const response = await axios.delete(
-  //       `http://localhost:5001/users/${user_id}`
-  //     );
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return false;
-  //   }
-  // }
-
-  // function removeOneCharacter(index) {
-  //   //console.log(characters[index].id)
-  //   makeDeleteCall(characters[index]._id).then((result) => {});
-  //   const updated = characters.filter((character, i) => {
-  //     return i !== index;
-  //   });
-  //   setCharacters(updated);
-  // }
+  //   const Go_Back_Button = React.createClass({
+  //     render: () => {
+  //         return (
+  //             <div><button onClick={History.goBack}>Go Back</button></div>
+  //         );
+  //     }
+  // });
 
   return (
-    <div className="container">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login verify={verifyAccount} />} />
-          <Route
-            path="/register"
-            element={<Register handleSubmit={updateList} />}
-          />
-          <Route path="/post" element={<PostItem />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/searchresult" element={<SearchResult />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    // <div className="container">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+
+        <Route path="/login" element={<Login verify={verifyAccount} />} />
+        <Route
+          path="/register"
+          element={<Register handleSubmit={updateList} />}
+        />
+        <Route path="/post" element={<PostItem />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/searchresult" element={<SearchResult />} />
+      </Routes>
+    </BrowserRouter>
+    // </div>
   );
 }
 

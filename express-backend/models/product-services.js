@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const productModel = require("./product");
 const dotenv = require("dotenv");
-mongoose.set("debug", true);
+//mongoose.set("debug", true);
 
 dotenv.config();
 
@@ -16,7 +16,6 @@ mongoose
       "/" +
       process.env.MONGO_DB +
       "?retryWrites=true&w=majority",
-    // "mongodb://localhost:27017/users",
     {
       useNewUrlParser: true, //useFindAndModify: false,
       useUnifiedTopology: true,
@@ -24,47 +23,49 @@ mongoose
   )
   .catch((error) => console.log(error));
 
-async function getProducts(){ 
-  const product_list = await productModel.find();
-  return product_list;
-  // if (product_list === undefined || product_list === null){ 
-  //   return undefined; 
-  // }else{ 
-  //   return product_list;  
-  // }
-}  
+// ** use findProductsByTags ***
+// async function getProducts() {
+//   const product_list = await productModel.find();
+//   return product_list;
+// }
 
-
-async function getUsers(name, job) {
-  let result;
-  if (name === undefined && job === undefined) {
-    result = await productModel.find();
-  } else if (name && !job) {
-    result = await findUserByName(name);
-  } else if (job && !name) {
-    result = await findUserByJob(job);
-  } else if (job && name) {
-    result = await findUserByNameAndJob(name, job);
-  }
-  return result;
-}
-
-async function findUserById(id) {
+async function findProductById(id) {
   try {
     return await productModel.findById(id);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     return undefined;
   }
 }
 
-async function findProductsByTags(tags) {
+async function findProductList(list) {
+  product_list = [];
+  for (let i = 0; i < list.length; i++) {
+    let item = await findProductById(list[i]);
+    if (item !== undefined) {
+      product_list.push(item);
+    }
+  }
+  return product_list;
+}
+
+async function archiveProduct(productId) {
   try {
-    return await productModel.find({ tags: { $all: tags } } )
+    return await productModel.updateOne(
+      { _id: productId },
+      { $set: { archived: true } }
+    );
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     return undefined;
   }
+}
+
+async function findProductsByTags(tags, archivedStatus) {
+  return await productModel.find({
+    tags: { $all: tags },
+    archived: archivedStatus,
+  });
 }
 
 async function addItem(item) {
@@ -72,30 +73,14 @@ async function addItem(item) {
   const savedItem = await itemToAdd.save();
   return savedItem;
 }
-async function deleteUser(id) {
-  try {
-    return await productModel.findByIdAndDelete(id);
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
+
+async function deleteProducts(ids) {
+  return await productModel.deleteMany({ _id: { $in: ids } });
 }
 
-async function findUserByName(name) {
-  return await productModel.find({ name: name });
-}
-
-async function findUserByJob(job) {
-  return await productModel.find({ job: job });
-}
-
-async function findUserByNameAndJob(name, job) {
-  return await productModel.find({ name: name, job: job });
-}
-
-exports.getUsers = getUsers;
-exports.findUserById = findUserById;
+exports.findProductById = findProductById;
 exports.addItem = addItem;
-exports.deleteUser = deleteUser;
+exports.deleteProducts = deleteProducts;
 exports.findProductsByTags = findProductsByTags;
-exports.getProducts = getProducts; 
+exports.archiveProduct = archiveProduct;
+exports.findProductList = findProductList;

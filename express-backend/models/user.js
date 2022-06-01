@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//var ObjectId = require("mongodb").ObjectId;
 
 var validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -15,7 +14,7 @@ const UserSchema = new mongoose.Schema(
       unique: "Username already exist",
       required: "Username is required",
       validate(value) {
-        if (value.length < 1)
+        if (value.length < 2)
           throw new Error("Invalid username, must be at least 1 character.");
       },
     },
@@ -45,12 +44,14 @@ const UserSchema = new mongoose.Schema(
       {
         type: String,
         trim: true,
+        default: [],
       },
     ],
     purchaseId: [
       {
         type: String,
         trim: true,
+        default: [],
       },
     ],
     avatar: {

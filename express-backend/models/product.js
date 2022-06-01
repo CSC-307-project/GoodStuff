@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//var ObjectId = require("mongodb").ObjectId;
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -7,6 +6,11 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: "No user is login",
       trim: true,
+    },
+    archived: {
+      type: Boolean,
+      required: "Status is required",
+      default: false,
     },
     title: {
       type: String,
@@ -23,6 +27,13 @@ const ProductSchema = new mongoose.Schema(
       required: "Address is required",
       trim: true,
     },
+    cordinates: [
+      {
+        type: Number,
+        required: "Cordinates are required",
+        trim: true,
+      },
+    ],
     description: {
       type: String,
       required: "Description is required",
@@ -37,6 +48,7 @@ const ProductSchema = new mongoose.Schema(
       {
         type: String,
         trim: true,
+        default: [""],
       },
     ],
   },

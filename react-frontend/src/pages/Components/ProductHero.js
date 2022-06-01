@@ -1,23 +1,23 @@
-import * as React from 'react';
-import Button from '../CustomMUI/Button';
-import Typography from '../CustomMUI/Typography';
-import ProductHeroLayout from './ProductHeroLayout';
-import backgroundImage from '../../img/main.jpeg';
+import * as React from "react";
+import Button from "../CustomMUI/Button";
+import Typography from "../CustomMUI/Typography";
+import ProductHeroLayout from "./ProductHeroLayout";
+import backgroundImage from "../../img/main.jpeg";
 import Grid from "@material-ui/core/Grid";
 import Cookies from "js-cookie";
 import SearchBar from "material-ui-search-bar";
 
-export default function ProductHero() {
+export default function ProductHero(props) {
   return (
     <ProductHeroLayout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: '#7fc7d9', // Average color of the background image.
-        backgroundPosition: 'center',
+        backgroundColor: "#7fc7d9", // Average color of the background image.
+        backgroundPosition: "center",
       }}
     >
       <img
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         src={backgroundImage}
         alt="increase priority"
       />
@@ -33,33 +33,51 @@ export default function ProductHero() {
         Enjoy the best deal of GoodStuff here.
       </Typography>
       <Grid container justify="center">
-        {Cookies.get("user_id") == null &&
+        {Cookies.get("user_id") == null && (
+          <Button
+            color="secondary"
+            variant="contained"
+            size="large"
+            component="a"
+            href="../Register"
+            sx={{ minWidth: 200 }}
+          >
+            Register
+          </Button>
+        )}
+      </Grid>
+      {/*Home Page Search Bar */}
+      {Cookies.get("user_id") != null && (
+        <SearchBar
+          onChange={(newValue) => {
+            props.searchByKey(newValue);
+          }}
+          onCancelSearch={() => {
+            props.searchByKey(null);
+          }}
+          style={{
+            margin: "0 auto",
+            minWidth: 500,
+          }}
+        />
+      )}
+
+      <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
+        Discover the experience
+      </Typography>
+
+      {Cookies.get("user_id") != null && (
         <Button
           color="secondary"
           variant="contained"
           size="large"
           component="a"
-          href='../Register'
-          sx={{ minWidth: 200 }}
+          href="../post"
+          sx={{ minWidth: 200, mt: 5 }}
         >
-          Register
-        </Button>}
-      </Grid>
-
-      {Cookies.get("user_id") != null && 
-        <SearchBar
-        onChange={() => console.log("onChange")}
-        onRequestSearch={() => console.log("onRequestSearch")}
-        style={{
-          margin: "0 auto",
-          maxWidth: 1600,
-          minWidth: 500
-        }}
-      />}
-
-      <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-        Discover the experience
-      </Typography>
+          Post Item
+        </Button>
+      )}
     </ProductHeroLayout>
   );
 }

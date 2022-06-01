@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import logo from "../img/logo.png"
+import logo from "../img/logo.png";
 import { Container } from "@mui/material";
 
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const styles = {
   color: "blue",
@@ -23,7 +23,7 @@ const styles = {
 
 const Login = (props) => {
   const [errorLogin, setErrorLogin] = useState(null);
-  window.scrollTo(0, 0);
+  //window.scrollTo(0, 0);
 
   function handleChange(event) {
     //console.log(person);
@@ -42,31 +42,14 @@ const Login = (props) => {
       });
   }
 
-  // function handleEntailmentRequest(e) {
-  //   e.preventDefault();
-
-  // }
-
   const [person, setPerson] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  // async function login(){
-  //   //console.log(person);
-  //   const response = await axios.post("http://localhost:5001/login", { person });
-  //   console.log(response);
-  //   // const result = props.verify(person);
-  //   // setPerson({ email: "", password: "", username: "" });
-  //   // console.log(result);
-  // }
   const login = async (e) => {
     e.preventDefault();
-    //console.log(person);
-    //const result = props.verify(person);
-    //setPerson({ email: "", password: "", username: "" });
-    //console.log(result);
 
     await axios
       .post("http://localhost:5001/login", {
@@ -80,10 +63,6 @@ const Login = (props) => {
       .catch((err) => {
         setErrorLogin(err.response.data.message);
       });
-
-    // const result = props.verify(person);
-    // setPerson({ email: "", password: "", username: "" });
-    // console.log(result);
   };
 
   async function fetchAll() {
@@ -104,20 +83,15 @@ const Login = (props) => {
     <>
       <div>
         <Container
-        sx={{
-          mt: 3,
-          mb: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <img
-          src= {logo}
-          alt="logo"
-          width="180"
-          height="180"
-        />
+          sx={{
+            mt: 3,
+            mb: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img src={logo} alt="logo" width="180" height="180" />
         </Container>
         <span className="container d-flex flex-column justify-content-center align-items-center login-center">
           <form className="Login col-md-8 col-lg-4 col-11" onSubmit={login}>

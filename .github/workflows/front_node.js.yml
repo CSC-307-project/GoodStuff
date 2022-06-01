@@ -5,9 +5,9 @@ name: Frontend Node.js CI
 
 on:
   push:
-    branches: [Hank_work_branch, with-subfolder]
+    branches: [frontend-backend, with-subfolder]
   pull_request:
-    branches: [Hank_work_branch, with-subfolder]
+    branches: [frontend-backend, with-subfolder]
 
 defaults:
   run:
@@ -32,7 +32,7 @@ jobs:
           cache-dependency-path: "react-frontend/package-lock.json"
       - run: npm ci
       - run: npm run build --if-present
-      #- run: npm test
+      - run: npm test
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}

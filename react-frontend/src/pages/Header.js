@@ -12,7 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 //import { Button } from "react-bootstrap";
 //import * as ReactDOM from "react-dom";
 import ImageAvatars from "./avatar";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 import ImageAvatars from "./Components/ImageAvatars";
 
