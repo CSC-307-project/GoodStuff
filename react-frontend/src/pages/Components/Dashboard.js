@@ -18,10 +18,6 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const overlay = {
-  position: "absolute",
-  backgroundColor: "linen",
-};
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -34,7 +30,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const handle_avatar = async (user_id, avatar_url) => {
-  const res = await axios
+  await axios
     .patch("http://localhost:5001/profile", {
       user_id: user_id,
       avatar_url: avatar_url,
