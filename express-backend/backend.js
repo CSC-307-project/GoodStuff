@@ -66,9 +66,13 @@ app.get("/username", async (req, res) => {
 app.get("/sellbuy", async (req, res) => {
   const user_id = req.query.user_id;
   let user = await userServices.findUserById(user_id);
-  const listing_items = await productServices.findProductList(user.listingId);
-  const buying_items = await productServices.findProductList(user.purchaseId);
-  res.status(201).send({ data: { sell: listing_items, buy: buying_items } });
+  if (user !== null) {
+    const listing_items = await productServices.findProductList(user.listingId);
+    const buying_items = await productServices.findProductList(user.purchaseId);
+    res.status(201).send({ data: { sell: listing_items, buy: buying_items } });
+  } else {
+    res.status(201).send({ data: { sell: [], buy: [] } });
+  }
 });
 
 // app.get("/listings", async(req, res) =>{

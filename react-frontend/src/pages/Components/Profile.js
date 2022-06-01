@@ -2,6 +2,7 @@ import React from "react";
 import Dashboard from "./Dashboard";
 import Listings from "./Listings";
 import Purchasings from "./Purchasings";
+import Sellings from "./Sellings";
 import Button from "@mui/material/Button";
 
 import axios from "axios";
@@ -21,6 +22,7 @@ const myStyle = {
 const Profile = () => {
   const [user_listings, setUserListings] = useState([]);
   const [user_purchasings, setUserPurchasings] = useState([]);
+  const [userSoldListings, setUserSoldListings] = useState([]);
 
   let user_id = Cookies.get("user_id");
   useEffect(() => {
@@ -31,8 +33,13 @@ const Profile = () => {
         })
         .then((response) => {
           console.log(response.data);
-          setUserListings(response.data.data.sell);
+          setUserListings(
+            response.data.data.sell.filter((obj) => obj.archived === false)
+          );
           setUserPurchasings(response.data.data.buy);
+          setUserSoldListings(
+            response.data.data.sell.filter((obj) => obj.archived === true)
+          );
         })
         .catch((res) => {
           console.error(res);
@@ -59,6 +66,7 @@ const Profile = () => {
       </div>
       <Dashboard />
       <Listings sell={user_listings} />
+      <Sellings sell={userSoldListings} />
       <Purchasings buy={user_purchasings} />
     </div>
   );

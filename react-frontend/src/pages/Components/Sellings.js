@@ -26,11 +26,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiImageListItem: {
+      styleOverrides: {},
+    },
   },
 });
 
 function commonTags(objs) {
-  objs = objs.buy;
+  objs = objs.sell;
   if (objs === undefined || objs === null) {
     return "none";
   }
@@ -62,17 +65,17 @@ function topKFrequent(nums, k) {
     .map((x) => x.key);
 }
 
-export default function Listings(props) {
+export default function Sellings(props) {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ background: "#483d8b" }}>
+        <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar variant="dense">
             <Typography variant="h6" color="inherit" component="div">
-              MY PURCHASES, Quantity:{" "}
-              {props.buy !== undefined ? props.buy.length : 0}; Spent: $
-              {props.buy !== undefined
-                ? props.buy.reduce((total, obj) => obj.price + total, 0)
+              MY SOLD LISTINGS, Quantity:{" "}
+              {props.sell !== undefined ? props.sell.length : 0}; Profits: $
+              {props.sell !== undefined
+                ? props.sell.reduce((total, obj) => obj.price + total, 0)
                 : 0}
               ; Common Tags: {commonTags(props)}
             </Typography>
@@ -81,8 +84,8 @@ export default function Listings(props) {
       </Box>
 
       <ImageList sx={{ flexGrow: 1 }} cols={5}>
-        {props.buy !== undefined
-          ? props.buy.map((item) => (
+        {props.sell !== undefined
+          ? props.sell.map((item) => (
               <ImageListItem key={item._id}>
                 <img
                   src={`${item.image}?w=248&fit=crop&auto=format`}
@@ -93,7 +96,7 @@ export default function Listings(props) {
                 <ImageListItemBar
                   sx={{ fontWeight: "bold" }}
                   title={item.title}
-                  subtitle={<span>Bought for: {"$" + item.price}</span>}
+                  subtitle={<span>My Price: {"$" + item.price}</span>}
                   position="below"
                 />
               </ImageListItem>

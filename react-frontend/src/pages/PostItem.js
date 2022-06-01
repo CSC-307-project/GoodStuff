@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import useInput from "./Components/AddressAutocomplete/useInput";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
+import { borderLeft } from "@mui/system";
 
 const styles = {
   color: "blue",
@@ -220,15 +221,13 @@ const Register = (props) => {
             <div classname="list-container">
               {tags.map((item, index) => (
                 <div key={index}>
-                  <div>
-                    <input
-                      name={item}
-                      value={item}
-                      type="checkbox"
-                      onChange={handleCheck}
-                    />
-                    <span>{item}</span>
-                  </div>
+                  <input
+                    name={item}
+                    value={item}
+                    type="checkbox"
+                    onChange={handleCheck}
+                  />
+                  <label>{item}</label>
                 </div>
               ))}
             </div>
@@ -274,6 +273,7 @@ const SuggestionWrapper = styled.div`
   width: 400px;
   padding: 10px 20px;
   border-radius: 0px 0px 10px 10px;
+  z-index: 9999;
 `;
 
 const Suggestion = styled.p`

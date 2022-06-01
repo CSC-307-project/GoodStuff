@@ -9,6 +9,8 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+const commonTagSize = 3;
+
 const theme = createTheme({
   components: {
     // Name of the component
@@ -30,6 +32,39 @@ const theme = createTheme({
   },
 });
 
+function commonTags(objs) {
+  objs = objs.sell;
+  if (objs === undefined || objs === null) {
+    return "none";
+  }
+  let tags = [];
+  for (let i = 0; i < objs.length; i++) {
+    tags = tags.concat(objs[i].tags);
+    const address = objs[i].address.replace(/[0-9]/g, "").split(/[, ]+/);
+    tags = tags.filter((x) => !address.includes(x));
+  }
+  tags = tags.filter((x) => x !== "");
+  return topKFrequent(tags, commonTagSize).join(", ");
+}
+
+function topKFrequent(nums, k) {
+  let a = new Map();
+  let b = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    a.set(nums[i], (a.get(nums[i]) || 0) + 1);
+  }
+
+  for (let [key, value] of a.entries()) {
+    b.push({ key: key, value: value });
+  }
+
+  return b
+    .sort((a, b) => (a.value < b.value ? 1 : -1))
+    .slice(0, k)
+    .map((x) => x.key);
+}
+
 export default function Listings(props) {
   return (
     <ThemeProvider theme={theme}>
@@ -37,29 +72,36 @@ export default function Listings(props) {
         <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar variant="dense">
             <Typography variant="h6" color="inherit" component="div">
-              MY LISTINGS
+              MY LISTINGS, Quantity:{" "}
+              {props.sell !== undefined ? props.sell.length : 0}; Value: $
+              {props.sell !== undefined
+                ? props.sell.reduce((total, obj) => obj.price + total, 0)
+                : 0}
+              ; Common Tags: {commonTags(props)}
             </Typography>
           </Toolbar>
         </AppBar>
       </Box>
 
       <ImageList sx={{ flexGrow: 1 }} cols={5}>
-        {props.sell.map((item) => (
-          <ImageListItem key={item._id}>
-            <img
-              src={`${item.image}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-            />
-            <ImageListItemBar
-              sx={{ fontWeight: "bold" }}
-              title={item.title}
-              subtitle={<span>My Price: {"$" + item.price}</span>}
-              position="below"
-            />
-          </ImageListItem>
-        ))}
+        {props.sell !== undefined
+          ? props.sell.map((item) => (
+              <ImageListItem key={item._id}>
+                <img
+                  src={`${item.image}?w=248&fit=crop&auto=format`}
+                  srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                  alt={item.title}
+                  loading="lazy"
+                />
+                <ImageListItemBar
+                  sx={{ fontWeight: "bold" }}
+                  title={item.title}
+                  subtitle={<span>My Price: {"$" + item.price}</span>}
+                  position="below"
+                />
+              </ImageListItem>
+            ))
+          : undefined}
       </ImageList>
     </ThemeProvider>
   );
