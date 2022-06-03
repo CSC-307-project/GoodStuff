@@ -30,3 +30,5 @@ Cloud: Using Heroku
 1. ...
 
 Diagrams: See wiki page on GitHub
+- Class Diagram: https://app.diagrams.net/#G1ONzdCxo_0LS9jnZZODIH8YIhjYo0QgWZ
+- Use Case Diagram: https://app.diagrams.net/#G13fXe-aO3icCvGC0dkMuMD7pQ33KJlVwP
