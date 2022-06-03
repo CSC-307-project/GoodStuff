@@ -26,8 +26,10 @@ Locally:
 3. Ensure that 'npm install' is ran, to install dependencies
 4. On frontend, run 'npm start'
 5. On backend, run 'npx nodemon backend.js'
+
 Cloud: Using Heroku
-1. ...
+- Frontend: csc307-frontend-propeller.herokuapp.com
+- Backend: csc307-backend-propeller.herokuapp.com
 
 Diagrams: See wiki page on GitHub
 - Class Diagram: https://app.diagrams.net/#G1ONzdCxo_0LS9jnZZODIH8YIhjYo0QgWZ
