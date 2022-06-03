@@ -30,21 +30,20 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+// const SearchIconWrapper = styled("div")(({ theme }) => ({
+//   padding: theme.spacing(0, 2),
+//   height: "100%",
+//   position: "absolute",
+//   pointerEvents: "none",
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center",
+// }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -58,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar(props) {
-  const [header, setHeader] = useState("");
+  // const [header, setHeader] = useState("");
   const [login, setLogin] = useState(true);
   const [search, setSearch] = useState("");
 
@@ -103,7 +102,7 @@ export default function SearchAppBar(props) {
               color="inherit"
               onClick={() => {
                 Cookies.remove("user_id");
-                setHeader("");
+                // setHeader("");
                 setLogin(false);
                 this.forceUpdate();
               }}
@@ -117,7 +116,7 @@ export default function SearchAppBar(props) {
               onChange={(event) => {
                 setSearch(event.target.value);
                 console.log(search);
-                if (event.target.value.length == 1) {
+                if (event.target.value.length === 1) {
                   props.searchByTag("");
                 }
               }}

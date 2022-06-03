@@ -24,19 +24,19 @@ export default function ProductPage() {
   const location = useLocation();
   const userId = Cookies.get("user_id");
   const handlePurchase = async () => {
-    if (location.state.product_info.sellerId != userId) {
+    if (location.state.product_info.sellerId !== userId) {
       await axios
         .post("http://localhost:5001/purchaseitem", {
           itemId: product_id,
           buyerId: buyer_id,
         })
-        .then((res) => {
+        .then(() => {
           window.location = "/profile";
         })
         .catch((err) => {
           console.log(err);
         });
-    } else if (location.state.product_info.sellerId == userId) {
+    } else if (location.state.product_info.sellerId === userId) {
       alert("This is your own Listing");
     }
   };
@@ -160,14 +160,3 @@ export default function ProductPage() {
     </React.Fragment>
   );
 }
-
-/* <FullscreenControl position="top-left" />
-      <ScaleControl />
-      <Marker
-        longitude={location.state.product_info.cordinates[0]}
-        latitude={location.state.product_info.cordinates[1]}
-        anchor="bottom"
-        offsetTop={-600}
-        offsetLeft={-400 / 2}
-      ></Marker> 
-*/

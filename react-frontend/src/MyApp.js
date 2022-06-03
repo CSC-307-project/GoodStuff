@@ -23,21 +23,13 @@ function MyApp() {
           password: person.password,
         },
       });
-      //prompt 3
       console.log(response.data.users_list);
       return response.data.users_list;
     } catch (error) {
-      //We're not handling errors. Just logging into the console.
       console.log(error);
       return false;
     }
   }
-
-  // useEffect(() => {
-  //   fetchAll().then((result) => {
-  //     if (result) setCharacters(result);
-  //   });
-  // }, []);
 
   async function makePostCall(person) {
     try {
@@ -56,14 +48,6 @@ function MyApp() {
         setCharacters([...characters, result.data]);
     });
   }
-
-  //   const Go_Back_Button = React.createClass({
-  //     render: () => {
-  //         return (
-  //             <div><button onClick={History.goBack}>Go Back</button></div>
-  //         );
-  //     }
-  // });
 
   return (
     // <div className="container">

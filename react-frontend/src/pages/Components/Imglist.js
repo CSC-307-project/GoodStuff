@@ -1,13 +1,11 @@
-// import React, { useState, useEffect } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
-// import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Typography from "../CustomMUI/Typography";
 
@@ -66,7 +64,6 @@ export default function Imglist(props) {
                       } else {
                         navigate("/product", { state: { product_info: item } });
                       }
-                      //navigate("/product");
                     }}
                   >
                     purchase

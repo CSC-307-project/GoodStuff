@@ -1,6 +1,4 @@
-//const { response } = require("express");
 const express = require("express");
-//const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 const app = express();
 const port = 5001;

@@ -5,14 +5,7 @@ import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import { Container } from "@mui/material";
 
-// const styles = {
-//   color: "blue",
-//   //background: "#0f0",
-//   fontSize: "39px",
-//   textAlign: "center",
-// };
-
-const Register = (props) => {
+const Register = () => {
   const [errorRegister, setErrorRegister] = useState(null);
   window.scrollTo(0, 0);
 
@@ -79,7 +72,7 @@ const Register = (props) => {
         }}
       >
         <Link to="/">
-        <img src={logo} alt="logo" width="180" height="180" />
+          <img src={logo} alt="logo" width="180" height="180" />
         </Link>
       </Container>
       <div className="container d-flex flex-column justify-content-center align-items-center login-center">

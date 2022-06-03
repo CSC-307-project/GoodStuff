@@ -6,16 +6,14 @@ import Cookies from "js-cookie";
 import useInput from "./Components/AddressAutocomplete/useInput";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import { borderLeft } from "@mui/system";
 
 const styles = {
   color: "blue",
-  //background: "#0f0",
   fontSize: "39px",
   textAlign: "center",
 };
 
-const Register = (props) => {
+const Register = () => {
   const [errorPost, setErrorPost] = useState(null);
   const [uploaded, setUpLoaded] = useState("Image Url");
 
