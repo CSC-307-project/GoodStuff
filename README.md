@@ -1,4 +1,4 @@
-## CSC-307-TeamProject-GoodStuff
+## GoodStuff
 
 [![Frontend Node.js CI](https://github.com/CSC-307-project/GoodStuff/actions/workflows/front_node.js.yml/badge.svg)](https://github.com/CSC-307-project/GoodStuff/actions/workflows/front_node.js.yml)
 [![Backend Node.js CI](https://github.com/CSC-307-project/GoodStuff/actions/workflows/back_node.js.yml/badge.svg?branch=frontend-backend)](https://github.com/CSC-307-project/GoodStuff/actions/workflows/back_node.js.yml)
